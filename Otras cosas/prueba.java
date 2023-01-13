@@ -38,7 +38,7 @@ public class prueba {
 			for (int j = 0; j < a.length; j++) {
 				System.out.print(a[i][j] + " ");
 			}
-			System.out.println("");
+			System.out.println();
 		}
 	}
 }

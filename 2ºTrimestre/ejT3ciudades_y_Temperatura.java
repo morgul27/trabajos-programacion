@@ -15,10 +15,22 @@ public class ejT3ciudades_y_Temperatura {
         int c = 0;
         int posicion;
         double media;
+        boolean m = false;
 
         do {
-            System.out.println("Pon el nombre de la ciudad o FIN para terminar");
-            F = sc.next();
+            do {
+                System.out.println("Pon el nombre de la ciudad o FIN para terminar");
+                F = sc.next();
+
+                for (int i = 0; i < ciudad.size(); i++) {
+                    if (ciudad.contains(F) == true)
+                        m = ciudad.contains(F);
+                    else
+                        m = false;
+                }
+
+            } while (m == true);
+
             if (F.equals("FIN") || F.equals("fin"))
                 break;
             ciudad.add(F);

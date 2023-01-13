@@ -31,6 +31,9 @@ public class ejT3notas {
             else
                 Sobre.add(a);
         }
+        String v[] = { Sus, Aprov, Not, Sobre };
+        int h[] = { 1, 2, 3 };
+
         System.out.println();
         System.out.println("Los que han suspendido son:");
         vernota(Sus);

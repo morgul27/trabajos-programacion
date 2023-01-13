@@ -7,6 +7,8 @@ public class ejT3ciudades_y_Temperatura {
         Scanner sc = new Scanner(System.in);
         ArrayList<String> ciudad = new ArrayList<String>();
         ArrayList<Double> temp = new ArrayList<Double>();
+        ArrayList<String> c_mayorLista = new ArrayList<String>();
+        ArrayList<String> c_menorLista = new ArrayList<String>();
         String F;
         Double T;
         Double mayor = 0.0;
@@ -41,7 +43,11 @@ public class ejT3ciudades_y_Temperatura {
             temp.add(T);
 
             mayor = (T > mayor) ? T : mayor;
+            if (T == mayor)
+                c_mayorLista.add(F);
             menor = (T < menor) ? T : menor;
+            if (T == menor)
+                c_mayorLista.add(F);
             suma += T;
             c++;
 

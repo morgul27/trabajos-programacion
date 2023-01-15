@@ -47,7 +47,7 @@ public class ejT3ciudades_y_Temperatura {
                 c_mayorLista.add(F);
             menor = (T < menor) ? T : menor;
             if (T == menor)
-                c_mayorLista.add(F);
+                c_menorLista.add(F);
             suma += T;
             c++;
 

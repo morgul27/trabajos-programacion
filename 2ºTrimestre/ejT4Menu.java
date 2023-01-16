@@ -39,6 +39,9 @@ public class ejT4Menu {
                 case 5:
                     llamarcaracter(palabra);
                     break;
+                case 6:
+                    iguales(palabra);
+                    break;
                 case 9:
                     salirMenu = true;
                     break;
@@ -108,21 +111,29 @@ public class ejT4Menu {
         Scanner sc = new Scanner(System.in);
         int caracter = 0;
         String introducir = "";
-        String a = "";
 
         System.out.println("Mete un caracter");
         introducir = sc.nextLine();
+        int mayor = (palabra.length() > introducir.length()) ? palabra.length() : introducir.length();
+        int menor = (palabra.length() < introducir.length()) ? palabra.length() : introducir.length();
 
-        for (int i = 0; i < palabra.length(); i++) {
-            a = palabra.charAt(i);
-
-            if (palabra.charAt(i) == introducir.charAt(i)) {
-                caracter++;
-                System.out.println(caracter);
+        for (int i = 0; i < mayor; i++) {
+            for (int j = 0; j < menor; j++) {
+                if (palabra.charAt(i) == introducir.charAt(j)) {
+                    caracter++;
+                    System.out.println(caracter);
+                }
             }
 
         }
-        System.out.println("La palabra " + palabra + " tiene " + caracter + " caracteres introducidos");
+        System.out.println("La palabra " + palabra + " contiene " + caracter + " caracteres introducidos de la plabra "
+                + introducir);
+    }
+
+    // funcion 6 introducir una cadena para saber si son iguales, si esta contenida
+    public static void iguales(String palabra) {
+        llamarcaracter(palabra);
+
     }
 
 }

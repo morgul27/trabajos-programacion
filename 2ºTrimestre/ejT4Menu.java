@@ -1,5 +1,4 @@
 import java.util.Scanner;
-import java.util.ArrayList;
 
 public class ejT4Menu {
 
@@ -132,7 +131,16 @@ public class ejT4Menu {
 
     // funcion 6 introducir una cadena para saber si son iguales, si esta contenida
     public static void iguales(String palabra) {
+        Scanner sc = new Scanner(System.in);
+        String introducir = "";
         llamarcaracter(palabra);
+
+        System.out.println("Mete un caracter");
+        introducir = sc.nextLine();
+        if (palabra.equals(introducir))
+            System.out.println("Son iguales");
+        else
+            System.out.println("Son distintos");
 
     }
 

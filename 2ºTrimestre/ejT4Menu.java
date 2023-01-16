@@ -75,6 +75,7 @@ public class ejT4Menu {
                 pos = palabra.indexOf(" ", pos + 1);// se busca el siguiente espacio en blanco a continuación del actual
             }
         }
+        System.out.println("Hay " + contador + " palabras");
     }
 
     // funcion 3 contar vocales

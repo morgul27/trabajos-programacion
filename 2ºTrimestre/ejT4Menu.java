@@ -37,11 +37,11 @@ public class ejT4Menu {
                     ContarCadena(palabra);
                     break;
                 case 5:
-                    salirMenu = true;
+                    llamarcaracter(palabra);
                     break;
                 case 9:
+                    salirMenu = true;
                     break;
-
                 default:
                     System.out.println("Debe introducir un numero entre 1 y 4");
             }
@@ -54,14 +54,14 @@ public class ejT4Menu {
         String palabra;
 
         System.out.println("Introduce una cadena de texto");
-        palabra = sc.next();
+        palabra = sc.nextLine();
 
         return palabra;
     }
 
     // funcion 2 contar numero de palabras
     public static void NumPalabra(String palabra) {
-        Scanner sc = new Scanner(System.in);
+
         char cad = ' ';
         int contador = 1, pos;
 
@@ -80,7 +80,19 @@ public class ejT4Menu {
 
     // funcion 3 contar vocales
     public static void Vocales(String palabra) {
-        Scanner sc = new Scanner(System.in);
+        char vocales[] = { 'a', 'e', 'i', 'o', 'u' };
+        int nuVocales = 0;
+        String voc = "";
+
+        for (int i = 0; i < palabra.length(); i++) {
+            for (int j = 0; j < vocales.length; j++) {
+                if (palabra.charAt(i) == vocales[j]) {
+                    nuVocales++;
+                    voc += palabra.charAt(i);
+                }
+            }
+        }
+        System.out.println("La palabra " + palabra + " tiene " + nuVocales + " vocales, y son " + voc);
 
     }
 
@@ -89,6 +101,28 @@ public class ejT4Menu {
         System.out.println("La cadena de texto tiene " + palabra.length() + " numeros de longitud");
         System.out.println("La cadena de texto en mayusculas es " + palabra.toLowerCase());
         System.out.println("La cadena de texto en minusculas es " + palabra.toUpperCase());
+    }
+
+    // funcion 5 para solicitar un caracter y indicar si esta en la cadena
+    public static void llamarcaracter(String palabra) {
+        Scanner sc = new Scanner(System.in);
+        int caracter = 0;
+        String introducir = "";
+        String a = "";
+
+        System.out.println("Mete un caracter");
+        introducir = sc.nextLine();
+
+        for (int i = 0; i < palabra.length(); i++) {
+            a = palabra.charAt(i);
+
+            if (palabra.charAt(i) == introducir.charAt(i)) {
+                caracter++;
+                System.out.println(caracter);
+            }
+
+        }
+        System.out.println("La palabra " + palabra + " tiene " + caracter + " caracteres introducidos");
     }
 
 }

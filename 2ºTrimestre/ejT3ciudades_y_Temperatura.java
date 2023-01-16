@@ -44,10 +44,10 @@ public class ejT3ciudades_y_Temperatura {
 
             mayor = (T > mayor) ? T : mayor;
             if (T == mayor)
-                c_mayorLista.add(F);
+                mayor = T;
             menor = (T < menor) ? T : menor;
             if (T == menor)
-                c_menorLista.add(F);
+                menor = T;
             suma += T;
             c++;
 

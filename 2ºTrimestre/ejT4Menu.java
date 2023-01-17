@@ -6,6 +6,7 @@ public class ejT4Menu {
         Scanner sc = new Scanner(System.in);
         int x;
         String palabra = "";
+        String letra = "";
         boolean salirMenu = false;
 
         do {
@@ -36,7 +37,7 @@ public class ejT4Menu {
                     ContarCadena(palabra);
                     break;
                 case 5:
-                    llamarcaracter(palabra);
+                    llamarcaracter(palabra, letra);
                     break;
                 case 6:
                     iguales(palabra);
@@ -106,10 +107,9 @@ public class ejT4Menu {
     }
 
     // funcion 5 para solicitar un caracter y indicar si esta en la cadena
-    public static void llamarcaracter(String palabra) {
+    public static String llamarcaracter(String palabra, String introducir) {
         Scanner sc = new Scanner(System.in);
         int caracter = 0;
-        String introducir = "";
 
         System.out.println("Mete un caracter");
         introducir = sc.nextLine();
@@ -123,20 +123,18 @@ public class ejT4Menu {
                     System.out.println(caracter);
                 }
             }
-
         }
         System.out.println("La palabra " + palabra + " contiene " + caracter + " caracteres introducidos de la plabra "
                 + introducir);
+        return introducir;
     }
 
     // funcion 6 introducir una cadena para saber si son iguales, si esta contenida
     public static void iguales(String palabra) {
         Scanner sc = new Scanner(System.in);
         String introducir = "";
-        llamarcaracter(palabra);
+        introducir = llamarcaracter(palabra, introducir);
 
-        System.out.println("Mete un caracter");
-        introducir = sc.nextLine();
         if (palabra.equals(introducir))
             System.out.println("Son iguales");
         else

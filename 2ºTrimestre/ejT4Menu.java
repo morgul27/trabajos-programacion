@@ -139,7 +139,7 @@ public class ejT4Menu {
                 }
             }
         }
-        System.out.println("La palabra " + palabra + " contiene " + caracter + " caracteres introducidos de la plabra "
+        System.out.println("La palabra " + palabra + " contiene " + caracter + " caracteres introducidos de la palabra "
                 + introducir);
         return introducir;
     }
@@ -150,7 +150,7 @@ public class ejT4Menu {
         String introducir = "";
         introducir = llamarcaracter(palabra, introducir);
 
-        if (palabra.equals(introducir))
+        if (palabra.equalsIgnoreCase(introducir))
             System.out.println("Son iguales");
         else
             System.out.println("Son distintos");

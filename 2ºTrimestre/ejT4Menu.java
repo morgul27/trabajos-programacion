@@ -8,6 +8,7 @@ public class ejT4Menu {
         String palabra = "";
         String letra = "";
         boolean salirMenu = false;
+        boolean tenercadena = false;
 
         do {
             System.out.println("");
@@ -24,29 +25,43 @@ public class ejT4Menu {
             switch (x) {
                 case 1:
                     palabra = Palabra();
+                    tenercadena = true;
                     break;
                 case 2:
-                    NumPalabra(palabra);
-                    System.out.println("La matriz aun esta vacia");
+                    if (tenercadena == true)
+                        NumPalabra(palabra);
+                    else
+                        System.out.println("No has añadido ninguna palabra");
                     break;
                 case 3:
-                    Vocales(palabra);
-                    System.out.println("La matriz aun esta vacia");
+                    if (tenercadena == true)
+                        Vocales(palabra);
+                    else
+                        System.out.println("No has añadido ninguna palabra");
                     break;
                 case 4:
-                    ContarCadena(palabra);
+                    if (tenercadena == true)
+                        ContarCadena(palabra);
+                    else
+                        System.out.println("No has añadido ninguna palabra");
                     break;
                 case 5:
-                    llamarcaracter(palabra, letra);
+                    if (tenercadena == true)
+                        llamarcaracter(palabra, letra);
+                    else
+                        System.out.println("No has añadido ninguna palabra");
                     break;
                 case 6:
-                    iguales(palabra);
+                    if (tenercadena == true)
+                        iguales(palabra);
+                    else
+                        System.out.println("No has añadido ninguna palabra");
                     break;
                 case 9:
                     salirMenu = true;
                     break;
                 default:
-                    System.out.println("Debe introducir un numero entre 1 y 4");
+                    System.out.println("Debe introducir un numero entre 1 y 9");
             }
         } while (!salirMenu);
     }

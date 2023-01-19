@@ -32,7 +32,7 @@ public class ejT3notas {
                 Sobre.add(a);
         }
 
-        ArrayList V[] = { Sus, Aprov, Not, Sobre }; // Arreglo de Nicolás
+        ArrayList V[] = { Sus, Aprov, Not, Sobre };
 
         System.out.println();
         System.out.println("Los que han suspendido son:");

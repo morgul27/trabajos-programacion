@@ -18,6 +18,7 @@ public class ejT4Menu {
             System.out.println("4. longitud, mayusculas y minusculas");
             System.out.println("5. Pedir caracter --> ¿esta?¿cuantos?");
             System.out.println("6. Introduce la cadena y si esta verla y cual de ellas mayor");
+            System.out.println("7. Contar letras, numeros y espacios");
             System.out.println("9. Salir");
 
             x = sc.nextInt();
@@ -54,6 +55,12 @@ public class ejT4Menu {
                 case 6:
                     if (tenercadena == true)
                         iguales(palabra);
+                    else
+                        System.out.println("No has añadido ninguna palabra");
+                    break;
+                case 7:
+                    if (tenercadena == true)
+                        contar(palabra);
                     else
                         System.out.println("No has añadido ninguna palabra");
                     break;
@@ -155,6 +162,35 @@ public class ejT4Menu {
         else
             System.out.println("Son distintos");
 
+    }
+
+    // funcion 7 contar letras, numeros y espacios
+    public static void contar(String palabra) {
+        Scanner sc = new Scanner(System.in);
+        palabra.toCharArray();
+        int c = 0;
+        char a = 'b';
+
+        // palabra.isLetter(a);
+
+        for (int i = 0; i < palabra.length(); i++) {
+
+            System.out.println("hay " + c + " caracteres");
+        }
+
+    }
+
+    // funcion goyo ahora la complemento
+    public static int contarCaracter(String cad, char c) {
+        int p = -1;
+        int cont = 0;
+
+        do {
+            p = cad.indexOf(c, p + 1);
+            if (p >= 0)
+                cont++;
+        } while (p >= 0 && p < cad.length());
+        return cont;
     }
 
 }

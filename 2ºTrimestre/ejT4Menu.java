@@ -186,7 +186,7 @@ public class ejT4Menu {
         int cont = 0;
 
         do {
-            p = cad.indexOf(c, p + 1);
+            p = cad.indexOf(c, p++);
             if (p >= 0)
                 cont++;
         } while (p >= 0 && p < cad.length());

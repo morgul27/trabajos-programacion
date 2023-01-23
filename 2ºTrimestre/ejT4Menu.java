@@ -12,13 +12,13 @@ public class ejT4Menu {
 
         do {
             System.out.println("");
-            System.out.println("1.Cadena");
-            System.out.println("2.¿Cuantas palabras?");
-            System.out.println("3.¿Cuantas vocales?");
-            System.out.println("4.longitud, mayusculas y minusculas");
-            System.out.println("5.caracter --> ¿esta?¿cuantos?");
+            System.out.println("1. Cadena");
+            System.out.println("2. ¿Cuantas palabras?");
+            System.out.println("3. ¿Cuantas vocales?");
+            System.out.println("4. longitud, mayusculas y minusculas");
+            System.out.println("5. Pedir caracter --> ¿esta?¿cuantos?");
             System.out.println("6. Introduce la cadena y si esta verla y cual de ellas mayor");
-            System.out.println("9.Salir");
+            System.out.println("9. Salir");
 
             x = sc.nextInt();
 
@@ -77,7 +77,7 @@ public class ejT4Menu {
         return palabra;
     }
 
-    // funcion 2 contar numero de palabras
+    // funcion 2 contar cuantas palabras hay
     public static void NumPalabra(String palabra) {
 
         char cad = ' ';

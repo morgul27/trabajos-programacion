@@ -11,6 +11,9 @@ public class juegoAzar {
         System.out.println("");
         System.out.println("1. Loteria");
         System.out.println("2. Euromillon");
+        System.out.println("3. Meter saldo");
+        System.out.println("4. Sacar saldo");
+        System.out.println("5. Ver resultados");
 
         // Menu para jugar
         x = sc.nextInt();
@@ -27,6 +30,11 @@ public class juegoAzar {
             case 4:
                 saldo = sacarsaldo(saldo);
                 break;
+            case 5:
+                break;
+            default:
+                System.out.println("Se ha equivocado");
+
         }
 
         premios(numApostado);
@@ -73,19 +81,23 @@ public class juegoAzar {
     // funcion para el meter saldo
     public static double metersaldo(Double saldo) {
         Scanner sc = new Scanner(System.in);
+        double suma = 0;
 
         System.out.println("Introduzca su saldo");
         saldo = sc.nextDouble();
-        return saldo;
+        suma += saldo;
+        return suma;
     }
 
     // funcion para sacar el saldo
     public static double sacarsaldo(Double saldo) {
         Scanner sc = new Scanner(System.in);
+        double resta = 0;
 
         System.out.println("Introduzca su saldo");
         saldo = sc.nextDouble();
-        return saldo;
+        resta = saldo - resta;
+        return resta;
     }
 
     // funcion aleatorio

@@ -149,4 +149,12 @@ public class juegoAzar {
         System.out.println("Su numero es " + numApostadoLo);
         System.out.println("Sus numeros de euromillon son " + numApostadoEuro);
     }
+
+    /*
+     * for(int i=10; x<=100000; x*=10)
+     * if(resultado%i == ap%i)
+     * c++;
+     * else
+     * break;
+     */
 }

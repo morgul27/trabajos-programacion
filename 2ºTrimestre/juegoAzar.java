@@ -156,5 +156,21 @@ public class juegoAzar {
      * c++;
      * else
      * break;
+     * 
+     * 
+     * else
+     * 
+     * switch (c) tambien es un vector
+     * case 1:
+     * premio=3
+     * entero
+     * case2:
+     * premio=6
+     * 
+     * default
+     * Los premios en un vector {3,6,15,75,3000,1800}
+     * 
+     * if(c==0 && abs(in premiado-ap)==1)
+     * c=6;
      */
 }

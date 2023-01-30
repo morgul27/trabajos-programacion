@@ -82,7 +82,7 @@ public class juegoAzar {
             saldo -= 2.5;
 
             System.out.println("Quieres pedir otro? Di si para aceptar, tienes " + saldo + " euros");
-            aceptar = sc.nextLine();
+            aceptar = sc.next();
             System.out.println("");
 
         } while (aceptar.equals("si") && saldo >= 2.5);
@@ -144,10 +144,26 @@ public class juegoAzar {
     // funcion para numeros premiados
     public static void premios(ArrayList<Integer> numApostadoLo, ArrayList<Integer> numApostadoEuro) {
         int premiado;
+        int c = 0;
+        int resultado = 0;
+        int ap = 0;
+        int x = 0;
+
         premiado = aleatorio(0, 9999);
         System.out.println("El numero premiado de la loteria es " + premiado);
         System.out.println("Su numero es " + numApostadoLo);
         System.out.println("Sus numeros de euromillon son " + numApostadoEuro);
+
+        for (int i = 10; x <= 100000; x *= 10) {
+            if (resultado % i == ap % i)
+                c++;
+            else
+                break;
+        }
+
+        if (c == 0 && Math.abs(premiado - ap) == 1)
+            c = 6;
+
     }
 
     /*

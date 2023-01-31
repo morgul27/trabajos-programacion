@@ -6,9 +6,15 @@ public class juegoAzar {
         Scanner sc = new Scanner(System.in);
         ArrayList<Integer> numApostadoLo = new ArrayList<Integer>();
         ArrayList<Integer> numApostadoEuro = new ArrayList<Integer>();
+        ArrayList<Integer> euromillonnum = new ArrayList<Integer>();
+        ArrayList<Integer> estrella = new ArrayList<Integer>();
+        int premios[] = { 3, 2, 1 };
         Double saldo = 50.00;
         int x;
         boolean salirMenu = false;
+
+        rellenar(euromillonnum, 50);
+        rellenar(estrella, 10);
 
         // Menu para jugar
         do {
@@ -49,6 +55,15 @@ public class juegoAzar {
 
     }
 
+    // funcion para rellenar arraylist del euromillon
+    public static void rellenar(ArrayList<Integer> euromillon, int n) {
+
+        for (int i = 1; i < n; i++) {
+            euromillon.add(i);
+        }
+
+    }
+
     // funcion LOTERIA
     public static double loteria(Double saldo, ArrayList<Integer> numApostadoLo) {
         Scanner sc = new Scanner(System.in);
@@ -76,8 +91,14 @@ public class juegoAzar {
         System.out.println("Estas en el EUROMILLON");
         do {
 
+            // 5 numeros normales
             for (int c = 0; c < 5; c++) {
                 pedirnumero(numApostadoEuro, 1, 49);
+            }
+
+            // 2 estrellas
+            for (int c = 0; c < 2; c++) {
+                pedirnumero(numApostadoEuro, 1, 9);
             }
             saldo -= 2.5;
 
@@ -86,6 +107,7 @@ public class juegoAzar {
             System.out.println("");
 
         } while (aceptar.equals("si") && saldo >= 2.5);
+
         return saldo;
     }
 
@@ -98,14 +120,18 @@ public class juegoAzar {
 
         System.out.println("¿Quieres meter numero(0) o que sea aleatorio?(1)");
         opcion = sc.nextInt();
-        if (opcion == 1) {
-            numApostado.add(aleatorio(min, max));
-            System.out.println("Su numero es: " + numApostado);
-        } else if (opcion == 0) {
-            System.out.println("mete numero");
-            numApostado.add(sc.nextInt());
-            System.out.println("Su numero es: " + numApostado);
-        }
+        do {
+            if (opcion == 1) {
+                numApostado.add(aleatorio(min, max));
+                System.out.println("Su numero es: " + numApostado);
+            } else if (opcion == 0) {
+                System.out.println("mete numero");
+                numApostado.add(sc.nextInt());
+                System.out.println("Su numero es: " + numApostado);
+            } else
+                System.out.println("Gilipollas");
+
+        } while (opcion != 0 && opcion != 1);
 
         return numApostado;
     }

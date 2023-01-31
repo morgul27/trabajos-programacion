@@ -6,8 +6,8 @@ public class juegoAzar {
         Scanner sc = new Scanner(System.in);
         ArrayList<Integer> numApostadoLo = new ArrayList<Integer>();
         ArrayList<Integer> numApostadoEuro = new ArrayList<Integer>();
-        ArrayList<Integer> euromillonnum = new ArrayList<Integer>();
-        ArrayList<Integer> estrella = new ArrayList<Integer>();
+        int euromillonnum[] = { 0, 0, 0, 0, 0 };
+        int estrella[] = { 0, 0 };
         int premios[] = { 3, 2, 1 };
         Double saldo = 50.00;
         int x;
@@ -56,10 +56,10 @@ public class juegoAzar {
     }
 
     // funcion para rellenar arraylist del euromillon
-    public static void rellenar(ArrayList<Integer> euromillon, int n) {
+    public static void rellenar(int euromillon[], int n) {
 
         for (int i = 1; i < n; i++) {
-            euromillon.add(i);
+            euromillon[i - 1] = i;
         }
 
     }

@@ -13,8 +13,8 @@ public class juegoAzar {
         int x;
         boolean salirMenu = false;
 
-        rellenar(euromillonnum, 50);
-        rellenar(estrella, 10);
+        // rellenar(euromillonnum, 50);
+        // rellenar(estrella, 10);
 
         // Menu para jugar
         do {
@@ -55,7 +55,7 @@ public class juegoAzar {
 
     }
 
-    // funcion para rellenar arraylist del euromillon
+    // funcion para rellenar vector del euromillon
     public static void rellenar(int euromillon[], int n) {
 
         for (int i = 1; i < n; i++) {
@@ -180,16 +180,7 @@ public class juegoAzar {
         System.out.println("Su numero es " + numApostadoLo);
         System.out.println("Sus numeros de euromillon son " + numApostadoEuro);
 
-        for (int i = 10; x <= 100000; x *= 10) {
-            if (resultado % i == ap % i)
-                c++;
-            else
-                break;
-        }
-
-        if (c == 0 && Math.abs(premiado - ap) == 1)
-            c = 6;
-
+        System.out.println("Fin");
     }
 
     /*

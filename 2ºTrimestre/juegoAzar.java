@@ -148,7 +148,7 @@ public class juegoAzar {
         } else if (marcar == 4) {
             System.out.println("Introduzca el dinero que quiera sacar");
             pedir = sc.nextDouble();
-            pedir -= saldo;
+            pedir = saldo - pedir;
         }
 
         System.out.println("Su saldo es " + pedir);
@@ -175,7 +175,7 @@ public class juegoAzar {
         int ap = 0;
         int x = 0;
 
-        premiado = aleatorio(0, 9999);
+        premiado = aleatorio(0, 99999);
         System.out.println("El numero premiado de la loteria es " + premiado);
         System.out.println("Su numero es " + numApostadoLo);
         System.out.println("Sus numeros de euromillon son " + numApostadoEuro);

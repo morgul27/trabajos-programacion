@@ -25,10 +25,10 @@ public class LoteriaNavidad {
         primerPremio = quitarnumerodelBombo(bolaBombo);
 
         // segundo premios
-        cogerpremios(segundoPremios, bolaBombo, 0, 4);
+        cogerpremios(segundoPremios, bolaBombo, 0, 3);
 
         // tercer premios
-        cogerpremios(tercerPremios, bolaBombo, 0, 6);
+        cogerpremios(tercerPremios, bolaBombo, 0, 5);
 
         // mil premios
         for (int i = 0; i < 1001; i++) {

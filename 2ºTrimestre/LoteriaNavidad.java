@@ -7,12 +7,16 @@ public class LoteriaNavidad {
         Scanner sc = new Scanner(System.in);
         ArrayList<Integer> numApostado = new ArrayList<Integer>();
         ArrayList<Integer> bolaBombo = new ArrayList<Integer>();
-        ArrayList<Integer> milpremioslistado = new ArrayList<Integer>();
         int primerPremio;
         int premios[] = { 3000000, 60000, 20000, 100 };
         int segundoPremios[] = { 0, 0, 0 };
         int tercerPremios[] = { 0, 0, 0, 0, 0 };
+        int milpremios[];
+        milpremios = new int[1000];
+        double saldo = 0.0;
         int ran;
+        int x;
+        boolean salirMenu = false;
 
         ran = aleatorio(1, 99999);
         numApostado.add(ran);
@@ -20,20 +24,65 @@ public class LoteriaNavidad {
 
         rellenarBombo(bolaBombo);
 
+        do {
+            System.out.println("");
+            System.out.println("1. Coger numero");
+            System.out.println("2. ");
+            System.out.println("3. Meter saldo");
+            System.out.println("4. Sacar saldo");
+            System.out.println("5. Ver resultados");
+            System.out.println("9. Ir a ver los premios");
+
+            x = sc.nextInt();
+            switch (x) {
+                case 1:
+                    System.out.println("9. Salir");
+                    break;
+                case 2:
+                    System.out.println("9. Salir");
+                    break;
+                case 3:
+                    saldo = saldo(saldo, x);
+                    break;
+                case 4:
+                    saldo = saldo(saldo, x);
+                    break;
+                case 5:
+                    break;
+                case 9:
+                    salirMenu = true;
+                    break;
+                default:
+                    System.out.println("Se ha equivocado");
+
+            }
+        } while (!salirMenu);
+
         // premios
         // ahora los premios
         primerPremio = quitarnumerodelBombo(bolaBombo);
 
         // segundo premios
-        cogerpremios(segundoPremios, bolaBombo, 0, 3);
+        cogerbola(segundoPremios, bolaBombo, 0, 3);
+        ordenar(segundoPremios);
 
         // tercer premios
-        cogerpremios(tercerPremios, bolaBombo, 0, 5);
+        cogerbola(tercerPremios, bolaBombo, 0, 5);
+        ordenar(tercerPremios);
 
         // mil premios
-        for (int i = 0; i < 1001; i++) {
-            quitarnumerodelBombo(bolaBombo);
-        }
+        cogerbola(milpremios, bolaBombo, 0, 1000);
+        ordenar(milpremios);
+
+        // mostrar los premios
+        System.out.println("El primer premio es: " + primerPremio);
+        System.out.println();
+        System.out.print("Los segundos premios son: ");
+        mostrarPremios(segundoPremios);
+        System.out.print("Los tercer premios premios son: ");
+        mostrarPremios(tercerPremios);
+        System.out.println("Los mil premios premios son: ");
+        mostrarPremios(milpremios);
     }
 
     // funcion para rellenar el bombo
@@ -41,7 +90,6 @@ public class LoteriaNavidad {
         for (int i = 0; i < 99999; i++) {
             bolaBombo.add(i + 1);
         }
-        System.out.println(bolaBombo);
     }
 
     // funcion para rellenar el bombo
@@ -68,9 +116,52 @@ public class LoteriaNavidad {
     }
 
     // funcion para for premios
-    public static void cogerpremios(int Premios[], ArrayList<Integer> bolaBombo, int min, int max) {
+    public static void cogerbola(int Premios[], ArrayList<Integer> bolaBombo, int min, int max) {
         for (int i = min; i < max; i++) {
             Premios[i] = quitarnumerodelBombo(bolaBombo);
         }
+    }
+
+    // funcion para ordenar los premios
+    public static void ordenar(int Premios[]) {
+        int aux;
+
+        for (int i = 0; i < Premios.length; i++) {
+            for (int j = 0; j < Premios.length - i - 1; j++) {
+
+                if (Premios[j] > Premios[j + 1]) {
+                    aux = Premios[j + 1];
+                    Premios[j + 1] = Premios[j];
+                    Premios[j] = aux;
+                }
+            }
+        }
+    }
+
+    // funcion para mostrar los premios
+    public static void mostrarPremios(int Premios[]) {
+        for (int i = 0; i < Premios.length; i++)
+            System.out.print(Premios[i] + " ");
+        System.out.println(" ");
+        System.out.println(" ");
+    }
+
+    // funcion para el meter o sacar saldo
+    public static double saldo(Double saldo, int marcar) {
+        Scanner sc = new Scanner(System.in);
+        double pedir = 0;
+
+        if (marcar == 3) {
+            System.out.println("Introduzca el dinero que quiera meter");
+            pedir = sc.nextDouble();
+            pedir += saldo;
+        } else if (marcar == 4) {
+            System.out.println("Introduzca el dinero que quiera sacar");
+            pedir = sc.nextDouble();
+            pedir = saldo - pedir;
+        }
+
+        System.out.println("Su saldo es " + pedir);
+        return pedir;
     }
 }

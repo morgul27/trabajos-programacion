@@ -184,7 +184,7 @@ public class juegoAzar {
     }
 
     /*
-     * for(int i=10; x<=100000; x*=10)
+     * for(int i=10; i<=100000; i*=10)
      * if(resultado%i == ap%i)
      * c++;
      * else

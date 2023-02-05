@@ -83,6 +83,13 @@ public class LoteriaNavidad {
         mostrarPremios(tercerPremios);
         System.out.println("Los mil premios premios son: ");
         mostrarPremios(milpremios);
+
+        // aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+        // comparaciones
+        // aaaaaaaaaaaaaaaaa
+        comparacionPremios(numApostado, segundoPremios);
+        comparacionPremios(numApostado, tercerPremios);
+        comparacionPremios(numApostado, milpremios);
     }
 
     // funcion para rellenar el bombo
@@ -163,5 +170,18 @@ public class LoteriaNavidad {
 
         System.out.println("Su saldo es " + pedir);
         return pedir;
+    }
+
+    // funcion comparacion de premios
+    public static void comparacionPremios(ArrayList<Integer> Premios2, int Premios[]) {
+        int c = 0;
+        for (int i = 0; i < Premios.length; i++) {
+            for (int j = 0; j < Premios2.get(j); j++) {
+                if (Premios[i] == Premios2.get(j)) {
+                    c++;
+                    System.out.println("Gilipollas");
+                }
+            }
+        }
     }
 }

@@ -87,6 +87,8 @@ public class LoteriaNavidad {
         // aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
         // comparaciones
         // aaaaaaaaaaaaaaaaa
+        System.out.println("forzandolo");
+        segundoPremios[0] = sc.nextInt();
         comparacionPremios(numApostado, segundoPremios);
         comparacionPremios(numApostado, tercerPremios);
         comparacionPremios(numApostado, milpremios);
@@ -176,7 +178,7 @@ public class LoteriaNavidad {
     public static void comparacionPremios(ArrayList<Integer> Premios2, int Premios[]) {
         int c = 0;
         for (int i = 0; i < Premios.length; i++) {
-            for (int j = 0; j < Premios2.get(j); j++) {
+            for (int j = 0; j < Premios2.size(); j++) {
                 if (Premios[i] == Premios2.get(j)) {
                     c++;
                     System.out.println("Gilipollas");

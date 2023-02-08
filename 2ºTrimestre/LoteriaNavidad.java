@@ -17,16 +17,12 @@ public class LoteriaNavidad {
         int tercerPremios[] = { 0, 0, 0, 0, 0 };
         int milpremios[];
         milpremios = new int[1000];
-        double saldo = 50.0;
+        double saldo = 0.0;
         int ran;
         int x;
         int s, t, m, p;
         int r = 0;
         boolean salirMenu = false;
-
-        ran = aleatorio(1, 99999);
-        numApostado.add(ran);
-        System.out.println("Tienes el numero el numero " + numApostado);
 
         rellenarBombo(bolaBombo);
 
@@ -83,12 +79,6 @@ public class LoteriaNavidad {
         System.out.println("Los mil premios premios son: ");
         mostrarPremios(milpremios);
 
-        // aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-        // comparaciones
-        // aaaaaaaaaaaaaaaaa
-        System.out.println("forzandolo");
-        numApostado.add(sc.nextInt());
-        numApostado.add(sc.nextInt());
         // Comparaciones
         p = verPrimerPremio(numApostado, primerPremio);
         s = comparacionPremios(numApostado, segundoPremios, 1, premios);
@@ -164,9 +154,8 @@ public class LoteriaNavidad {
     public static int quitarnumerodelBombo(ArrayList<Integer> bolaBombo) {
         int ran;
 
-        ran = aleatorio(1, 99999);
+        ran = aleatorio(0, bolaBombo.size());
         bolaBombo.remove(ran);
-        bolaBombo.add(ran);
 
         return ran;
     }

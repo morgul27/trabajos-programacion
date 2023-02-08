@@ -146,7 +146,7 @@ public class LoteriaNavidad {
     // funcion para rellenar el bombo
     public static void rellenarBombo(ArrayList<Integer> bolaBombo) {
         for (int i = 0; i < 99999; i++) {
-            bolaBombo.add(i + 1);
+            bolaBombo.add(i);
         }
     }
 

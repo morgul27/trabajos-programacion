@@ -262,7 +262,7 @@ public class LoteriaNavidad {
             }
         }
         System.out.println();
-        System.out.println("Has ganado " + c + " premios de " + nf.format(cantidad[p]));
+        System.out.printf("Has ganado " + c + " premios de " + nf.format(cantidad[p]));
 
         return c;
     }

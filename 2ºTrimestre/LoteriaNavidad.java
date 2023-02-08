@@ -209,7 +209,7 @@ public class LoteriaNavidad {
     // funcion para mostrar los premios
     public static void mostrarPremios(int Premios[]) {
         for (int i = 0; i < Premios.length; i++)
-            System.out.printf("%1$05d ", Premios[i]);
+            System.out.printf("| %1$05d ", Premios[i]);
         System.out.println(" ");
         System.out.println(" ");
     }

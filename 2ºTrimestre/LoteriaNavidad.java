@@ -90,10 +90,9 @@ public class LoteriaNavidad {
         // ver el dinero ganado
         System.out.println();
         NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("es", "ES"));
-        System.out
-                .println("En total has ganado " + nf.format(
-                        +((premios[0] * p) + (premios[1] * s) + (premios[2] * t) + (premios[3] * m)
-                                + (premios[4] * r))));
+        System.out.println("En total has ganado " + nf.format(
+                +((premios[0] * p) + (premios[1] * s) + (premios[2] * t) + (premios[3] * m)
+                        + (premios[4] * r))));
     }
 
     // funcion coger el numero

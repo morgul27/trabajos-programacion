@@ -46,16 +46,18 @@ public class ejrepaso2 {
         int min;
         int max;
         int random = 5;
-        int TDias = 5;
+        int TDias = 30;
         int Datos[][];
         Datos = new int[5][5];
 
-        for (int i = 0; i < idCiudad.length; i++) {
-            for (int j = 0; j < TDias; j++) {
-                Datos[i * TDias + j][0] = i; // ciudad
-                Datos[i * TDias + j][1] = j; // fecha
-                Datos[i * TDias + j][2] = random; // temp max, hacer un random
-                Datos[i * TDias + j][3] = random; // temp min, hacer un random
+        for (int c = 0; c < idCiudad.length; c++) {
+            for (int f = 0; f < TDias; f++) {
+                Datos[c * TDias + f][0] = c; // ciudad
+                Datos[c * TDias + f][1] = f; // fecha
+                Datos[c * TDias + f][2] = random; // temp max, hacer un random
+                Datos[c * TDias + f][3] = random; // temp min, hacer un random
+                Datos[c * TDias + f][4] = random; // segundos max
+                Datos[c * TDias + f][5] = random; // segundos min
             }
         }
     }
@@ -64,6 +66,9 @@ public class ejrepaso2 {
 
     // hacer un solo random para las horas, se calcula solo los segundos y luego se
     // saca las horas, 24x60x60 son los segundos en un dia
+
+    // dia de inicio es 0, el dia localday es el 0
+    // LocalDay de=LocalDay.of(año,dia inicio, dia final)
 
     // arraylist Object
 

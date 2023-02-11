@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 
-public class prueba1 {
+public class quiniela_pablo {
     public static void main(String[] args) {
         Scanner sb = new Scanner(System.in);
         int boton = 0;

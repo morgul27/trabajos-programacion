@@ -77,7 +77,7 @@ public class quiniela_pablo {
                 contpartido++;
             }
         }
-        System.out.println("Has obtenido " + contpartido + "aciertos");
+        System.out.println("Has obtenido " + contpartido + " aciertos");
         if (contpartido == 15) {
             System.out.println("HAS GANADO LA QUINIELAAAAAAAA");
         }

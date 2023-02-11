@@ -18,7 +18,6 @@ public class LoteriaNavidad {
         int milpremios[];
         milpremios = new int[1000];
         double saldo = 0.0;
-        int ran;
         int x;
         int s, t, m, p;
         int r = 0;

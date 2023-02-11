@@ -14,7 +14,7 @@ public class fechas {
         System.out.println("la fecha y hora actual es " + LocalDateTime.now());
         System.out.println("El instante actual es " + Instant.now());
         System.out.println("la fecha y hora actuales con zona horaria son: " + ZonedDateTime.now());
-        System.out.println("El primer dia del año es " + LocalDate.of(LocalDate.now(), Month.JANUARY, 1));
+        System.out.println("El primer dia del año es " + LocalDate.of(2023, Month.JANUARY, 1));
 
         System.out.println("Hace 20 dias fue " + LocalDateTime.of(2023, Month.JANUARY, 24, 12, 21, 01, 0000));
 

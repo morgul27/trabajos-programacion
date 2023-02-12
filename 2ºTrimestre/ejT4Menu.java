@@ -148,6 +148,7 @@ public class ejT4Menu {
         }
         System.out.println("La palabra " + palabra + " contiene " + caracter + " caracteres introducidos de la palabra "
                 + introducir);
+
         return introducir;
     }
 
@@ -169,14 +170,13 @@ public class ejT4Menu {
         Scanner sc = new Scanner(System.in);
         palabra.toCharArray();
         int c = 0;
-        char a = 'b';
 
         // palabra.isLetter(a);
 
         for (int i = 0; i < palabra.length(); i++) {
-
-            System.out.println("hay " + c + " caracteres");
+            c++;
         }
+        System.out.println("hay " + c + " caracteres");
 
     }
 
@@ -186,7 +186,8 @@ public class ejT4Menu {
         int cont = 0;
 
         do {
-            p = cad.indexOf(c, p++);
+            p = cad.indexOf(c, p++); // la funcion de "p" es saltar despues del espacio y luego el valor es
+                                     // sustituido por otro que este más adelante
             if (p >= 0)
                 cont++;
         } while (p >= 0 && p < cad.length());

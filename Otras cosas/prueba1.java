@@ -30,7 +30,7 @@ public class prueba1 {
                     check(quiniela, resultado);
             }
         } while (boton != 4);
-        System.out.println("Hello World!");
+
     }
 
     public static void imprimir(ArrayList<Integer> quiniela) {

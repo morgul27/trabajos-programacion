@@ -181,12 +181,13 @@ public class ejT4Menu {
     }
 
     // funcion goyo ahora la complemento
+    // esta funcion sirve para enviar un caracter y ver cuantos hay de este
     public static int contarCaracter(String cad, char c) {
         int p = -1;
         int cont = 0;
 
         do {
-            p = cad.indexOf(c, p++); // la funcion de "p" es saltar despues del espacio y luego el valor es
+            p = cad.indexOf(c, ++p); // la funcion de "p" es saltar despues del caracter y luego el valor es
                                      // sustituido por otro que este más adelante
             if (p >= 0)
                 cont++;

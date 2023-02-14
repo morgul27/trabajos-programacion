@@ -134,7 +134,7 @@ public class LoteriaNavidad {
                 System.out.println("Sus numero son: " + numApostado);
 
             } else
-                System.out.println("Gilipollas");
+                System.out.println("mal");
 
         } while (opcion != 0 && opcion != 1);
 

@@ -8,75 +8,89 @@ import java.util.ArrayList;
 
 public class ejrepaso2 {
     public static void main(String[] args) {
-        ArrayList<String> idCiudades = new ArrayList<String>();
-        idCiudades.add("Sevilla");
-        idCiudades.add("Cadiz");
-        idCiudades.add("Jaen");
-
-        int fecha = 0, temp_max = 0, temp_min = 0, hora_max = 0, hora_min = 0;
-        int ran = 0;
-        String ciudad;
-
-        // orden de la extructura de datos
-        // { idCiudades, fecha, temp_max, temp_min, hora_max, hora_min }
-        Object datos[][] = {
-                { idCiudades, fecha, temp_max, temp_min, hora_max, hora_min },
-                { 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0 },
+        Scanner sc = new Scanner(System.in);
+        ArrayList<Integer> numApostado = new ArrayList<Integer>();
+        Integer T = new Integer(0);
+        // en la T(tirada) se guardan el orden por asi decirlo y d1 y d2 son los numeros
+        // que salen
+        int d1;
+        int d2;
+        int aux;
+        int x = 0;
+        Object matriz[][] = {
+                { 0 }, // 6-6
+                // 1-1
+                { 0, 0 }, // 5-5 5-6
+                // 2-1 2-2
+                { 0, 0, 0 }, // 4-4 4-5 4-6
+                // 3-1 3-2 3-3
+                { 0, 0, 0, 0 }, // 3-3 3-4 3-5 3-6
+                // 4-1 4-2 4-3 4-4
+                { 0, 0, 0, 0, 0 }, // 2-2 2-3 2-4 2-5 2-6
+                // 5-1 5-2 5-3 5-4 5-5
+                { 0, 0, 0, 0, 0, 0 }, // 1-1 1-2 1-3 1-4 1-5 1-6
+                // 6-1 6-2 6-3 6-4 6-5 6-6
         };
+        ArrayList<Integer> m[][] = new ArrayList[6][];
+
+        for (int i = 0; i < matriz.length; i++) {
+            m[i] = new ArrayList[i + 1];
+            for (int j = 0; j <= i; j++) {
+                m[i][j] = new ArrayList<Integer>();
+            }
+        }
+
+        for (int i = 0; i < 100; i++) {
+            d1 = aleatorio();
+            d2 = aleatorio();
+            T = Integer.valueOf(i);
+
+            if (d1 < d2) { // d1 tiene que ser mayor que d1 siempre porque es la filas
+                aux = d1;
+                d1 = d2;
+                d2 = aux;
+            }
+
+            m[d1][d2].add(T);
+
+        }
+
+        int Y = 0;
+        int J = 0;
+        int cantidad = 0;
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j <= i; j++) {
+                if (cantidad < m[i][j].size()) {
+                    cantidad = m[i][j].size();
+                    Y = i;
+                    J = j;
+                }
+
+            }
+
+        }
+
+        System.out.println("Salio la combinacion que mas a salido es " + (Y + 1) + "-" + (J + 1));
+        System.out.println("La combinacion salio " + cantidad + " veces");
+        System.out.println("En la tirada " + m[Y][J]);
+
+        System.out.println();
+        System.out.println();
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j <= i; j++) {
+                System.out.print(m[i][j]);
+            }
+            System.out.println(" ");
+        }
 
     }
 
     // funcion aleatorio
-    public static int aleatorio(int a, int b) {
-        int min;
-        int max;
+    public static int aleatorio() {
         int ran;
 
-        min = Math.min(a, b);
-        max = Math.max(a, b);
-        ran = (int) (Math.floor((max - min + 1) * Math.random()) + min);
+        ran = (int) (Math.floor((6) * Math.random()));
         return ran;
     }
 
-    // funcion for
-    public static void parafor(int a, int b, int idCiudad[]) {
-        int min;
-        int max;
-        int random = 5;
-        int TDias = 30;
-        int Datos[][];
-        Datos = new int[5][5];
-
-        for (int c = 0; c < idCiudad.length; c++) {
-            for (int f = 0; f < TDias; f++) {
-                Datos[c * TDias + f][0] = c; // ciudad
-                Datos[c * TDias + f][1] = f; // fecha
-                Datos[c * TDias + f][2] = random; // temp max, hacer un random
-                Datos[c * TDias + f][3] = random; // temp min, hacer un random
-                Datos[c * TDias + f][4] = random; // segundos max
-                Datos[c * TDias + f][5] = random; // segundos min
-            }
-        }
-    }
-
-    // anotaciones
-
-    // hacer un solo random para las horas, se calcula solo los segundos y luego se
-    // saca las horas, 24x60x60 son los segundos en un dia
-
-    // dia de inicio es 0, el dia localday es el 0
-    // LocalDay de=LocalDay.of(año,dia inicio, dia final)
-
-    // arraylist Object
-
-    // se supone que dos for
-
-    // matriz ocupa tanta ciudades por dias
-
-    // calcular TDias con las funciones de fechas
-
-    // i*TDias+j
 }

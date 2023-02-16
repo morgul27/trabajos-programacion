@@ -16,7 +16,6 @@ public class Ej4Examen {
         int d1;
         int d2;
         int aux;
-        int x = 0;
         ArrayList<Integer> m[][] = new ArrayList[6][];
 
         for (int i = 0; i < 6; i++) {
@@ -31,7 +30,7 @@ public class Ej4Examen {
             d2 = aleatorio();
             T = Integer.valueOf(i);
 
-            if (d1 < d2) { // d1 tiene que ser mayor que d1 siempre porque es la filas
+            if (d1 < d2) { // d1 tiene que ser mayor que d2 siempre porque es la filas
                 aux = d1;
                 d1 = d2;
                 d2 = aux;

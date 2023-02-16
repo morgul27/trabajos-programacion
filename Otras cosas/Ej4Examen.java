@@ -16,6 +16,7 @@ public class Ej4Examen {
         int d1;
         int d2;
         int aux;
+        int x;
         Object matriz[][] = {
                 { 0 }, // 6-6
                 // 1-1
@@ -40,22 +41,36 @@ public class Ej4Examen {
         }
 
         for (int i = 0; i < 100; i++) {
-            for (int j = 0; j <= i; j++) {
-                d1 = aleatorio();
-                d2 = aleatorio();
-                T = Integer.valueOf(i);
+            d1 = aleatorio();
+            d2 = aleatorio();
+            T = Integer.valueOf(i);
+            System.out.println(T);
 
-                if (d1 < d2) { // d1 tiene que ser mayor que d1 siempre porque es la filas
-                    aux = d1;
-                    d1 = d2;
-                    d2 = aux;
-                }
-                System.out.println("d1 " + d1 + " d2 " + d2);
-                m[d1][d2].add(T);
-
+            if (d1 < d2) { // d1 tiene que ser mayor que d1 siempre porque es la filas
+                aux = d1;
+                d1 = d2;
+                d2 = aux;
             }
+
+            System.out.println("d1 " + d1 + " d2 " + d2);
+            m[d1][d2].add(T);
+
         }
 
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j <= i; j++) {
+                if (m[i][j].size() < m[i][j].size())
+                    x = m[i][j].get(m[i][j].size());
+
+                System.out.println(m[i][j].size());
+
+                x = sc.nextInt();
+                System.out.println(" ");
+            }
+
+        }
+
+        x = sc.nextInt();
         System.out.println();
         System.out.println();
 

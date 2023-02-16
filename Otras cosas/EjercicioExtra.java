@@ -10,51 +10,58 @@ public class EjercicioExtra {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         ArrayList<Integer> numApostado = new ArrayList<Integer>();
+        Integer T = new Integer(0);
+        // en la T(tirada) se guardan el orden por asi decirlo y d1 y d2 son los numeros
+        // que salen
         int d1;
         int d2;
         int aux;
-        Object matriz[][] = {
-
-                { 0 }, // 6-6
-                { 0, 0 }, // 5-5 5-6
-                { 0, 0, 0 }, // 4-4 4-5 4-6
-                { 0, 0, 0, 0 }, // 3-3 3-4 3-5 3-6
-                { 0, 0, 0, 0, 0 }, // 2-2 2-3 2-4 2-5 2-6
-                { 0, 0, 0, 0, 0, 0 }, // 1-1 1-2 1-3 1-4 1-5 1-6
-        };
-
-        for (int i = 0; i < matriz.length; i++) {
-            for (int j = 0; j <= i; j++) {
-                matriz[i][j] = new ArrayList();
-            }
-        }
-        int t = 0;
-        for (int i = 0; i < matriz.length; i++) {
-            for (int j = 0; j <= i; j++) {
-                d1 = aleatorio();
-                d2 = aleatorio();
-                if (d1 < d2) { // d1 tiene que ser mayor que d1 siempre porque es la filas
-                    aux = d1;
-                    d1 = d2;
-                    d2 = aux;
-                }
-
-                System.out.println("d1 " + d1 + " d2 " + d2);
-                System.out.println(matriz[d1 - 1][d2 - 1] = d1);
-
-                // matriz[2][1].add(d1 + d2);
-            }
-        }
-
-        System.out.println();
-        System.out.println();
+        ArrayList<Integer> m[][] = new ArrayList[6][];
 
         for (int i = 0; i < 6; i++) {
+            m[i] = new ArrayList[i + 1];
             for (int j = 0; j <= i; j++) {
-                System.out.print(matriz[i][j] + " ");
+                m[i][j] = new ArrayList<Integer>();
             }
-            System.out.println(" ");
         }
+
+        for (int i = 0; i < 100; i++) {
+            d1 = aleatorio();
+            d2 = aleatorio();
+            T = Integer.valueOf(i);
+
+            if (d1 < d2) { // d1 tiene que ser mayor que d2 siempre porque es la filas
+                aux = d1;
+                d1 = d2;
+                d2 = aux;
+            }
+
+            m[d1][d2].add(T);
+
+        }
+
+        int Y = 0;
+        int J = 0;
+        int cantidad = 0;
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j <= i; j++) {
+                if (cantidad < m[i][j].size()) {
+                    cantidad = m[i][j].size();
+
+                    Y = i;
+                    J = j;
+                }
+                System.out.println(m[i][j]);
+
+            }
+
+        }
+        System.out.println();
+        System.out.println();
+
+        System.out.println("La combinacion que mas a salido es " + (Y + 1) + "-" + (J + 1));
+        System.out.println("La combinacion salio " + cantidad + " veces");
+        System.out.println("En la tirada " + m[Y][J]);
 
     }
 
@@ -62,7 +69,7 @@ public class EjercicioExtra {
     public static int aleatorio() {
         int ran;
 
-        ran = (int) (Math.floor((6) * Math.random()) + 1);
+        ran = (int) (Math.floor((6) * Math.random()));
         return ran;
     }
 

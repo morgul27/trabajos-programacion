@@ -7,12 +7,6 @@ public class variasClases {
     private String iniciarLlamada;
     private String finalizarLlamada;
 
-    public Telefono(String cambiarColo, String iniciarLlamad, String finalizarLlamad) {
-        cambiarColo = cambiarColor;
-        iniciarLlamad = iniciarLlamada;
-        finalizarLlamad = finalizarLlamada;
-    }
-
     public String getcambiarColor() {
         Scanner sc = new Scanner(System.in);
         String x;
@@ -34,5 +28,8 @@ public class variasClases {
     public String getfinalizarLlamada() {
         System.out.println("Has finalizado la llamada");
         return finalizarLlamada;
+    }
+
+    public void variasClases(String cambiarColo, String iniciarLlamad, String finalizarLlamad) {
     }
 }

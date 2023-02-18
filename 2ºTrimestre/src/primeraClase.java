@@ -6,11 +6,11 @@ public class primeraClase {
     private String finalizarLlamada;
 
     public static void main(String[] args) {
-        String cambiarColo = " ";
-        String iniciarLlamad = "";
-        String finalizarLlamad = "";
-        Telefono a = new Telefono();
+        String cambiarColo = " a";
+        String iniciarLlamad = " b";
+        String finalizarLlamad = " c";
+        variasClases variasClases = new variasClases();
 
-        a.Telefono(cambiarColo, iniciarLlamad, finalizarLlamad);
+        variasClases.variasClases(cambiarColo, iniciarLlamad, finalizarLlamad);
     }
 }

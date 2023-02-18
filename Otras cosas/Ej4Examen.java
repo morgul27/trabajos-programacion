@@ -16,6 +16,8 @@ public class Ej4Examen {
         // que salen
         int d1;
         int d2;
+        int max;
+        int min;
         int aux;
         ArrayList<Integer> m[][] = new ArrayList[6][];
 
@@ -26,18 +28,15 @@ public class Ej4Examen {
             }
         }
 
+        // tirada de dados
         for (int i = 0; i < 100; i++) {
             d1 = aleatorio();
             d2 = aleatorio();
             T = Integer.valueOf(i);
 
-            if (d1 < d2) { // d1 tiene que ser mayor que d2 siempre porque es la filas
-                aux = d1;
-                d1 = d2;
-                d2 = aux;
-            }
-
-            m[d1][d2].add(T);
+            max = Math.max(d1, d2);
+            min = Math.min(d1, d2);
+            m[max][min].add(T);
 
         }
 

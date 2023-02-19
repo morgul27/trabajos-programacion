@@ -99,19 +99,18 @@ public class JoseMiguelNavarroDeAncaTarea6 {
         ordenar(CuartosPremios);
         ordenar(novecientos);
 
-        System.out.println("El primer premio es ");
         System.out.print("El primer premio es " + primerPremio);
 
-        System.out.println("El primer premio es " + segundoPremios);
+        System.out.println("El segundo premio es " + segundoPremios);
         mostrarPremios(segundoPremios);
 
-        System.out.println("El segundo premio es ");
+        System.out.println("El tercer premio es ");
         mostrarPremios(tercerPremios);
 
-        System.out.println("El tercer premio es ");
+        System.out.println("El cuarto premio es ");
         mostrarPremios(CuartosPremios);
 
-        System.out.println("El cuarto premio es " + novecientos);
+        System.out.println("El mil premio es " + novecientos);
         mostrarPremios(novecientos);
 
         // comparaciones

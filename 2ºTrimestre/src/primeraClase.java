@@ -1,16 +1,24 @@
 package src;
 
+import src.variasClases;
+
 public class primeraClase {
-    private String cambiarColor;
-    private String iniciarLlamada;
-    private String finalizarLlamada;
+    public String cambiarColor;
+    public String iniciarLlamada;
+    public String finalizarLlamada;
 
     public static void main(String[] args) {
-        String cambiarColo = " a";
-        String iniciarLlamad = " b";
-        String finalizarLlamad = " c";
-        variasClases variasClases = new variasClases();
+        int memoria = 0;
 
-        variasClases.variasClases(cambiarColo, iniciarLlamad, finalizarLlamad);
+        variasClases variasclases = new variasClases(); // "variasClases" es el nombre de la clase y "variasclases" es
+                                                        // el objeto creado
+
+        variasclases.variasClases();
+        variasclases.getcambiarColor();
+        variasclases.getiniciarLlamada();
+        variasclases.getfinalizarLlamada();
+
+        memoria = variasclases.settamañoMenoria(memoria);
+
     }
 }

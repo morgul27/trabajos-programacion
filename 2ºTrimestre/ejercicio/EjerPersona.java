@@ -54,18 +54,19 @@ public class EjerPersona {
 
         for (int i = 0; i < listarectangulo.length; i++) {
 
-            System.out.println("Introduce el lado del rectangulo " + i);
+            System.out.println();
+            System.out.println("Introduce el lado del rectangulo " + (i + 1));
             l = sc.nextDouble();
-            System.out.println("Introduce el ancho del rectangulo " + i);
+            System.out.println("Introduce el ancho del rectangulo " + (i + 1));
             a = sc.nextDouble();
 
+            System.out.println();
             listarectangulo[i] = new Rectangulo(l, a);
+            listarectangulo[i].mostrar();
 
         }
 
         for (int i = 0; i < listarectangulo.length; i++) {
-
-            listarectangulo[i].mostrar();
 
         }
 

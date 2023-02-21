@@ -12,6 +12,8 @@ public class Persona {
         ccontador++;
         ocontador++;
     }
+    // get devuelve el valor
+    // set establecer el valor
 
     public void setNombre(String n) {
         this.nombre = n;

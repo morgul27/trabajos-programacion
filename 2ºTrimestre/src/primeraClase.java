@@ -4,7 +4,7 @@ import src.variasClases;
 
 public class primeraClase {
     public String cambiarColor;
-    public String iniciarLlamada;
+    public String iniciarLlamada = "luis";
     public String finalizarLlamada;
 
     public static void main(String[] args) {
@@ -17,6 +17,8 @@ public class primeraClase {
         variasclases.getcambiarColor();
         variasclases.getiniciarLlamada();
         variasclases.getfinalizarLlamada();
+
+        // System.out.println("El nombre introducido es " + iniciarLlamada);
 
         memoria = variasclases.settamañoMenoria(memoria);
 

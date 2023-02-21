@@ -21,7 +21,6 @@ public class Rectangulo {
     // lo anterior es el largo y ancho para devolver o establecer el valor
     // get devuelve el valor
     // set establecer el valor
-
     private double largo;
     private double ancho;
 

@@ -1,10 +1,8 @@
 package ejercicio;
 
-import java.util.Scanner;
-
 public class ejDNI {
 
-    public double getnumero() {
+    public int getnumero() {
         return numero;
     }
 
@@ -12,43 +10,27 @@ public class ejDNI {
         this.numero = numero;
     }
 
-    public String getletra() {
-        return letra;
-    }
-
-    public void setletra(String letra) {
-        this.letra = letra;
-    }
-
     // empieza
-    public int numero;
-    public String letra;
+    private int numero;
 
-    public ejDNI(int n, String letra) {
+    public ejDNI(int n) {
         this.numero = n;
-        this.letra = letra;
+
     }
 
     public ejDNI() {
 
     }
 
-    public int numeroDNI() {
-        Scanner sc = new Scanner(System.in);
-        int n;
-        System.out.println("introduce el numero de tu DNI");
-        n = sc.nextInt();
-        return n;
+    public char letra(int numero) {
+        String caracteres = "TRWAGMYFPDXBNJZSQVHLCKE";
+        int resto = numero % 23;
+
+        return caracteres.charAt(resto);
     }
 
-    private int calculo(int n) {
-        String l;
-        n = n / 23;
-        return n;
-    }
-
-    public void recuperar() {
-
+    public void mostrar() {
+        System.out.println("el numero es " + numero + " y letra " + letra(numero));
     }
 
 }

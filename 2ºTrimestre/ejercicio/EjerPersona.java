@@ -47,19 +47,25 @@ public class EjerPersona {
 
         // area l+l
         // perimetro l+l+l+l
+        // el estatico va al ojeto al no estatico a la clase
 
         double l;
         double a;
 
         for (int i = 0; i < listarectangulo.length; i++) {
 
-            System.out.println("Introduce el lado del rectangulo");
+            System.out.println("Introduce el lado del rectangulo " + i);
             l = sc.nextDouble();
-            System.out.println("Introduce el ancho del rectangulo");
+            System.out.println("Introduce el ancho del rectangulo " + i);
             a = sc.nextDouble();
 
             listarectangulo[i] = new Rectangulo(l, a);
-            System.out.println(listarectangulo[i]);
+
+        }
+
+        for (int i = 0; i < listarectangulo.length; i++) {
+
+            listarectangulo[i].mostrar();
 
         }
 

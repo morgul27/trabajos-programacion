@@ -1,0 +1,57 @@
+<!--ejercicio 1-->
+
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+
+    <xsl:template match="ciclos/ciclo">
+        <xsl:value-of select="nombre"/>
+    </xsl:template>
+
+</xsl:stylesheet>
+
+
+
+<!--ejercicio 2-->
+
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+
+    <html>
+        <p>
+            <xsl:template match="ciclos/ciclo">
+                <xsl:value-of select="nombre"/>
+            </xsl:template>
+        </p>
+    </html>
+
+</xsl:stylesheet>
+
+
+<!--ejercicio 3-->
+
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+
+    <html>
+        <ul>
+            <li>
+                <xsl:template match="ciclos/ciclo">
+                    <xsl:value-of select="nombre"/>
+                </xsl:template>
+            </li>
+        </ul>
+    </html>
+
+</xsl:stylesheet>
+
+
+<!--ejercicio 4-->
+
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+
+    <xsl:template match="ciclos/ciclo">
+        <xsl:value-of select="nombre"/>
+    </xsl:template>
+
+</xsl:stylesheet>

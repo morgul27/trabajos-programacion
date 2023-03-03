@@ -2,7 +2,7 @@ package autos_2;
 
 public class UsoVehiculo2 {
 
-    public void main(String[] args) {
+    public static void main(String[] args) {
         Coche2 ve1 = new Coche2();
         Moto2 ve2 = new Moto2();
 

@@ -7,7 +7,7 @@ public class Coche implements Vehiculo {
 
     public String frenar(int cuanto) {
         velocidad -= cuanto;
-        return "El coche ha frenado ya y va a " + velocidad + " km/hora";
+        return "El coche ha frenado ya y va a " + velocidad + " km/hora\n";
     }
 
     @Override
@@ -15,8 +15,8 @@ public class Coche implements Vehiculo {
         String cadena = "";
         velocidad += cuanto;
         if (velocidad > VELOCIDAD_MAXIMA)
-            cadena = "Exceso de velocidad";
-        cadena += "El coche ha acelerado y va a " + velocidad + " km/hora";
+            cadena = "Exceso de velocidad\n";
+        cadena += "El coche ha acelerado y va a " + velocidad + " km/hora \n";
         return cadena;
     }
 

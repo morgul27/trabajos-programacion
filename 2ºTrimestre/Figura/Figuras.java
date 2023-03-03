@@ -1,10 +1,10 @@
 package Figura;
 
 public abstract class Figuras {
-    private int coor_x;
-    private int coord_y;
-    private int ancho;
-    private int alto;
+    protected int coor_x;
+    protected int coord_y;
+    protected int ancho;
+    protected int alto;
 
     // coord_x
     public int getcoor_x() {
@@ -42,4 +42,11 @@ public abstract class Figuras {
         this.alto = al;
     }
 
+    // figuras
+    public Figuras() {
+    };
+
+    abstract public float perimetro();
+
+    abstract public float area();
 }

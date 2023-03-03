@@ -1,50 +1,55 @@
 package Figura;
 
 public abstract class Figuras {
-    protected int coor_x;
-    protected int coord_y;
-    protected int ancho;
-    protected int alto;
+    protected float coor_x;
+    protected float coord_y;
+    protected float ancho;
+    protected float alto;
 
     // coord_x
-    public int getcoor_x() {
+    public float getcoor_x() {
         return this.coor_x;
     }
 
-    public void setcoor_x(int x) {
+    public void setcoor_x(float x) {
         this.coor_x = x;
     }
 
     // coord_y
-    public int getcoor_y() {
+    public float getcoor_y() {
         return this.coord_y;
     }
 
-    public void setcoor_y(int y) {
+    public void setcoor_y(float y) {
         this.coord_y = y;
     }
 
     // ancho
-    public int getancho() {
+    public float getancho() {
         return this.ancho;
     }
 
-    public void setancho(int an) {
+    public void setancho(float an) {
         this.ancho = an;
     }
 
     // alto
-    public int getalto() {
+    public float getalto() {
         return this.alto;
     }
 
-    public void setalto(int al) {
+    public void setalto(float al) {
         this.alto = al;
     }
 
     // figuras
+    public Figuras(float ancho, float alto) {
+        this.ancho = ancho;
+        this.alto = alto;
+    }
+
     public Figuras() {
-    };
+    }
 
     abstract public float perimetro();
 

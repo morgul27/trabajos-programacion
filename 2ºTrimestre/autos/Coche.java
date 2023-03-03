@@ -4,7 +4,6 @@ public class Coche implements Vehiculo {
     int velocidad = 0;
 
     @Override
-
     public String frenar(int cuanto) {
         velocidad -= cuanto;
         return "El coche ha frenado ya y va a " + velocidad + " km/hora\n";

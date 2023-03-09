@@ -1,6 +1,6 @@
 package prisma;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 
 public class prismaPrueba {
 
@@ -44,9 +44,20 @@ public class prismaPrueba {
 
         System.out.println("sin ordenar");
         System.out.println(array1);
+        mostrar(array1);
 
         System.out.println("ordenar");
+        Arrays.sort(array1);
+        System.out.println("e");
 
-        p1.ordenao(p2, array1);
+        mostrar(array1);
+    }
+
+    // mostrar
+    public static void mostrar(Object array1[]) {
+        for (int i = 0; i < array1.length; i++) {
+            System.out.println(array1[i].toString());
+        }
+
     }
 }

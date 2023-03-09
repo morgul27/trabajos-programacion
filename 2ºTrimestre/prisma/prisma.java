@@ -99,20 +99,4 @@ public class prisma {
         return "El largo es " + largo + ", el alto " + alto + " y el ancho " + ancho;
     }
 
-    // ordena
-    public void ordenao(prisma p, Object array1[]) {
-        Object aux;
-
-        if (this.compareTo(p) == -1) {
-            aux = array1[0];
-            array1[0] = array1[1];
-            array1[1] = aux;
-
-        } else if (this.compareTo(p) == 1) {
-            aux = array1[1];
-            array1[1] = array1[0];
-        }
-
-    }
-
 }

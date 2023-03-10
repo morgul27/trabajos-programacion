@@ -34,7 +34,7 @@ public class prisma implements Comparable<prisma> {
         this.alto = x;
     }
 
-    // creacion de clase
+    // creacion de constructor
     // prisma
     public void prisma() {
     }

@@ -90,7 +90,7 @@
 
 
 <!-- 9.- Libros que tienen en atributo id mayor que 2. -->
-//libro[@id>3]
+//libro[@id>2]
 
 <!-- 10.- Libros editados entre 1998 y 2005 -->
 //libro[año>=1998 and año<=2005]

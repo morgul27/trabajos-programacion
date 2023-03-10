@@ -1,57 +1,96 @@
-<!--ejercicio 1-->
-
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+<!-- Asignatura AGI - EUI (UPM)-->
+<libros xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="libros.xsd">
+    <libro id="1">
+        <titulo>Fundamentos de Sistemas de Bases de Datos</titulo>
+        <autor>
+            <apellidos>ELMASRI,</apellidos>
+            <nombre>R.A.</nombre>
+        </autor>
+        <autor>
+            <apellidos>Gomez</apellidos>
+            <nombre>Pepe</nombre>
+        </autor>
 
-    <xsl:template match="ciclos/ciclo">
-        <xsl:value-of select="nombre"/>
-    </xsl:template>
+        <editorial>Addison-Wesley</editorial>
+        <año>2007</año>
+        <precio>45.25</precio>
+    </libro>
+    <libro id="2">
+        <titulo>Introducción a los Sistemas de Bases de Datos </titulo>
+        <autor>
+            <apellidos>DATE</apellidos>
+            <nombre>C.J.</nombre>
+        </autor>
+        <editorial>Addison-Wesley</editorial>
+        <año>2001</año>
+        <precio>60.35</precio>
+    </libro>
+    <libro id="3">
+        <titulo>Bases de Datos</titulo>
+        <autor>
+            <apellidos>Santos</apellidos>
+            <nombre>E.</nombre>
+        </autor>
+        <autor>
+            <apellidos>Garcia</apellidos>
+            <nombre>A.</nombre>
+        </autor>
+        <autor>
+            <apellidos>Alonso</apellidos>
+            <nombre>S.</nombre>
+        </autor>
+        <autor>
+            <apellidos>Alarcon</apellidos>
+            <nombre>P.</nombre>
+        </autor>
+        <autor>
+            <apellidos>Garbajosa</apellidos>
+            <nombre>J.</nombre>
+        </autor>
+        <editorial>E.U. Informatica</editorial>
+        <año>1998</año>
+        <precio>20.00</precio>
+    </libro>
+    <libro id="4">
+        <titulo>Introducción a las Bases de Datos</titulo>
+        <autor>
+            <apellidos>Pons</apellidos>
+            <nombre>O.</nombre>
+        </autor>
+        <editorial>Thomson</editorial>
+        <año>2005</año>
+        <precio>100.25</precio>
+    </libro>
+</libros>
 
-</xsl:stylesheet>
 
 
 
-<!--ejercicio 2-->
+<!-- 1.- Autores cuyo apellido sea DATE -->  //autor[apellidos="DATE"]
 
-<?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+<!-- 2.- Libros con más de un autor -->
+//libro[count(//autor)>1]
 
-    <html>
-        <p>
-            <xsl:template match="ciclos/ciclo">
-                <xsl:value-of select="nombre"/>
-            </xsl:template>
-        </p>
-    </html>
+<!-- 3.- Todos los autores -->
+//autor
 
-</xsl:stylesheet>
+<!-- 4.- Libros editados en 1998 y en 2005 -->  //libro[año=1998 or año=2005]
 
+<!-- 5.- Todos los valores del atributo id -->
+//@id
 
-<!--ejercicio 3-->
+<!-- 6.- Libro que ocupa la tercera posición -->
+//libro[3]
 
-<?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
-
-    <html>
-        <ul>
-            <li>
-                <xsl:template match="ciclos/ciclo">
-                    <xsl:value-of select="nombre"/>
-                </xsl:template>
-            </li>
-        </ul>
-    </html>
-
-</xsl:stylesheet>
+<!-- 7.- Penúltimo autor del tercer libro -->  //libro[@id=3]/autor[last()-1]
 
 
-<!--ejercicio 4-->
+<!-- 8.- Los dos primeros autores del tercer libro -->   //libro[@id=3]/autor[position()=1 or position()=2]
 
-<?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
-    <xsl:template match="ciclos/ciclo">
-        <xsl:value-of select="nombre"/>
-    </xsl:template>
+<!-- 9.- Libros que tienen en atributo id mayor que 2. -->
+//libro[@id>3]
 
-</xsl:stylesheet>
+<!-- 10.- Libros editados entre 1998 y 2005 -->
+//libro[año>=1998 and año<=2005]

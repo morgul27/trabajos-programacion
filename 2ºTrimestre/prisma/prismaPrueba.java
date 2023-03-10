@@ -10,7 +10,7 @@ public class prismaPrueba {
         prisma p2 = new prisma();
         prisma p3 = new prisma();
 
-        Object array1[] = { p1, p2, p3 };
+        prisma array1[] = { p1, p2, p3 };
 
         p1.setalto(5);
         p1.setancho(7);

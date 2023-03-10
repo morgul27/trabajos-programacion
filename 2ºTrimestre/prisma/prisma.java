@@ -2,7 +2,7 @@ package prisma;
 
 import java.util.ArrayList;
 
-public class prisma {
+public class prisma implements Comparable<prisma> {
     protected float largo;
     protected float ancho;
     protected float alto;
@@ -34,6 +34,7 @@ public class prisma {
         this.alto = x;
     }
 
+    // creacion de clase
     // prisma
     public void prisma() {
     }

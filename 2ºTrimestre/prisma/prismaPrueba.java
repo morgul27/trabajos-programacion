@@ -16,7 +16,7 @@ public class prismaPrueba {
         p1.setancho(7);
         p1.setlargo(5);
 
-        p2.setalto(25);
+        p2.setalto(2);
         p2.setancho(1);
         p2.setlargo(7);
 
@@ -42,14 +42,12 @@ public class prismaPrueba {
         System.out.println("p3:");
         System.out.println(p3.toString());
 
+        System.out.println();
         System.out.println("sin ordenar");
-        System.out.println(array1);
         mostrar(array1);
 
-        System.out.println("ordenar");
+        System.out.println("ordenado");
         Arrays.sort(array1);
-        System.out.println("e");
-
         mostrar(array1);
     }
 

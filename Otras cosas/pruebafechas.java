@@ -8,7 +8,7 @@ public class pruebafechas {
         Scanner sc = new Scanner(System.in);
         double b;
         double mes;
-        int dias;
+        double dias;
         int horas;
 
         LocalDate fecha1 = LocalDate.of(2023, 2, 5);
@@ -29,15 +29,18 @@ public class pruebafechas {
 
         // probando mes y dias
         b = aleatorio(8760, 1);
-        mes = (b / 8760) * 12;
-        dias = (int) (b / 8760) * 365;
+        mes = (b / 8760) * 12; // el mes no pasa de 12, por lo que creo que esta bien
+        dias = (b / 8760) * 365;
+        dias = dias / 12;
+        System.out.println("diaaa " + dias);
 
-        System.out.println(b + " " + mes + " " + dias + " ");
+        System.out.println(b + " " + (mes + 1) + " " + (e + 1) + " ");
 
         //
         // probando cosas
-        LocalDate fecha3 = LocalDate.of(2022, (int) mes, (int) e);
+        LocalDate fecha3 = LocalDate.of(2022, (int) (mes + 1), (int) (dias + 1));
         System.out.println(fecha3);
+
     }
 
     // funciones aleatorio

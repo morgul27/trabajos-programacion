@@ -9,20 +9,25 @@ public class prismaPrueba {
         prisma p1 = new prisma();
         prisma p2 = new prisma();
         prisma p3 = new prisma();
+        prisma p4 = new prisma();
 
-        prisma array1[] = { p1, p2, p3 };
+        prisma array1[] = { p1, p2, p3, p4 };
 
-        p1.setalto(5);
+        p1.setlargo(15);
+        p1.setalto(45);
         p1.setancho(7);
-        p1.setlargo(5);
 
-        p2.setalto(2);
-        p2.setancho(1);
-        p2.setlargo(7);
+        p2.setlargo(8);
+        p2.setalto(5);
+        p2.setancho(4);
 
-        p3.setalto(20);
-        p3.setancho(10);
-        p3.setlargo(17);
+        p3.setlargo(6);
+        p3.setalto(6);
+        p3.setancho(6);
+
+        p4.setlargo(10);
+        p4.setalto(10);
+        p4.setancho(10);
 
         System.out.println("p1 volumen " + p1.volumen());
         System.out.println("p2 volumen " + p2.volumen());
@@ -46,6 +51,7 @@ public class prismaPrueba {
         System.out.println("sin ordenar");
         mostrar(array1);
 
+        System.out.println();
         System.out.println("ordenado");
         Arrays.sort(array1);
         mostrar(array1);
@@ -54,7 +60,7 @@ public class prismaPrueba {
     // mostrar
     public static void mostrar(Object array1[]) {
         for (int i = 0; i < array1.length; i++) {
-            System.out.println(array1[i].toString());
+            System.out.println("El prisma " + (i + 1) + ": " + array1[i].toString());
         }
 
     }

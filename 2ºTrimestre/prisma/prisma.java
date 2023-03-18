@@ -97,7 +97,7 @@ public class prisma implements Comparable<prisma> {
     }
 
     public String toString() {
-        return "El largo es " + largo + ", el alto " + alto + " y el ancho " + ancho;
+        return "Tiene de largo " + largo + ", el alto " + alto + " y el ancho " + ancho;
     }
 
 }

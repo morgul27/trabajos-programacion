@@ -34,6 +34,8 @@ public class prismaPrueba {
 
         System.out.println("p1 " + p1.hashCode());
         System.out.println("p2 " + p2.hashCode());
+        System.out.println("p3 " + p3.hashCode());
+        System.out.println("p4 " + p4.hashCode());
 
         System.out.println("equals " + p1.equals(p2));
 

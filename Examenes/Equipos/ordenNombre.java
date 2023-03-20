@@ -8,9 +8,9 @@ public class ordenNombre implements Comparator<equipo> {
         int resultado = 0;
 
         if (a.caracter(a.nombre) < b.caracter(b.nombre)) {
-            resultado = 1;
-        } else if (a.caracter(a.nombre) > b.caracter(b.nombre)) {
             resultado = -1;
+        } else if (a.caracter(a.nombre) > b.caracter(b.nombre)) {
+            resultado = 1;
         }
 
         return resultado;

@@ -1,10 +1,15 @@
 package Equipos;
 
 import java.util.Arrays;
+import java.util.ArrayList;
 
 public class equipoejemplo {
 
     public static void main(String[] args) {
+        ArrayList<equipo> Equipos = new ArrayList<equipo>();
+        ArrayList<equipo> Equipos2 = new ArrayList<equipo>();
+        int ran;
+
         equipo e1 = new equipo();
         equipo e2 = new equipo();
         equipo e3 = new equipo();
@@ -15,6 +20,15 @@ public class equipoejemplo {
         equipo e8 = new equipo();
 
         equipo aray[] = { e1, e2, e3, e4, e5, e6, e7, e8 };
+
+        Equipos.add(e1);
+        Equipos.add(e2);
+        Equipos.add(e3);
+        Equipos.add(e4);
+        Equipos.add(e5);
+        Equipos.add(e6);
+        Equipos.add(e7);
+        Equipos.add(e8);
 
         e1.setRanking(15);
         e1.setNombre("Betis");
@@ -32,13 +46,13 @@ public class equipoejemplo {
         e5.setNombre("Cadiz");
 
         e6.setRanking(6);
-        e6.setNombre("");
+        e6.setNombre("DAM");
 
-        e7.setRanking(45);
-        e7.setNombre("Sevilla");
+        e7.setRanking(7);
+        e7.setNombre("Futbol");
 
-        e8.setRanking(45);
-        e8.setNombre("Sevilla");
+        e8.setRanking(8);
+        e8.setNombre("Baloncesto");
 
         mostrar(aray);
         System.out.println();
@@ -52,6 +66,12 @@ public class equipoejemplo {
         Arrays.sort(aray, new ordenNombre());
         mostrar(aray);
 
+        // parte del ejercicio 20
+        for (int i = 0; i < aray.length; i++) {
+            ran = aleatorio(0, 7);
+            Equipos.add(aray[ran]);
+        }
+
     }
 
     // mostrar
@@ -60,5 +80,15 @@ public class equipoejemplo {
             System.out.println(aray[i].toString());
         }
 
+    }
+
+    // funcion aleatorio
+    public static int aleatorio(int a, int b) {
+        int max;
+        int ran;
+
+        max = Math.max(a, b);
+        ran = (int) (Math.floor((max) * Math.random()));
+        return ran;
     }
 }

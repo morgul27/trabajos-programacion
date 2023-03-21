@@ -2,10 +2,20 @@ package Equipos;
 
 public class equipo implements Comparable<equipo> {
     protected String nombre;
+    protected String terreno;
     protected int ranking;
     protected int capacidad;
     protected int equipaciones;
     protected int socios;
+
+    // terreno
+    public String getTerreno() {
+        return terreno;
+    }
+
+    public void setTerreno(String terreno) {
+        this.terreno = terreno;
+    }
 
     // nombre
     public String getNombre() {
@@ -14,6 +24,33 @@ public class equipo implements Comparable<equipo> {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    // capacidad
+    public int getCapacidad() {
+        return capacidad;
+    }
+
+    public void setCapacidad(int capacidad) {
+        this.capacidad = capacidad;
+    }
+
+    // equipaciones
+    public int getEquipaciones() {
+        return equipaciones;
+    }
+
+    public void setEquipaciones(int equipaciones) {
+        this.equipaciones = equipaciones;
+    }
+
+    // socios
+    public int getSocios() {
+        return socios;
+    }
+
+    public void setSocios(int socios) {
+        this.socios = socios;
     }
 
     // ranking
@@ -26,9 +63,13 @@ public class equipo implements Comparable<equipo> {
     }
 
     // constructor
-    public equipo(String nombre, int ranking) {
+    public equipo(String nombre, String terreno, int ranking, int capacidad, int equipaciones, int socios) {
         this.nombre = nombre;
+        this.terreno = terreno;
         this.ranking = ranking;
+        this.capacidad = capacidad;
+        this.equipaciones = equipaciones;
+        this.socios = socios;
     }
 
     public equipo() {
@@ -46,14 +87,6 @@ public class equipo implements Comparable<equipo> {
         }
 
         return resultado;
-    }
-
-    // funcion separar nombre
-    public char caracter(String nombre) {
-        char caracter;
-        caracter = nombre.charAt(0);
-
-        return caracter;
     }
 
     // metodo toString, lo hago para poder comprobar si sale correctamente los

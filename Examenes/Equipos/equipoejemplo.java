@@ -63,13 +63,13 @@ public class equipoejemplo {
 
         System.out.println();
         System.out.println("orden alfabetico");
-        Arrays.sort(aray, new ordenNombre());
+        Equipos.sort(new ordenNombre());
         mostrar(aray);
 
         // parte del ejercicio 20
-        for (int i = 0; i < aray.length; i++) {
+        for (int i = 0; i < Equipos.size(); i++) {
             ran = aleatorio(0, 7);
-            Equipos.add(aray[ran]);
+            Equipos2.add(Equipos.get(ran));
         }
 
     }

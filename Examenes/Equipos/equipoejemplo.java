@@ -21,7 +21,6 @@ public class equipoejemplo {
         equipo e8 = new equipo();
 
         equipo aray[] = { e1, e2, e3, e4, e5, e6, e7, e8 };
-        equipo campo[] = { e1, e2, e3, e4 };
 
         Equipos.add(e1);
         Equipos.add(e2);

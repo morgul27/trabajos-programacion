@@ -92,7 +92,7 @@ public class equipo implements Comparable<equipo> {
     // metodo toString, lo hago para poder comprobar si sale correctamente los
     // atributos que le he añadido
     public String toString() {
-        return "El nombre del equipo es " + nombre + ", ranking " + ranking;
+        return nombre + " con un ranking de " + ranking;
     }
 
 }

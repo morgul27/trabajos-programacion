@@ -7,6 +7,7 @@ public class equipoejemplo {
 
     public static void main(String[] args) {
         ArrayList<equipo> Equipos = new ArrayList<equipo>();
+        ArrayList<equipo> Equipos1 = new ArrayList<equipo>();
         ArrayList<equipo> Equipos2 = new ArrayList<equipo>();
         int ran;
 
@@ -20,6 +21,7 @@ public class equipoejemplo {
         equipo e8 = new equipo();
 
         equipo aray[] = { e1, e2, e3, e4, e5, e6, e7, e8 };
+        equipo campo[] = { e1, e2, e3, e4 };
 
         Equipos.add(e1);
         Equipos.add(e2);
@@ -67,11 +69,31 @@ public class equipoejemplo {
         mostrar(aray);
 
         // parte del ejercicio 20
-        for (int i = 0; i < Equipos.size(); i++) {
-            ran = aleatorio(0, 7);
+        for (int i = 0, j = 0; i - j < Equipos.size(); i++, j++) {
+            ran = aleatorio(Equipos.size() - 1);
+            Equipos1.add(Equipos.get(ran));
+            Equipos.remove(ran);
             Equipos2.add(Equipos.get(ran));
+            Equipos.remove(ran);
         }
 
+        // campo
+        for (int i = 0; i < Equipos1.size(); i++) {
+            int j = aleatorio(1);
+            if (j == 0) {
+                aray[i] = Equipos1.get(i);
+            } else {
+                aray[i] = Equipos2.get(i);
+            }
+        }
+
+        System.out.println();
+
+        // for final
+        for (int i = 0, j = 1; i < Equipos1.size(); i++, j += 2) {
+            System.out.println("El equipo de " + Equipos1.get(i) + " se enfrentará a " + Equipos2.get(i)
+                    + " en el campo de " + aray[i].getNombre());
+        }
     }
 
     // mostrar
@@ -83,12 +105,10 @@ public class equipoejemplo {
     }
 
     // funcion aleatorio
-    public static int aleatorio(int a, int b) {
-        int max;
+    public static int aleatorio(int b) {
         int ran;
 
-        max = Math.max(a, b);
-        ran = (int) (Math.floor((max) * Math.random()));
+        ran = (int) (Math.floor((b) * Math.random()));
         return ran;
     }
 }

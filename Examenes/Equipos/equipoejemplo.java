@@ -21,6 +21,8 @@ public class equipoejemplo {
         equipo e8 = new equipo();
 
         equipo aray[] = { e1, e2, e3, e4, e5, e6, e7, e8 };
+        equipo campo[];
+        campo = new equipo[8];
 
         Equipos.add(e1);
         Equipos.add(e2);
@@ -80,18 +82,21 @@ public class equipoejemplo {
         for (int i = 0; i < Equipos1.size(); i++) {
             int j = aleatorio(1);
             if (j == 0) {
-                aray[i] = Equipos1.get(i);
+                campo[i] = Equipos1.get(i);
             } else {
-                aray[i] = Equipos2.get(i);
+                campo[i] = Equipos2.get(i);
             }
+
         }
 
         System.out.println();
-
+        int a;
         // for final
-        for (int i = 0, j = 1; i < Equipos1.size(); i++, j += 2) {
+        for (int i = 0, j = 0; i < Equipos1.size(); i++, j += 2) {
+            a = aleatorio((j - 1), j);
+            System.out.println(a);
             System.out.println("El equipo de " + Equipos1.get(i) + " se enfrentará a " + Equipos2.get(i)
-                    + " en el campo de " + aray[i].getNombre());
+                    + " en el campo de " + campo[a].getNombre());
         }
     }
 
@@ -108,6 +113,14 @@ public class equipoejemplo {
         int ran;
 
         ran = (int) (Math.floor((b) * Math.random()));
+        return ran;
+    }
+
+    // funcion aleatorio
+    public static int aleatorio(int a, int b) {
+        int ran;
+
+        ran = (int) (Math.floor((b - a + 1) * Math.random() + a));
         return ran;
     }
 }

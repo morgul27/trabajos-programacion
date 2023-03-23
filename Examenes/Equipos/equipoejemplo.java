@@ -96,6 +96,15 @@ public class equipoejemplo {
             System.out.println("El equipo de " + Equipos1.get(i) + " se enfrentará a " + Equipos2.get(i)
                     + " en el campo de " + campo[i].getNombre());
         }
+
+        elegir(campo, Equipos1, Equipos2);
+        System.out.println();
+
+        for (int i = 0; i < Equipos1.size(); i++) {
+            System.out.println("El ganador del partido " + (i + 1) + " es " + campo[i].getNombre());
+
+        }
+
     }
 
     // mostrar
@@ -104,6 +113,18 @@ public class equipoejemplo {
             System.out.println(aray[i].toString());
         }
 
+    }
+
+    // for campo
+    public static void elegir(equipo campo[], ArrayList<equipo> Equipos1, ArrayList<equipo> Equipos2) {
+        for (int i = 0; i < Equipos1.size(); i++) {
+            int j = aleatorio(2);
+            if (j == 0) {
+                campo[i] = Equipos1.get(i);
+            } else {
+                campo[i] = Equipos2.get(i);
+            }
+        }
     }
 
     // funcion aleatorio

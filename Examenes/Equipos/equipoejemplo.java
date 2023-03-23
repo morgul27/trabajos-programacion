@@ -80,7 +80,7 @@ public class equipoejemplo {
 
         // campo
         for (int i = 0; i < Equipos1.size(); i++) {
-            int j = aleatorio(1);
+            int j = aleatorio(2);
             if (j == 0) {
                 campo[i] = Equipos1.get(i);
             } else {
@@ -90,13 +90,11 @@ public class equipoejemplo {
         }
 
         System.out.println();
-        int a;
+
         // for final
-        for (int i = 0, j = 0; i < Equipos1.size(); i++, j += 2) {
-            a = aleatorio((j - 1), j);
-            System.out.println(a);
+        for (int i = 0, j = 0; i < Equipos1.size(); i++) {
             System.out.println("El equipo de " + Equipos1.get(i) + " se enfrentará a " + Equipos2.get(i)
-                    + " en el campo de " + campo[a].getNombre());
+                    + " en el campo de " + campo[i].getNombre());
         }
     }
 
@@ -116,11 +114,4 @@ public class equipoejemplo {
         return ran;
     }
 
-    // funcion aleatorio
-    public static int aleatorio(int a, int b) {
-        int ran;
-
-        ran = (int) (Math.floor((b - a + 1) * Math.random() + a));
-        return ran;
-    }
 }

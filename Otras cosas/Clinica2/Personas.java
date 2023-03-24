@@ -30,11 +30,11 @@ public class Personas {
     }
 
     // fecha
-    public Date getFechanaci() {
+    public LocalDate getFechanaci() {
         return fechanaci;
     }
 
-    public void setFechanaci(Date fechanaci) {
+    public void setFechanaci(LocalDate fechanaci) {
         this.fechanaci = fechanaci;
     }
 
@@ -75,7 +75,7 @@ public class Personas {
     }
 
     // constructor
-    public Personas(String nombre, String apellidos, Date fechanaci, boolean genero, String DNI, String direccion,
+    public Personas(String nombre, String apellidos, LocalDate fechanaci, boolean genero, String DNI, String direccion,
             int telefono) {
         this.nombre = nombre;
         this.apellidos = apellidos;

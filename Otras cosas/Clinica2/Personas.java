@@ -1,11 +1,11 @@
 package Clinica2;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 public class Personas {
     protected String nombre;
     protected String apellidos;
-    protected Date fechanaci;
+    protected LocalDate fechanaci;
     protected boolean genero;
     protected String DNI;
     protected String direccion;

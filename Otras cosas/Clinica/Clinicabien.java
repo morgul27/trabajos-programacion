@@ -97,7 +97,7 @@ public class Clinicabien {
             String fCobro[], LocalDate dia1) {
         // LocalDate dia1 = LocalDate.of(2022, Month.MARCH, 1);
         LocalDate dia = dia1.plusDays(nDia);
-        ;
+
         int vAleatorias;
         int especialidad;
 

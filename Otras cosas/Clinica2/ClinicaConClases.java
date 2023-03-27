@@ -7,6 +7,7 @@ import java.math.*;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.time.LocalDate;
 import java.util.*;
 import java.text.*;
 
@@ -16,6 +17,11 @@ public class ClinicaConClases {
 
         Personas p1 = new Personas();
         sabergenero(p1);
+
+        LocalDate dia1 = LocalDate.of(2002, 2, 5);
+        Period dia2 = Period.between(dia1, LocalDate.now());
+
+        System.out.println("prueba " + dia2);
 
     }
 
@@ -40,7 +46,10 @@ public class ClinicaConClases {
         }
     }
 
+    // mirar edad el dia que nacio y el dia actual
     public static void laedad() {
-        LocalDate.of(2002, 2, 5);
+        LocalDate dia1 = LocalDate.of(2002, 2, 5);
+        Period.between(dia1, LocalDate.now());
+        System.out.println(Period.between(dia1, LocalDate.now()));
     }
 }

@@ -79,15 +79,7 @@ public class equipoejemplo {
         }
 
         // campo
-        for (int i = 0; i < Equipos1.size(); i++) {
-            int j = aleatorio(2);
-            if (j == 0) {
-                campo[i] = Equipos1.get(i);
-            } else {
-                campo[i] = Equipos2.get(i);
-            }
-
-        }
+        elegir(campo, Equipos1, Equipos2);
 
         System.out.println();
 

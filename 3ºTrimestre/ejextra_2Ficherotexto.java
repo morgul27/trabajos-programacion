@@ -6,15 +6,15 @@ import java.io.IOException;
 
 public class ejextra_2Ficherotexto {
     public static void main(String[] args) {
-        if (args.length != 3) {
-            System.out.println("Uso del programa: Ejercicio03 origen1 origen2 destinto");
-            System.exit(-1); // sale del programa
-        }
+
+        String A[] = { "hola", "feo", "joputa", "guapo" };
+        String b[] = { "hola", "feo" };
+        String c[] = { "hola", "feo" };
 
         try {
-            BufferedReader bf1 = new BufferedReader(new FileReader(args[0]));
-            BufferedReader bf2 = new BufferedReader(new FileReader(args[1]));
-            BufferedWriter bw = new BufferedWriter(new FileWriter(args[2]));
+            BufferedReader bf1 = new BufferedReader(new FileReader(A[0]));
+            BufferedReader bf2 = new BufferedReader(new FileReader(A[1]));
+            BufferedWriter bw = new BufferedWriter(new FileWriter(A[2]));
 
             String linea1 = "";
             String linea2 = "";

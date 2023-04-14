@@ -27,7 +27,8 @@ public class Otros2 {
 
             while ((l != null)) {
                 if (l.contains(p)) {
-                    contador += 1;
+                    String[] palabras = l.split("\\s+");
+                    contador++;
                 }
                 l = br.readLine();
 

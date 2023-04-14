@@ -6,32 +6,29 @@ import java.io.IOException;
 
 public class ejextra_2Ficherotexto {
     public static void main(String[] args) {
-        if (args.length != 3) {
-            System.out.println("Uso del programa: Ejercicio03 origen1 origen2 destinto");
-            System.exit(-1); // sale del programa
-        }
-
         try {
-            BufferedReader bf1 = new BufferedReader(new FileReader(args[0]));
-            BufferedReader bf2 = new BufferedReader(new FileReader(args[1]));
-            BufferedWriter bw = new BufferedWriter(new FileWriter(args[2]));
+            BufferedReader fr = new BufferedReader(new FileReader("FichTexto1.txt"));
+            BufferedReader fr2 = new BufferedReader(new FileReader("fichero1.txt"));
+            BufferedWriter fw = new BufferedWriter(new FileWriter("fichero2.txt"));
 
             String linea1 = "";
             String linea2 = "";
 
             while ((linea1 != null) || (linea2 != null)) {
-                linea1 = bf1.readLine();
-                linea2 = bf2.readLine();
+                linea1 = fr.readLine();
+                linea2 = fr2.readLine();
                 if (linea1 != null) {
-                    bw.write(linea1 + "\n");
+                    fw.write(linea1 + "\n");
                 }
                 if (linea2 != null) {
-                    bw.write(linea2 + "\n");
+                    fw.write(linea2 + "\n");
                 }
             }
-            bf1.close();
-            bf2.close();
-            bw.close();
+
+            fr.close();
+            fr2.close();
+            fw.close();
+
         } catch (IOException ioe) {
             System.out.println("Se ha producido un error de lectura/escritura");
             System.err.println(ioe.getMessage());

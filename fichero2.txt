@@ -1,1 +1,19 @@
+Filanumero:1
 Hola
+Filanumero:2
+mariposa
+Filanumero:3
+cogerbola
+Filanumero:4
+crear
+Filanumero:5
+comida
+Filanumero:6
+queso
+Filanumero:7
+chocolate
+Filanumero:8
+aguacate
+Filanumero:9
+rima con ate
+Filanumero:10

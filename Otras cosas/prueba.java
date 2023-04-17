@@ -7,45 +7,42 @@ import java.util.Locale;
 import java.io.*;
 
 public class prueba {
-	private static String[] mujeres;
 
 	public static void main(String[] args) {
+		ArrayList<String> mujeres = new ArrayList<String>();
+		ArrayList<String> hombres = new ArrayList<String>();
+		ArrayList<String> apellidos = new ArrayList<String>();
 
 		try {
-			BufferedReader br = new BufferedReader(new FileReader("mujeres.txt"));
-			BufferedReader br2 = new BufferedReader(new FileReader("hombres.txt"));
-			BufferedReader br3 = new BufferedReader(new FileReader("apellidos.txt"));
 			BufferedWriter bw = new BufferedWriter(new FileWriter("fichero1.txt"));
+			int gen;
+			Object parte;
 
-			String linea1 = "";
-			String linea2 = "";
-			String linea3 = "";
+			Object array[] = { mujeres, hombres, apellidos };
 
-			mujeres = lectura("mujeres.txt");
+			lectura("mujeres.txt", mujeres);
+			lectura("hombres.txt", hombres);
+			lectura("apellidos.txt", apellidos);
 
-			while ((linea1 != null)) {
-				linea1 = br.readLine();
-				linea2 = br2.readLine();
-				linea3 = br3.readLine();
-				if (linea1 != null) {
-					bw.write(linea1 + "\n");
+			for (int i = 0; i < 1000; i++) {
+				gen = aleatorio(0, 1);
+				parte = array[gen];
+
+				bw.write(parte.get(aleatorio(0, mujeres.size())));
+
+				if (gen <= 50) {
+					bw.write(mujeres.get(aleatorio(0, mujeres.size())) + " "
+							+ apellidos.get(aleatorio(0, apellidos.size())) + " "
+							+ apellidos.get(aleatorio(0, apellidos.size())) + "\n");
+
+				} else {
+					bw.write(hombres.get(aleatorio(0, hombres.size())) + " "
+							+ apellidos.get(aleatorio(0, apellidos.size())) + " "
+							+ apellidos.get(aleatorio(0, apellidos.size())) + "\n");
+
 				}
-				if (linea2 != null) {
-					bw.write(linea2 + "\n");
-				}
-				if (linea3 != null) {
-					bw.write(linea3 + "\n");
-				}
-
-				String[] hombres = linea1.split(" ");
-				String[] apellidos = linea1.split(" ");
-				for (int i = 0; i < mujeres.length; i++)
-					System.out.println(mujeres[i]);
 
 			}
-
-			br.close();
-			br2.close();
 			bw.close();
 
 		} catch (IOException ioe) {
@@ -54,8 +51,8 @@ public class prueba {
 		}
 	}
 
-	// leer fichero
-	public static String[] lectura(String texto) {
+	// leer fichero y guardando los nombre o el apellido en un ArrayList
+	public static void lectura(String texto, ArrayList<String> nombres) {
 		String linea1 = "";
 
 		try {
@@ -63,8 +60,7 @@ public class prueba {
 
 			while ((linea1 != null)) {
 				linea1 = br.readLine();
-
-				String[] mujeres = linea1.split(" ");
+				nombres.add(linea1);
 			}
 			br.close();
 		} catch (IOException ioe) {
@@ -72,7 +68,6 @@ public class prueba {
 			System.err.println(ioe.getMessage());
 		}
 
-		return mujeres;
 	}
 
 	// Método para GENERAR UN ENTERO ALEAORIO DENTRO DE UN RANGO

@@ -16,7 +16,7 @@ public class prueba {
 		try {
 			BufferedWriter bw = new BufferedWriter(new FileWriter("fichero1.txt"));
 			int gen;
-			Object parte;
+			int aleto;
 
 			Object array[] = { mujeres, hombres, apellidos };
 
@@ -25,22 +25,19 @@ public class prueba {
 			lectura("apellidos.txt", apellidos);
 
 			for (int i = 0; i < 1000; i++) {
+				// gen es el genero, que sale aleatoriamente sin tener que preguntar más tarde
+				// cual es
 				gen = aleatorio(0, 1);
-				parte = array[gen];
 
-				bw.write(parte.get(aleatorio(0, mujeres.size())));
+				// estoy cogiendo dentro del array, el nombre aleatoriamente del Arraylist
+				String nombres = ((ArrayList<String>) array[gen])
+						.get(aleatorio(0, (((ArrayList<String>) array[gen]).size())));
+				System.out.println(nombres);
 
-				if (gen <= 50) {
-					bw.write(mujeres.get(aleatorio(0, mujeres.size())) + " "
-							+ apellidos.get(aleatorio(0, apellidos.size())) + " "
-							+ apellidos.get(aleatorio(0, apellidos.size())) + "\n");
-
-				} else {
-					bw.write(hombres.get(aleatorio(0, hombres.size())) + " "
-							+ apellidos.get(aleatorio(0, apellidos.size())) + " "
-							+ apellidos.get(aleatorio(0, apellidos.size())) + "\n");
-
-				}
+				// Aqui estoy escribiendo el nombre de la persona y los dos apellidos con un
+				// salto de linea al final
+				bw.write(nombres + " " + apellidos.get(aleatorio(0, apellidos.size())) + " "
+						+ apellidos.get(aleatorio(0, apellidos.size())) + "\n");
 
 			}
 			bw.close();

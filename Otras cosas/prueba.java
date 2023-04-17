@@ -16,7 +16,6 @@ public class prueba {
 		try {
 			BufferedWriter bw = new BufferedWriter(new FileWriter("fichero1.txt"));
 			int gen;
-			int aleto;
 
 			Object array[] = { mujeres, hombres, apellidos };
 
@@ -24,7 +23,7 @@ public class prueba {
 			lectura("hombres.txt", hombres);
 			lectura("apellidos.txt", apellidos);
 
-			for (int i = 0; i < 1000; i++) {
+			for (int i = 0; i < 3000; i++) {
 				// gen es el genero, que sale aleatoriamente sin tener que preguntar más tarde
 				// cual es
 				gen = aleatorio(0, 1);
@@ -32,7 +31,6 @@ public class prueba {
 				// estoy cogiendo dentro del array, el nombre aleatoriamente del Arraylist
 				String nombres = ((ArrayList<String>) array[gen])
 						.get(aleatorio(0, (((ArrayList<String>) array[gen]).size())));
-				System.out.println(nombres);
 
 				// Aqui estoy escribiendo el nombre de la persona y los dos apellidos con un
 				// salto de linea al final

@@ -38,6 +38,7 @@ public class prueba {
 						+ apellidos.get(aleatorio(0, apellidos.size())) + "\n");
 
 			}
+
 			bw.close();
 
 		} catch (IOException ioe) {

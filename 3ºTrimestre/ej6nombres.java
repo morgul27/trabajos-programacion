@@ -21,15 +21,16 @@ public class ej6nombres {
                 // gen es el genero, que sale aleatoriamente sin tener que preguntar más tarde
                 // cual es
                 gen = aleatorio(0, 1);
+                System.out.println(gen);
 
                 // estoy cogiendo dentro del array, el nombre aleatoriamente del Arraylist
                 String nombres = ((ArrayList<String>) array[gen])
-                        .get(aleatorio(0, (((ArrayList<String>) array[gen]).size())));
+                        .get(aleatorio(0, (((ArrayList<String>) array[gen]).size() - 1)));
 
                 // Aqui estoy escribiendo el nombre de la persona y los dos apellidos con un
                 // salto de linea al final
-                bw.write(nombres + " " + apellidos.get(aleatorio(0, apellidos.size())) + " "
-                        + apellidos.get(aleatorio(0, apellidos.size())) + "\n");
+                bw.write(nombres + " " + apellidos.get(aleatorio(0, apellidos.size() - 1)) + " "
+                        + apellidos.get(aleatorio(0, apellidos.size() - 1)) + "\n");
 
             }
 

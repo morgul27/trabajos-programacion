@@ -11,11 +11,19 @@ public class ej6nombres {
         ArrayList<String> mujeres = new ArrayList<String>();
         ArrayList<String> hombres = new ArrayList<String>();
         ArrayList<String> apellidos = new ArrayList<String>();
+        Properties configuracion = new Properties();
+        configuracion.setProperty("maxuser", "3000");
+        configuracion.setProperty("ruta", "fichero1.txt");
 
         try {
-            BufferedWriter bw = new BufferedWriter(new FileWriter("fichero1.txt"));
+            configuracion.store(new FileOutputStream("ficheroconf.txt"), "Fichero de configuracion");
+            System.out.println("maxuser" + configuracion.getProperty("3000") + "\n" +
+                    "ruta" + configuracion.getProperty("fichero1.txt"));
+
+            BufferedWriter bw = new BufferedWriter(new FileWriter(configuracion.getProperty("fichero1.txt")));
             int gen;
 
+            // para declarar una matriz de ArrayList <String> array [][]
             Object array[] = { mujeres, hombres, apellidos };
             String rutas[] = { "mujeres.txt", "hombres.txt", "apellidos.txt" };
 
@@ -24,7 +32,7 @@ public class ej6nombres {
                 lectura(rutas[i], array[j]);
             }
 
-            for (int i = 0; i < 3000; i++) {
+            for (int i = 0; i < (configuracion.getProperty("3000")); i++) {
                 // gen es el genero, que sale aleatoriamente sin tener que preguntar más tarde
                 // cual es
                 gen = aleatorio(0, 100) / 55; // para quitar la parte entera dividir entre 55, enviar 0 al 100
@@ -46,7 +54,7 @@ public class ej6nombres {
             System.out.println("Se ha producido un error de lectura/escritura");
             System.err.println(ioe.getMessage());
         }
-        fechas();
+        // fechas();
     }
 
     // funcion de fechas

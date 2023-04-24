@@ -1,0 +1,4 @@
+#Fichero de configuracion
+#Mon Apr 24 11:21:05 CEST 2023
+maxuser=3000
+ruta=fichero1.txt

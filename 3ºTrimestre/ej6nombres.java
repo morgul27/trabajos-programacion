@@ -31,8 +31,9 @@ public class ej6nombres {
             for (int i = 0, j = 0; i < 3; i++, j++) {
                 lectura(rutas[i], array[j]);
             }
+            // int maxuser = Integer.parseInt("3000");
 
-            for (int i = 0; i < (configuracion.getProperty("3000")); i++) {
+            for (int i = 0; i < 3000; i++) {
                 // gen es el genero, que sale aleatoriamente sin tener que preguntar más tarde
                 // cual es
                 gen = aleatorio(0, 100) / 55; // para quitar la parte entera dividir entre 55, enviar 0 al 100

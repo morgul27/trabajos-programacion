@@ -34,17 +34,18 @@ public class Blackjack {
         // que ya no me sirve de nada
 
         // eran las pruebas
-        Integer barajac[][] = {
-                { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 },
-                { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 },
-                { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 },
-                { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 }
+        Integer barajac[] = {
+                1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,
+                1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,
+                1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,
+                1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13
         }; // barajac de baraja contar, sirve para ir sumando los numeros
 
-        // con otra baraja, pero esta vez de String no hace falta tener un switch
-        jugador.add(barajac[0][11]);
-        jugador.add(barajac[0][12]);
-        jugador.add(barajac[0][0]);
+        // con otra baraja, pero esta vez de String no hace falta tener un switch, sin
+        // clase jugadores
+        jugador.add(barajac[11]);
+        jugador.add(barajac[12]);
+        jugador.add(barajac[0]);
 
         System.out.println("Tus cartas son: ");
         for (i = 0; i < jugador.size(); i++) {
@@ -54,16 +55,16 @@ public class Blackjack {
         }
         System.out.println();
 
-        // probando
+        // probando con la clase jugadores
         al = aleatorio(0, 12);
         j1.setManol(barajal[al]);
-        j1.setManon(barajac[0][al]);
-        System.out.println(barajac[0][al]);
+        j1.setManon(barajac[al]);
+        System.out.println(barajac[al]);
 
         al = aleatorio(0, 12);
         j1.setManol(barajal[al]);
-        j1.setManon(barajac[0][al]);
-        System.out.println(barajac[0][al]);
+        j1.setManon(barajac[al]);
+        System.out.println(barajac[al]);
 
         // mostrar todo(el toString)
         System.out.println(j1);

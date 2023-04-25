@@ -17,6 +17,18 @@ public class prueba {
 			BufferedWriter bw = new BufferedWriter(new FileWriter("fichero1.txt"));
 			int gen;
 
+			// otra forma
+			ArrayList<String>[] ARRay = new ArrayList[3];
+			ARRay[0] = mujeres;
+			ARRay[1] = hombres;
+			ARRay[2] = apellidos;
+			int e = 0;
+			String a = (ARRay[e])
+					.get(aleatorio(0, ((ARRay[e]).size() - 1)));
+			System.out.println(a);
+
+			// se acaba la otra forma
+
 			Object array[] = { mujeres, hombres, apellidos };
 
 			lectura("mujeres.txt", mujeres);

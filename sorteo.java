@@ -6,8 +6,8 @@ public class sorteo {
     public static String obtenerEquipo(ArrayList<String> listaEquipos) {
         Random rnd = new Random();
         int index = rnd.nextInt(listaEquipos.size());
-        String equipo = listaEquipos.get(index);
-        listaEquipos.remove(index);
+
+        String equipo = listaEquipos.remove(index);
         return equipo;
     }
 

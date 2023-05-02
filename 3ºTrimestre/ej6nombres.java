@@ -17,15 +17,13 @@ public class ej6nombres {
         configuracion.setProperty("ruta", "fichero1.txt");
 
         try {
+            // pruebas de ficheros
             configuracion.store(new FileOutputStream("ficheroconf.txt"), "Fichero de configuracion");
             System.out.println("maxuser" + configuracion.getProperty("3000") + "\n" +
                     "ruta" + configuracion.getProperty("fichero1.txt"));
 
             BufferedWriter bw = new BufferedWriter(new FileWriter(configuracion.getProperty("fichero1.txt")));
-
-            BufferedWriter bw = new BufferedWriter(new FileWriter("fichero1.txt"));
             int gen;
-
             // para declarar una matriz de ArrayList <String> array [][]
             Object array[] = { mujeres, hombres, apellidos };
             String rutas[] = { "mujeres.txt", "hombres.txt", "apellidos.txt" };
@@ -34,9 +32,9 @@ public class ej6nombres {
             for (int i = 0, j = 0; i < 3; i++, j++) {
                 lectura(rutas[i], array[j]);
             }
-            // int maxuser = Integer.parseInt("3000");
+            int maxuser1 = Integer.parseInt(maxuser);
 
-            for (int i = 0; i < 3000; i++) {
+            for (int i = 0; i < maxuser1; i++) {
                 // gen es el genero, que sale aleatoriamente sin tener que preguntar más tarde
                 // cual es
                 gen = aleatorio(0, 100) / 55; // para quitar la parte entera dividir entre 55, enviar 0 al 100

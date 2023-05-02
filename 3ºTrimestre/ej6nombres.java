@@ -7,6 +7,7 @@ import java.util.*;
 import java.text.*;
 
 public class ej6nombres {
+
     public static void main(String[] args) {
         ArrayList<String> mujeres = new ArrayList<String>();
         ArrayList<String> hombres = new ArrayList<String>();
@@ -16,30 +17,26 @@ public class ej6nombres {
         configuracion.setProperty("ruta", "fichero1.txt");
 
         try {
-            // pruebas de ficheros
-            configuracion.store(new FileOutputStream("ficheroconf.txt"), "Fichero de configuracion");
+            configuracion.store(new FileOutputStream("C:/Users/JoséMiguelNavarroDeA/Desktop/ejercicios en clase/programas/GitHub/trabajos-programacion/ficheroconf.txt"), "Fichero de configuracion");
             System.out.println("maxuser" + configuracion.getProperty("3000") + "\n" +
                     "ruta" + configuracion.getProperty("fichero1.txt"));
 
-            String maxuser = configuracion.getProperty("maxuser", "3000");
-            System.out.println(maxuser);
+     
 
-            String ruta = configuracion.getProperty("ruta", "fichero1.txt");
-            // fin gordo sobre pruebas de ficheros
-
-            BufferedWriter bw = new BufferedWriter(new FileWriter(ruta));
+            BufferedWriter bw = new BufferedWriter(new FileWriter("C:/Users/JoséMiguelNavarroDeA/Desktop/ejercicios en clase/programas/GitHub/trabajos-programacion/fichero1.txt"));
             int gen;
+
             // para declarar una matriz de ArrayList <String> array [][]
             Object array[] = { mujeres, hombres, apellidos };
-            String rutas[] = { "mujeres.txt", "hombres.txt", "apellidos.txt" };
+            String rutas[] = { "C:/Users/JoséMiguelNavarroDeA/Desktop/ejercicios en clase/programas/GitHub/trabajos-programacion/mujeres.txt", "C:/Users/JoséMiguelNavarroDeA/Desktop/ejercicios en clase/programas/GitHub/trabajos-programacion/hombres.txt", "C:/Users/JoséMiguelNavarroDeA/Desktop/ejercicios en clase/programas/GitHub/trabajos-programacion/apellidos.txt" };
 
             // hacer esto con un for que envie esto 3 veces con una i y j que vayan sumando
             for (int i = 0, j = 0; i < 3; i++, j++) {
                 lectura(rutas[i], array[j]);
             }
-            int maxuser1 = Integer.parseInt(maxuser);
+            // int maxuser = Integer.parseInt("3000");
 
-            for (int i = 0; i < maxuser1; i++) {
+            for (int i = 0; i < 3000; i++) {
                 // gen es el genero, que sale aleatoriamente sin tener que preguntar más tarde
                 // cual es
                 gen = aleatorio(0, 100) / 55; // para quitar la parte entera dividir entre 55, enviar 0 al 100
@@ -81,6 +78,7 @@ public class ej6nombres {
         System.out.println(intervalo);
 
         fechana = dia1.plusDays(intervalo);
+        fechana = String.valueOf(fechana);
         System.out.println(fechana);
     }
 

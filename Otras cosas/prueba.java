@@ -7,7 +7,6 @@ import java.util.Locale;
 import java.io.*;
 
 public class prueba {
-
 	public static void main(String[] args) {
 		ArrayList<String> mujeres = new ArrayList<String>();
 		ArrayList<String> hombres = new ArrayList<String>();

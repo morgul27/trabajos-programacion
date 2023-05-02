@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 #Fichero de configuracion
-#Tue May 02 16:00:45 CEST 2023
+#Tue May 02 16:09:43 CEST 2023
 maxuser=3000
 ruta=fichero1.txt
-=======
->>>>>>> ed42bc14210a77458060c13ca1e189d76b094f51

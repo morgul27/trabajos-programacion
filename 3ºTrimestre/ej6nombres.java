@@ -7,6 +7,7 @@ import java.util.*;
 import java.text.*;
 
 public class ej6nombres {
+
     public static void main(String[] args) {
         ArrayList<String> mujeres = new ArrayList<String>();
         ArrayList<String> hombres = new ArrayList<String>();
@@ -21,6 +22,8 @@ public class ej6nombres {
                     "ruta" + configuracion.getProperty("fichero1.txt"));
 
             BufferedWriter bw = new BufferedWriter(new FileWriter(configuracion.getProperty("fichero1.txt")));
+
+            BufferedWriter bw = new BufferedWriter(new FileWriter("fichero1.txt"));
             int gen;
 
             // para declarar una matriz de ArrayList <String> array [][]
@@ -75,6 +78,7 @@ public class ej6nombres {
         System.out.println(intervalo);
 
         fechana = dia1.plusDays(intervalo);
+        fechana = String.valueOf(fechana);
         System.out.println(fechana);
     }
 

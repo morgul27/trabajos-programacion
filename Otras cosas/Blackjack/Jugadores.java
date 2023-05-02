@@ -5,6 +5,8 @@ import java.util.ArrayList;
 public class Jugadores {
     protected ArrayList<String> manol = new ArrayList<String>(); // letras mostrar cartas
     protected int manon; // para la suma de cartas
+    // deberia de hacer un metodo "suma" para sumar cada vez que quiera y asi
+    // guardar los resultados en un ArrayList
 
     public Jugadores() {
     }

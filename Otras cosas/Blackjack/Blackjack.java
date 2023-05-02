@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Blackjack {
+    // la J, Q, K valen 10 y la A vale 1 u 11
+    // tambien puedo hacer un vector String del 2 al 10, con J,Q,K y A y luego
+    // cuando vaya a sumar convertirlo en numero, hacer un parsec y si es alguna
+    // letra poner de valor 10 menos la A que solo valdra 1 si la suma de todo se
+    // pasa de 21
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         // hacerlo con arrays
@@ -58,8 +63,23 @@ public class Blackjack {
         // probando con la clase jugadores
         al = aleatorio(0, 12);
         j1.setManol(barajal[al]);
-        j1.setManon(barajac[al]);
-        System.out.println(barajac[al]);
+        switch (al) {
+            case 11:
+                j1.setManon(barajac[al - 2]);
+                break;
+            case 12:
+                j1.setManon(barajac[al - 3]);
+                System.out.print(al - 3);
+                break;
+            case 13:
+                j1.setManon(barajac[al - 4]);
+                System.out.print(al - 4);
+            default:
+                j1.setManon(barajac[al]);
+                break;
+        }
+
+        System.out.println("el aleatorio es " + barajac[al]);
 
         al = aleatorio(0, 12);
         j1.setManol(barajal[al]);

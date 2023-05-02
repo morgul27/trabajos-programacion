@@ -62,10 +62,6 @@ public class ej6nombreyfecha {
         } catch (IOException ioe) {
             System.out.println("Se ha producido un error de lectura/escritura");
             System.err.println(ioe.getMessage());
-        } catch (IOError error) {
-            System.out.println("Se ha producido un error de lectura/escritura");
-        } finally {
-            fechas();
         }
     }
 

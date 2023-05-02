@@ -25,15 +25,15 @@ public class ej6nombreyfecha {
             // "ruta" + configuracion.getProperty("fichero1.txt"));
 
             BufferedWriter bw = new BufferedWriter(new FileWriter(
-                    "C:/txt/fichero1.txt"));
+                    "fichero1.txt"));
             int gen;
 
             // para declarar una matriz de ArrayList <String> array [][]
             Object array[] = { mujeres, hombres, apellidos };
             String rutas[] = {
-                    "C:/txt/mujeres.txt",
-                    "C:/txt/hombres.txt",
-                    "C:/txt/apellidos.txt" };
+                    "mujeres.txt",
+                    "hombres.txt",
+                    "apellidos.txt" };
 
             // hacer esto con un for que envie esto 3 veces con una i y j que vayan sumando
             for (int i = 0, j = 0; i < 3; i++, j++) {

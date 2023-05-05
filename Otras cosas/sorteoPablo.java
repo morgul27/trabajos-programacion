@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Random;
 
-public class sorteo {
+public class sorteoPablo {
     // d)
     public static String obtenerEquipo(ArrayList<String> listaEquipos) {
         Random rnd = new Random();

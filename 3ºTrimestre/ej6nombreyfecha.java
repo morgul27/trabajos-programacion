@@ -52,8 +52,8 @@ public class ej6nombreyfecha {
 
                 // Aqui estoy escribiendo el nombre de la persona y los dos apellidos con un
                 // salto de linea al final
-                bw.write(nombres + " " + apellidos.get(aleatorio(0, apellidos.size() - 1)) + " "
-                        + apellidos.get(aleatorio(0, apellidos.size() - 1)) + "  | nacio en el  " + fechas() + "\n");
+                bw.write(nombres + "; " + apellidos.get(aleatorio(0, apellidos.size() - 1)) + " "
+                        + apellidos.get(aleatorio(0, apellidos.size() - 1)) + "; " + fechas() + "\n");
 
             }
 

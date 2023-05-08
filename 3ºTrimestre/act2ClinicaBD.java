@@ -66,8 +66,28 @@ public class act2ClinicaBD {
 
             //
             // Empieza la escritura
+            String linea1 = "";
             BufferedWriter bw = new BufferedWriter(new FileWriter(url_));
+            BufferedReader br = new BufferedReader(new FileReader("fichero1.txt"));
+            st_.executeUpdate(
+                    "insert into CLIENTES(" +
+                    "NOMBRE" +
+                    "APELLIDOS" +
+                    "FECHA_NACIMIENTO" +
+                    ")"+
+                    "values ("
+                    String[] parts = line.split(",");
+                    String nombre = parts[0];
+                    String apellidos = parts[1];
+                    String fechaNacimiento = parts[2];
+                    while ((linea1 != null)) {
+                        linea1 = br.readLine();
+                    }
+                    ")");
 
+            //
+
+            bw.close();
             // Fin de escritura
             //
 

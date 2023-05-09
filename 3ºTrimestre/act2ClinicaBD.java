@@ -84,6 +84,7 @@ public class act2ClinicaBD {
                         linea1 = br.readLine();
                     }
                     ")");
+                    
 
             //
 

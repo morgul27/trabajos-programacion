@@ -1,65 +1,79 @@
 import java.util.Scanner;
-import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.text.NumberFormat;
 import java.text.*;
 import java.util.Locale;
 import java.io.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class prueba {
+
 	public static void main(String[] args) {
-		ArrayList<String> mujeres = new ArrayList<String>();
-		ArrayList<String> hombres = new ArrayList<String>();
-		ArrayList<String> apellidos = new ArrayList<String>();
+		String db_ = "clinica";
+		String login_ = "root";
+		String password_ = "";
+		String url_ = "jdbc:mysql://127.0.0.1/" + db_;
+		Connection connection_;
+		Statement st_;
 
 		try {
-			BufferedWriter bw = new BufferedWriter(new FileWriter("fichero1.txt"));
-			int gen;
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			connection_ = DriverManager.getConnection(url_, login_, password_);
 
-			// otra forma
-			ArrayList<String>[] ARRay = new ArrayList[3];
-			ARRay[0] = mujeres;
-			ARRay[1] = hombres;
-			ARRay[2] = apellidos;
-			int e = 0;
-			String a = (ARRay[e])
-					.get(aleatorio(0, ((ARRay[e]).size() - 1)));
-			System.out.println(a);
+			System.out.println("Conexion a base de datos");
+			st_ = connection_.createStatement();
 
-			// se acaba la otra forma
+			System.out.println("Creacion de la tabla CLIENTES...");
+			st_.executeUpdate(
+					"CREATE TABLE CLIENTES (" +
+							"ID_CLIENTE INT NOT NULL AUTO_INCREMENT," +
+							"NOMBRE VARCHAR (250)," +
+							"APELLIDOS VARCHAR(250)," +
+							"FECHA_NACIMIENTO DATE," +
+							"PRIMARY KEY (ID_CLIENTE)" +
+							")");
 
-			Object array[] = { mujeres, hombres, apellidos };
+			System.out.println("Se han creado todas las tablas correctamente!!");
 
-			lectura("mujeres.txt", mujeres);
-			lectura("hombres.txt", hombres);
-			lectura("apellidos.txt", apellidos);
+			//
+			// Empieza la escritura
+			BufferedReader br = new BufferedReader(new FileReader("fichero1.txt"));
 
-			for (int i = 0; i < 3000; i++) {
-				// gen es el genero, que sale aleatoriamente sin tener que preguntar más tarde
-				// cual es
-				gen = aleatorio(0, 1);
+			String linea1 = br.readLine();
+			while ((linea1 != null)) {
 
-				// estoy cogiendo dentro del array, el nombre aleatoriamente del Arraylist
-				String nombres = ((ArrayList<String>) array[gen])
-						.get(aleatorio(0, (((ArrayList<String>) array[gen]).size())));
-
-				// Aqui estoy escribiendo el nombre de la persona y los dos apellidos con un
-				// salto de linea al final
-				bw.write(nombres + " " + apellidos.get(aleatorio(0, apellidos.size())) + " "
-						+ apellidos.get(aleatorio(0, apellidos.size())) + "\n");
-
+				String string = linea1;
+				String[] parts = linea1.split(",");
+				PreparedStatement pst_;
+				pst_ = connection_.prepareStatement("NOMBRE, APELLIDOS, FECHA_NACIMIENTO");
+				pst_.setString(1, parts[0]);
+				pst_.setString(2, parts[1]);
+				pst_.setString(3, parts[2]);
+				pst_.executeUpdate();
 			}
 
-			bw.close();
+			// cerrar la conecciones
+			connection_.close();
+			st_.close();
+			br.close();
+			// Fin de escritura
+			//
 
-		} catch (IOException ioe) {
-			System.out.println("Se ha producido un error de lectura/escritura");
-			System.err.println(ioe.getMessage());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+
 	}
 
 	// leer fichero y guardando los nombre o el apellido en un ArrayList
-	public static void lectura(String texto, ArrayList<String> nombres) {
+	public static void lectura(String texto, Object array) {
 		String linea1 = "";
 
 		try {
@@ -67,7 +81,7 @@ public class prueba {
 
 			while ((linea1 != null)) {
 				linea1 = br.readLine();
-				nombres.add(linea1);
+				((ArrayList<String>) array).add(linea1);
 			}
 			br.close();
 		} catch (IOException ioe) {
@@ -76,11 +90,4 @@ public class prueba {
 		}
 
 	}
-
-	// Método para GENERAR UN ENTERO ALEAORIO DENTRO DE UN RANGO
-	public static int aleatorio(int menor, int mayor) {
-		int n = (int) Math.floor((mayor - menor + 1) * Math.random()) + menor;
-		return n;
-	}
-
 }

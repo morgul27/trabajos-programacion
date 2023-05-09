@@ -26,18 +26,6 @@ public class prueba {
 			System.out.println("Conexion a base de datos");
 			st_ = connection_.createStatement();
 
-			System.out.println("Creacion de la tabla CLIENTES...");
-			st_.executeUpdate(
-					"CREATE TABLE CLIENTES (" +
-							"ID_CLIENTE INT NOT NULL AUTO_INCREMENT," +
-							"NOMBRE VARCHAR (250)," +
-							"APELLIDOS VARCHAR(250)," +
-							"FECHA_NACIMIENTO DATE," +
-							"PRIMARY KEY (ID_CLIENTE)" +
-							")");
-
-			System.out.println("Se han creado todas las tablas correctamente!!");
-
 			//
 			// Empieza la escritura
 			BufferedReader br = new BufferedReader(new FileReader("fichero1.txt"));

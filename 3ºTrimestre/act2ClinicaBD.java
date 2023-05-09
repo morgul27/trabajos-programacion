@@ -1,9 +1,12 @@
 import java.io.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+
+import com.mysql.cj.x.protobuf.MysqlxCrud.Insert;
 
 public class act2ClinicaBD {
     public static void main(String[] args) {
@@ -31,64 +34,27 @@ public class act2ClinicaBD {
                             "PRIMARY KEY (ID_CLIENTE)" +
                             ")");
 
-            System.out.println("Creacion de la tabla PRODUCTOS...");
-            st_.executeUpdate(
-                    "CREATE TABLE PRODUCTOS (" +
-                            "ID_PRODUCTO INT NOT NULL AUTO_INCREMENT," +
-                            "NOMBRE VARCHAR(250), " +
-                            "PRECIO DOUBLE(10,2), " +
-                            "STOCK INT, " +
-                            "PRIMARY KEY (ID_PRODUCTO))");
-
-            System.out.println("Creacion de la tabla FACTURAS...");
-            st_.executeUpdate(
-                    "CREATE TABLE FACTURAS (" +
-                            "NUM_FACTURA INT NOT NULL AUTO_INCREMENT," +
-                            "ID_CLIENTE INT,FECHA DATE, " +
-                            "PRIMARY KEY (NUM_FACTURA), " +
-                            "FOREIGN KEY(ID_CLIENTE) REFERENCES CLIENTES (ID_CLIENTE))");
-
-            System.out.println("Creacion de la tabla DETALLES...");
-            st_.executeUpdate(
-                    "CREATE TABLE DETALLES (" +
-                            "NUM_DETALLE INT NOT NULL AUTO_INCREMENT, " +
-                            "NUM_FACTURA INT, " +
-                            "ID_PRODUCTO INT, " +
-                            "CANTIDAD INT," +
-                            "PRIMARY KEY(NUM_DETALLE)," +
-                            "FOREIGN KEY(ID_PRODUCTO) REFERENCES PRODUCTOS (ID_PRODUCTO)," +
-                            "FOREIGN KEY (NUM_FACTURA) REFERENCES FACTURAS (NUM_FACTURA))");
-
             System.out.println("Se han creado todas las tablas correctamente!!");
-
-            connection_.close();
-            st_.close();
 
             //
             // Empieza la escritura
-            String linea1 = "";
-            BufferedWriter bw = new BufferedWriter(new FileWriter(url_));
             BufferedReader br = new BufferedReader(new FileReader("fichero1.txt"));
-            st_.executeUpdate(
-                    "insert into CLIENTES(" +
-                    "NOMBRE" +
-                    "APELLIDOS" +
-                    "FECHA_NACIMIENTO" +
-                    ")"+
-                    "values ("
-                    String[] parts = line.split(",");
-                    String nombre = parts[0];
-                    String apellidos = parts[1];
-                    String fechaNacimiento = parts[2];
-                    while ((linea1 != null)) {
-                        linea1 = br.readLine();
-                    }
-                    ")");
-                    
+
+            String linea1 = br.readLine();
+            while ((linea1 != null)) {
+
+                String string = linea1;
+                String[] parts = string.split(",");
+                st_.executeUpdate(
+                        "Insert into CLIENTES(NOMBRE, APELLIDOS, FECHA_NACIMIENTO)" +
+                                "values (" + parts[0] + "," + parts[1] + ",'" + parts[2] + "')");
+                linea1 = br.readLine();
+            }
 
             //
-
-            bw.close();
+            connection_.close();
+            st_.close();
+            br.close();
             // Fin de escritura
             //
 

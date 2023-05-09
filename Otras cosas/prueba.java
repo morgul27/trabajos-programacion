@@ -42,19 +42,23 @@ public class prueba {
 			// Empieza la escritura
 			BufferedReader br = new BufferedReader(new FileReader("fichero1.txt"));
 
-			String linea1 = br.readLine();
-			while ((linea1 != null)) {
+			String line;
+			while ((line = br.readLine()) != null) {
+				String[] parts = line.split(",");
+				String nombre = parts[0];
+				String apellidos = parts[1];
+				String fechaNacimiento = parts[2];
 
-				String string = linea1;
-				String[] parts = linea1.split(",");
-				PreparedStatement pst_;
-				pst_ = connection_.prepareStatement("NOMBRE, APELLIDOS, FECHA_NACIMIENTO");
-				pst_.setString(1, parts[0]);
-				pst_.setString(2, parts[1]);
-				pst_.setString(3, parts[2]);
-				pst_.executeUpdate();
+				PreparedStatement ps = connection_.prepareStatement("INSERT INTO CLIENTES" +
+						" (NOMBRE, APELLIDOS, FECHA_NACIMIENTO) VALUES (?, ?, ?)");
+				ps.setString(1, nombre);
+				ps.setString(2, apellidos);
+				ps.setString(3, fechaNacimiento);
+				ps.executeUpdate();
+				ps.close();
 			}
 
+			System.out.println("Fin");
 			// cerrar la conecciones
 			connection_.close();
 			st_.close();

@@ -40,17 +40,23 @@ public class act2ClinicaBD {
             // Empieza la escritura
             BufferedReader br = new BufferedReader(new FileReader("fichero1.txt"));
 
-            String linea1 = br.readLine();
-            while ((linea1 != null)) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split(",");
+                String nombre = parts[0];
+                String apellidos = parts[1];
+                String fechaNacimiento = parts[2];
 
-                String string = linea1;
-                String[] parts = string.split(",");
-                st_.executeUpdate(
-                        "Insert into CLIENTES(NOMBRE, APELLIDOS, FECHA_NACIMIENTO)" +
-                                "values (" + parts[0] + "," + parts[1] + ",'" + parts[2] + "')");
-                linea1 = br.readLine();
+                PreparedStatement ps = connection_.prepareStatement("INSERT INTO CLIENTES" +
+                        " (NOMBRE, APELLIDOS, FECHA_NACIMIENTO) VALUES (?, ?, ?)");
+                ps.setString(1, nombre);
+                ps.setString(2, apellidos);
+                ps.setString(3, fechaNacimiento);
+                ps.executeUpdate();
+                ps.close();
             }
 
+            System.out.println("Fin");
             //
             connection_.close();
             st_.close();

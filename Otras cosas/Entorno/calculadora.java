@@ -28,6 +28,7 @@ public class calculadora {
             } else {
                 x = Operacion.dividir(num1, num2);
             }
+            sc.close();
 
             System.out.println("El resultado de la operacion es " + x);
 

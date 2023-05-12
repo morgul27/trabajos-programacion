@@ -79,6 +79,20 @@ public class tablabdClinica {
                                                         "Nombre VARCHAR(250)" +
                                                         ")");
 
+                        System.out.println("Creacion de la tabla FCOBRO...");
+                        st_.executeUpdate(
+                                        "CREATE TABLE FCOBRO (" +
+                                                        "ID_FCOBRO INT NOT NULL AUTO_INCREMENT," +
+                                                        "NOMBRE VARCHAR(250), " +
+                                                        "PRIMARY KEY (ID_FCOBRO))");
+
+                        System.out.println("Creacion de la tabla GRUPOCAJA...");
+                        st_.executeUpdate(
+                                        "CREATE TABLE GRUPOCAJA (" +
+                                                        "ID_FCOBRO INT NOT NULL AUTO_INCREMENT," +
+                                                        "NOMBRE VARCHAR(250), " +
+                                                        "PRIMARY KEY (ID_FCOBRO))");
+
                         System.out.println("Creacion de la tabla TtosRealizados...");
                         st_.executeUpdate(
                                         "CREATE TABLE TtosRealizados (" +
@@ -92,13 +106,6 @@ public class tablabdClinica {
                                                         "IDLIQUIDACION INT" +
                                                         "PRIMARY KEY(NUM_DETALLE)," +
                                                         ")");
-
-                        System.out.println("Creacion de la tabla FCOBRO...");
-                        st_.executeUpdate(
-                                        "CREATE TABLE FCOBRO (" +
-                                                        "ID_FCOBRO INT NOT NULL AUTO_INCREMENT," +
-                                                        "NOMBRE VARCHAR(250), " +
-                                                        "PRIMARY KEY (ID_FCOBRO))");
 
                         System.out.println("Creacion de la tabla COBROS...");
                         st_.executeUpdate(

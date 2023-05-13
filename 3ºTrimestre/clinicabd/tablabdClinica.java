@@ -24,115 +24,123 @@ public class tablabdClinica {
                         System.out.println("Conexion a base de datos");
                         st_ = connection_.createStatement();
 
-                        System.out.println("Creacion de la tabla PACIENTES...");
+                        System.out.println("Creacion de la tabla PACIENTES..."); // PACIENTES
                         st_.executeUpdate(
                                         "CREATE TABLE PACIENTES (" +
                                                         "IDPaciente INT NOT NULL AUTO_INCREMENT," +
-                                                        "Historia INT," + // Codigo de la historia clinica
+                                                        "Historia INT NOT NULL," + // Codigo de la historia clinica
                                                         "Apellidos VARCHAR(250)," +
                                                         "Nombre VARCHAR (250)," +
-                                                        "DNI VARCHAR (250)," +
+                                                        "DNI VARCHAR (9)," +
                                                         "FechaNacimiento DATE," +
-                                                        "Genero VARCHAR (250)," +
+                                                        "Genero VARCHAR (100)," +
                                                         "Direccion VARCHAR(250)," +
                                                         "CP INT," +
                                                         "CodProvincia INT," + // Los primeros numeros de CP
                                                         "email VARCHAR(250)," +
-                                                        "Telefono1 INT null," +
-                                                        "Telefono2 INT null," +
+                                                        "Telefono1 INT," +
+                                                        "Telefono2 INT," +
                                                         "PRIMARY KEY (IDPaciente, Historia)" +
                                                         ")");
 
-                        System.out.println("Creacion de la tabla PROFESIONALES...");
+                        System.out.println("Creacion de la tabla PROFESIONALES..."); // PROFESIONALES
                         st_.executeUpdate(
                                         "CREATE TABLE PROFESIONALES (" +
                                                         "IDProfesional INT NOT NULL AUTO_INCREMENT," +
-                                                        "NIF VARCHAR(250)," +
+                                                        "NIF VARCHAR(9)," +
                                                         "Apellidos VARCHAR(250)," +
                                                         "Nombre VARCHAR (250)," +
-                                                        "DNI VARCHAR (250)," +
+                                                        "DNI VARCHAR (9)," +
                                                         "Direccion VARCHAR(250)," +
-                                                        "CP VARCHAR(250)," +
+                                                        "CP INT," +
                                                         "CodProvincia INT," +
                                                         "email VARCHAR(250)," +
-                                                        "Telefono1 INT null," +
-                                                        "Telefono2 INT null," +
+                                                        "Telefono1 INT," +
+                                                        "Telefono2 INT," +
                                                         "Comision DECIMAL(16,2)," +
-
+                                                        "PRIMARY KEY (IDProfesional, NIF)," +
                                                         ")");
 
-                        System.out.println("Creacion de la tabla TRATAMIENTOS...");
+                        System.out.println("Creacion de la tabla TRATAMIENTOS...");// TRATAMIENTOS
                         st_.executeUpdate(
                                         "CREATE TABLE TRATAMIENTOS (" +
                                                         "IDTratamiento INT NOT NULL AUTO_INCREMENT, " +
-                                                        "CodTto INT" +
-                                                        "Nombre VARCHAR(250)" +
-                                                        "CodFamilia INT" +
-                                                        "Precio DECIMAL(16,2)" +
-                                                        "PRIMARY KEY ()" +
+                                                        "CodTto INT NOT NULL," +
+                                                        "Nombre VARCHAR(250) NOT NULL," +
+                                                        "CodFamilia INT," +
+                                                        "Precio DECIMAL(16,2)," +
+                                                        "PRIMARY KEY (IDTratamiento, CodTto)," +
                                                         ")");
 
-                        System.out.println("Creacion de la tabla FAMILIAS...");
+                        System.out.println("Creacion de la tabla FAMILIAS..."); // FAMILIAS
                         st_.executeUpdate(
                                         "CREATE TABLE FAMILIAS (" +
                                                         "CodFamilia INT NOT NULL AUTO_INCREMENT," +
-                                                        "Nombre VARCHAR(250)" +
+                                                        "Nombre VARCHAR(250) NOT NULL," +
+                                                        "PRIMARY KEY (CodFamilia)," +
                                                         ")");
 
-                        System.out.println("Creacion de la tabla FCOBRO...");
+                        System.out.println("Creacion de la tabla FCOBRO..."); // FORMAS COBRO
                         st_.executeUpdate(
                                         "CREATE TABLE FCOBRO (" +
-                                                        "ID_FCOBRO INT NOT NULL AUTO_INCREMENT," +
-                                                        "NOMBRE VARCHAR(250), " +
-                                                        "PRIMARY KEY (ID_FCOBRO))");
+                                                        "IDFCobro INT NOT NULL AUTO_INCREMENT," +
+                                                        "Nombre VARCHAR(250) NOT NULL, " +
+                                                        "PRIMARY KEY (IDFCobro)" +
+                                                        ")");
 
-                        System.out.println("Creacion de la tabla GRUPOCAJA...");
+                        System.out.println("Creacion de la tabla GRUPOCAJA..."); // GRUPOCAJA
                         st_.executeUpdate(
                                         "CREATE TABLE GRUPOCAJA (" +
-                                                        "ID_FCOBRO INT NOT NULL AUTO_INCREMENT," +
-                                                        "NOMBRE VARCHAR(250), " +
-                                                        "PRIMARY KEY (ID_FCOBRO))");
+                                                        "CodGrCaja INT NOT NULL AUTO_INCREMENT," +
+                                                        "Nombre VARCHAR(250) NOT NULL, " +
+                                                        "PRIMARY KEY (CodGrCaja))");
 
-                        System.out.println("Creacion de la tabla TtosRealizados...");
+                        System.out.println("Creacion de la tabla TtosRealizados..."); // SERVICIOS
                         st_.executeUpdate(
                                         "CREATE TABLE TtosRealizados (" +
-                                                        "ID_Servicio INT NOT NULL AUTO_INCREMENT, " +
-                                                        "FECHA DATE," +
-                                                        "ID_PACIENTE INT" +
-                                                        "ID_PROFESIONAL INT" +
-                                                        "ID_TRATAMIENTO INT" +
-                                                        "PRECIO DECIMAL(16,2)" +
-                                                        "COBRADO DECIMAL(16,2)" +
-                                                        "IDLIQUIDACION INT" +
-                                                        "PRIMARY KEY(NUM_DETALLE)," +
+                                                        "IDServicio INT NOT NULL AUTO_INCREMENT, " +
+                                                        "Fecha DATE," +
+                                                        "IDPaciente INT NOT NULL" +
+                                                        "IDProfesional INT NOT NULL" +
+                                                        "IDTratamiento INT NOT NULL" +
+                                                        "Precio DECIMAL(16,2)" +
+                                                        "Cobrado DECIMAL(16,2)" +
+                                                        "IDLiquidacion INT NOT NULL" +
+                                                        "PRIMARY KEY(IDServicio)," +
+                                                        "FOREIGN KEY(IDPaciente) REFERENCES PACIENTES (IDPaciente)," +
+                                                        "FOREIGN KEY(IDProfesional) REFERENCES PROFESIONALES (IDProfesional),"
+                                                        +
                                                         ")");
 
-                        System.out.println("Creacion de la tabla COBROS...");
+                        System.out.println("Creacion de la tabla COBROS..."); // COBROS
                         st_.executeUpdate(
                                         "CREATE TABLE COBROS (" +
-                                                        "ID_FCOBRO INT NOT NULL AUTO_INCREMENT," +
-                                                        "NOMBRE VARCHAR(250), " +
-                                                        "FECHA DATE," +
-                                                        "IDPACIENTE VARCHAR(250)," +
-                                                        "IDFCOBRO VARCHAR(250)," +
-                                                        "COBRADO INT," +
-                                                        "IMPUTADO INT," +
-                                                        "PRIMARY KEY (ID_FCOBRO))");
-
-                        System.out.println("Creacion de la tabla TTOSCOBROS...");
-                        st_.executeUpdate(
-                                        "CREATE TABLE TTOSCOBROS (" +
-                                                        "IDCOBRO INT, " +
-                                                        "IDSERVICIOS INT, " +
-                                                        "IMPUTADO INT " +
-                                                        "PRIMARY KEY (NUM_FACTURA), " +
+                                                        "IDCobro INT NOT NULL AUTO_INCREMENT," +
+                                                        "Fecha DATE," +
+                                                        "IDPaciente VARCHAR(250) NOT NULL," +
+                                                        "IDFCobro VARCHAR(250) NOT NULL," +
+                                                        "Cobrado INT," +
+                                                        "Imputado INT," +
+                                                        "PRIMARY KEY (IDCobro)" +
+                                                        "FOREIGN KEY(IDPaciente) REFERENCES PACIENTES (IDPaciente)," +
                                                         ")");
 
-                        System.out.println("Creacion de la tabla LIQUIDACIONES...");
+                        System.out.println("Creacion de la tabla TTOSCOBROS..."); // TTOSCOBROS - tabla N N
+                        st_.executeUpdate(
+                                        "CREATE TABLE TTOSCOBROS (" +
+                                                        "IDCobro INT NOT NULL, " +
+                                                        "IDServicio INT NOT NULL, " +
+                                                        "Imputado INT " +
+                                                        "PRIMARY KEY (IDCobro, IDServicio), " +
+                                                        ")");
+
+                        System.out.println("Creacion de la tabla LIQUIDACIONES..."); // LIQUIDACIONES
                         st_.executeUpdate(
                                         "CREATE TABLE LIQUIDACIONES (" +
-                                                        "ID_LIQUIDACION INT NOT NULL AUTO_INCREMENT, " +
-                                                        "PRIMARY KEY(NUM_DETALLE)," +
+                                                        "IDLiquidacion INT NOT NULL AUTO_INCREMENT, " +
+                                                        "Fecha DATE," +
+                                                        "IDProfesional VARCHAR(250) NOT NULL," +
+                                                        "PRIMARY KEY(IDLiquidacion)," +
                                                         "FOREIGN KEY(ID_PRODUCTO) REFERENCES PRODUCTOS (ID_PRODUCTO)," +
                                                         "FOREIGN KEY (NUM_FACTURA) REFERENCES FACTURAS (NUM_FACTURA))");
 

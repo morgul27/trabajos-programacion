@@ -6,8 +6,8 @@ public class ej3parte2_FicheroTextoApp {
     public static void main(String[] args) {
 
         try {
-            FileWriter fw = new FileWriter("fichero1.txt");
-            FileReader fr = new FileReader("fichero1.txt");
+            FileWriter fw = new FileWriter("fichero2.txt");
+            FileReader fr = new FileReader("fichero2.txt");
             fw.write("Hol");
             fw.write(97);
             fw.flush();

@@ -10,7 +10,7 @@ public class ej3parte2_FicheroTextoApp {
             FileReader fr = new FileReader("fichero2.txt");
             fw.write("Hol");
             fw.write(97);
-            fw.flush();
+            fw.flush(); // esta funcion sirve para que pueda leer y escribir a la vez
             int valor = fr.read();
             while (valor != -1) {
                 System.out.println((char) valor);

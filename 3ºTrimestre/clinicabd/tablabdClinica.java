@@ -7,9 +7,66 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class tablabdClinica {
         public static void main(String[] args) {
+                Scanner sc = new Scanner(System.in);
+                int x = 0;
+                int f;
+                boolean salirMenu = false;
+                boolean numeroValido = false;
+
+                do {
+                        // menu
+                        System.out.println("1. ");
+                        System.out.println("2. ");
+                        System.out.println("3. ");
+                        System.out.println("4. ");
+                        System.out.println("5. Salir");
+                        System.out.println();
+
+                        // Ingresar numero
+
+                        System.out.println("Ingresa un numero entre el cero 0 y el 6");
+                        try {
+                                x = Integer.parseInt(sc.nextLine()); // lo paso a int, aunque sea un caracter
+
+                        } catch (NumberFormatException e) {
+                                System.out.println("Debes ingresar un numero entero valido");
+                        }
+
+                        switch (x) {
+                                case 1:
+                                        // crear la base de datos
+                                        f = aleatorio(0, 100);
+                                        System.out.println(f);
+                                        break;
+                                case 2:
+                                        // insertar un servicio
+                                        System.out.println("e");
+                                        break;
+                                case 3:
+                                        // modificar un tratamiento
+                                        System.out.println("3");
+                                        break;
+                                case 4:
+                                        // insertar cobro
+                                        break;
+                                case 5:
+                                        salirMenu = true;
+                                        break;
+                                default:
+                                        System.out.println();
+                                        System.out.println("Debe introducir un numero entre 0 y 6");
+                                        System.out.println();
+                        }
+                } while (!salirMenu);
+
+                //
+                //
+                // meter esto en una funcion
                 String db_ = "Prueba";
                 String login_ = "root";
                 String password_ = "";
@@ -65,7 +122,7 @@ public class tablabdClinica {
                         st_.executeUpdate(
                                         "CREATE TABLE TRATAMIENTOS (" +
                                                         "IDTratamiento INT NOT NULL AUTO_INCREMENT, " +
-                                                        "CodTto INT NOT NULL," +
+                                                        "CodTto VARCHAR(250) NOT NULL," +
                                                         "Nombre VARCHAR(250) NOT NULL," +
                                                         "CodFamilia INT," +
                                                         "Precio DECIMAL(16,2)," +
@@ -169,5 +226,11 @@ public class tablabdClinica {
                 } catch (Exception e) {
                         e.printStackTrace();
                 }
+        }
+
+        // Método para GENERAR UN ENTERO ALEAORIO DENTRO DE UN RANGO
+        public static int aleatorio(int menor, int mayor) {
+                int n = (int) Math.floor((mayor - menor + 1) * Math.random()) + menor;
+                return n;
         }
 }

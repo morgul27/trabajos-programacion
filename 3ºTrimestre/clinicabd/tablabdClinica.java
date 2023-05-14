@@ -70,6 +70,7 @@ public class tablabdClinica {
                                                         "CodFamilia INT," +
                                                         "Precio DECIMAL(16,2)," +
                                                         "PRIMARY KEY (IDTratamiento, CodTto)," +
+                                                        "FOREIGN KEY(CodFamilia) REFERENCES FAMILIAS (CodFamilia)," +
                                                         ")");
 
                         System.out.println("Creacion de la tabla FAMILIAS..."); // FAMILIAS
@@ -85,7 +86,9 @@ public class tablabdClinica {
                                         "CREATE TABLE FCOBRO (" +
                                                         "IDFCobro INT NOT NULL AUTO_INCREMENT," +
                                                         "Nombre VARCHAR(250) NOT NULL, " +
+                                                        "CodGrCaja INT NOT NULL" +
                                                         "PRIMARY KEY (IDFCobro)" +
+                                                        "FOREIGN KEY(CodGrCaja) REFERENCES GRUPOCAJA (CodGrCaja)," +
                                                         ")");
 
                         System.out.println("Creacion de la tabla GRUPOCAJA..."); // GRUPOCAJA
@@ -93,7 +96,8 @@ public class tablabdClinica {
                                         "CREATE TABLE GRUPOCAJA (" +
                                                         "CodGrCaja INT NOT NULL AUTO_INCREMENT," +
                                                         "Nombre VARCHAR(250) NOT NULL, " +
-                                                        "PRIMARY KEY (CodGrCaja))");
+                                                        "PRIMARY KEY (CodGrCaja)" +
+                                                        ")");
 
                         System.out.println("Creacion de la tabla TtosRealizados..."); // SERVICIOS
                         st_.executeUpdate(
@@ -110,6 +114,10 @@ public class tablabdClinica {
                                                         "FOREIGN KEY(IDPaciente) REFERENCES PACIENTES (IDPaciente)," +
                                                         "FOREIGN KEY(IDProfesional) REFERENCES PROFESIONALES (IDProfesional),"
                                                         +
+                                                        "FOREIGN KEY(IDTratamiento) REFERENCES TRATAMIENTOS (IDTratamiento),"
+                                                        +
+                                                        "FOREIGN KEY(IDLiquidacion) REFERENCES LIQUIDACIONES (IDLiquidacion),"
+                                                        +
                                                         ")");
 
                         System.out.println("Creacion de la tabla COBROS..."); // COBROS
@@ -123,6 +131,7 @@ public class tablabdClinica {
                                                         "Imputado INT," +
                                                         "PRIMARY KEY (IDCobro)" +
                                                         "FOREIGN KEY(IDPaciente) REFERENCES PACIENTES (IDPaciente)," +
+                                                        "FOREIGN KEY(IDFCobro) REFERENCES FCOBRO (IDFCobro)," +
                                                         ")");
 
                         System.out.println("Creacion de la tabla TTOSCOBROS..."); // TTOSCOBROS - tabla N N
@@ -132,6 +141,9 @@ public class tablabdClinica {
                                                         "IDServicio INT NOT NULL, " +
                                                         "Imputado INT " +
                                                         "PRIMARY KEY (IDCobro, IDServicio), " +
+                                                        "FOREIGN KEY(IDCobro) REFERENCES COBROS (IDCobro)," +
+                                                        "FOREIGN KEY(IDServicio) REFERENCES TtosRealizados (IDServicio),"
+                                                        +
                                                         ")");
 
                         System.out.println("Creacion de la tabla LIQUIDACIONES..."); // LIQUIDACIONES
@@ -141,8 +153,9 @@ public class tablabdClinica {
                                                         "Fecha DATE," +
                                                         "IDProfesional VARCHAR(250) NOT NULL," +
                                                         "PRIMARY KEY(IDLiquidacion)," +
-                                                        "FOREIGN KEY(ID_PRODUCTO) REFERENCES PRODUCTOS (ID_PRODUCTO)," +
-                                                        "FOREIGN KEY (NUM_FACTURA) REFERENCES FACTURAS (NUM_FACTURA))");
+                                                        "FOREIGN KEY(IDProfesional) REFERENCES PROFESIONALES (IDProfesional),"
+                                                        +
+                                                        ")");
 
                         System.out.println("Se han creado todas las tablas correctamente!!");
 

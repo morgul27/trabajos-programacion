@@ -1,10 +1,8 @@
 import java.util.ArrayList;
 import java.io.*;
 import java.time.*;
-import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
-import java.text.*;
 
 public class ej6nombreyfecha {
 
@@ -77,9 +75,7 @@ public class ej6nombreyfecha {
 
         // Con el ChronoUnit mira el intervalo de los dos dias que he puesto
         long intervalo = ChronoUnit.DAYS.between(dia1, dia2);
-
         intervalo = aleatorio(0, intervalo);
-
         fechana = dia1.plusDays(intervalo);
 
         return String.format("%04d%02d%02d", fechana.getYear(), fechana.getMonthValue(), fechana.getDayOfMonth());

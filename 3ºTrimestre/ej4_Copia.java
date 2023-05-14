@@ -1,5 +1,4 @@
 import java.io.*;
-import java.io.PrintWriter;
 
 public class ej4_Copia {
     public static void main(String[] args) {

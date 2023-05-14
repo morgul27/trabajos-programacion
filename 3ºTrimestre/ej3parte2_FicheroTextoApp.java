@@ -1,5 +1,4 @@
 import java.io.*;
-import java.io.PrintWriter;
 
 public class ej3parte2_FicheroTextoApp {
 

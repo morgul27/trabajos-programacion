@@ -70,22 +70,4 @@ public class act10metermanualgenero {
 
     }
 
-    // leer fichero y guardando los nombre o el apellido en un ArrayList
-    public static void lectura(String texto, Object array) {
-        String linea1 = "";
-
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(texto));
-
-            while ((linea1 != null)) {
-                linea1 = br.readLine();
-                ((ArrayList<String>) array).add(linea1);
-            }
-            br.close();
-        } catch (IOException ioe) {
-            System.out.println("Se ha producido un error de lectura/escritura");
-            System.err.println(ioe.getMessage());
-        }
-
-    }
 }

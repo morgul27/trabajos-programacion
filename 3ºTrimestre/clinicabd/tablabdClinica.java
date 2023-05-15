@@ -53,6 +53,7 @@ public class tablabdClinica {
                                         break;
                                 case 4:
                                         // insertar cobro
+                                        // 5d, debe indicar el cobro y el tratamiento realizado
                                         break;
                                 case 5:
                                         salirMenu = true;

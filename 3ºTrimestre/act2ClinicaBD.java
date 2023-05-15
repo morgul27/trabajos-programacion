@@ -31,6 +31,7 @@ public class act2ClinicaBD {
                             "NOMBRE VARCHAR (250)," +
                             "APELLIDOS VARCHAR(250)," +
                             "FECHA_NACIMIENTO DATE," +
+                            "GENERO VARCHAR(250)," +
                             "PRIMARY KEY (ID_CLIENTE)" +
                             ")");
 
@@ -46,12 +47,14 @@ public class act2ClinicaBD {
                 String nombre = parts[0];
                 String apellidos = parts[1];
                 String fechaNacimiento = parts[2];
+                String genero = parts[3];
 
                 PreparedStatement ps = connection_.prepareStatement("INSERT INTO CLIENTES" +
-                        " (NOMBRE, APELLIDOS, FECHA_NACIMIENTO) VALUES (?, ?, ?)");
+                        " (NOMBRE, APELLIDOS, FECHA_NACIMIENTO) VALUES (?, ?, ?, ?)");
                 ps.setString(1, nombre);
                 ps.setString(2, apellidos);
                 ps.setString(3, fechaNacimiento);
+                ps.setString(4, genero);
                 ps.executeUpdate();
                 ps.close();
             }

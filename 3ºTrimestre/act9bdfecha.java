@@ -43,7 +43,8 @@ public class act9bdfecha {
                     String nombre = rs_.getString("NOMBRE");
                     String apellidos = rs_.getString("APELLIDOS");
                     String fechana = rs_.getString("FECHA_NACIMIENTO");
-                    listaClientes.add(nombre + " " + apellidos + " " + fechana);
+                    String genero = rs_.getString("GENERO");
+                    listaClientes.add(nombre + " " + apellidos + " " + fechana + " " + genero);
                 }
 
             }
@@ -64,12 +65,14 @@ public class act9bdfecha {
                 String nombre = parts[0];
                 String apellidos = parts[1];
                 String fechaNacimiento = parts[2];
+                String genero = parts[3];
 
                 PreparedStatement ps = connection_.prepareStatement("INSERT INTO CLIENTES" +
-                        " (NOMBRE, APELLIDOS, FECHA_NACIMIENTO) VALUES (?, ?, ?)");
+                        " (NOMBRE, APELLIDOS, FECHA_NACIMIENTO) VALUES (?, ?, ?, ?)");
                 ps.setString(1, nombre);
                 ps.setString(2, apellidos);
                 ps.setString(3, fechaNacimiento);
+                ps.setString(3, genero);
                 ps.executeUpdate();
                 ps.close();
             }

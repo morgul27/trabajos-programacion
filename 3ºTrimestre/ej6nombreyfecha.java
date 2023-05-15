@@ -28,6 +28,7 @@ public class ej6nombreyfecha {
 
             // para declarar una matriz de ArrayList <String> array [][]
             Object array[] = { mujeres, hombres, apellidos };
+            String genero[] = { "mujeres", "hombres" };
             String rutas[] = {
                     "mujeres.txt",
                     "hombres.txt",
@@ -51,7 +52,8 @@ public class ej6nombreyfecha {
                 // Aqui estoy escribiendo el nombre de la persona y los dos apellidos con un
                 // salto de linea al final
                 bw.write("'" + nombres + "','" + apellidos.get(aleatorio(0, apellidos.size() - 1)) + " "
-                        + apellidos.get(aleatorio(0, apellidos.size() - 1)) + "'," + fechas() + "\n");
+                        + apellidos.get(aleatorio(0, apellidos.size() - 1)) + "'," + fechas() + ", '" + genero[gen]
+                        + "' \n");
 
             }
 

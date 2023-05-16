@@ -11,6 +11,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.time.*;
 import java.time.temporal.ChronoUnit;
+import java.sql.ResultSet;
 
 public class tablabdClinica {
         public static void main(String[] args) {
@@ -48,7 +49,7 @@ public class tablabdClinica {
                                 case 2:
                                         // insertar un servicio
                                         System.out.println();
-                                        adsa();
+                                        insertar();
                                         break;
                                 case 3:
                                         // modificar un tratamiento
@@ -83,7 +84,77 @@ public class tablabdClinica {
 
         }
 
-        // funcion para crear la base de datos con los datos correspondientes
+        // funcion 2 para insertar datos
+
+        public static void insertar() {
+                String db_ = "ClinicaDental";
+                String login_ = "root";
+                String password_ = "";
+                String url_ = "jdbc:mysql://127.0.0.1/" + db_;
+                Connection connection_;
+                Statement st_ = null;
+                ResultSet rs_ = null;
+
+                try {
+                        Class.forName("com.mysql.cj.jdbc.Driver");
+                        connection_ = DriverManager.getConnection(url_, login_, password_);
+
+                        Scanner sc = new Scanner(System.in);
+
+                        System.out.println("Conexion a base de datos" + db_ + " correcta");
+                        st_ = connection_.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_UPDATABLE);
+
+                        System.out.println("Dime el nombre de la tabla que deseas insertar");
+                        String tabla = sc.nextLine();
+
+                        System.out.println("Se va a modificar la tabla " + tabla + "...");
+
+                        rs_ = st_.executeQuery("select * from " + tabla);
+
+                        // hacer do while con un menu para que el usuario se salga cuando quiera y
+                        // quitar el while y el rs_.next, para poder insertar sin que haya nada escrito
+                        // mirar como insertar dependiendo el tipo que sea la tabla y que vaya
+                        // moviendose sola
+
+                        System.out.println("Introduce nombre de la clienta:");
+                        String nombre = sc.nextLine();
+                        System.out.println("Introduce apellidos de la clienta:");
+                        String apellidos = sc.nextLine();
+                        System.out.println("Introduce la fecha de nacimiento de la clienta:");
+                        java.sql.Date fecha_nacimiento = java.sql.Date.valueOf(sc.nextLine());
+                        System.out.println("Introduce genero de la clienta:");
+                        String genero = sc.nextLine();
+
+                        rs_.moveToInsertRow();
+                        rs_.updateString("nombre", nombre);
+                        rs_.updateString("apellidos", apellidos);
+                        rs_.updateDate("FECHA_NACIMIENTO", fecha_nacimiento);
+                        rs_.updateString("genero", genero);
+
+                        rs_.insertRow();
+                        rs_.moveToCurrentRow();
+
+                        System.out.println("Ha finalizado la actualizacion");
+
+                        System.out.println("Fin");
+
+                        connection_.close();
+                        st_.close();
+                        rs_.close();
+                        // Fin de escritura
+                        //
+
+                } catch (SQLException e) {
+                        e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                        e.printStackTrace();
+                } catch (Exception e) {
+                        e.printStackTrace();
+                }
+
+        }
+
+        // funcion 1 para crear la base de datos con los datos correspondientes
         public static void crearbasedatos() {
                 String db_ = "ClinicaDental";
                 String login_ = "root";

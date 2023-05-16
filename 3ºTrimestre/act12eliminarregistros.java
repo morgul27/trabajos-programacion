@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 import com.mysql.cj.x.protobuf.MysqlxCrud.Insert;
 
-public class act10metermanualgenero {
+public class act12eliminarregistros {
     public static void main(String[] args) {
         String db_ = "clinica";
         String login_ = "root";
@@ -21,7 +21,6 @@ public class act10metermanualgenero {
         String url_ = "jdbc:mysql://127.0.0.1/" + db_;
         Connection connection_;
         Statement st_ = null;
-        Statement st_2 = null;
         ResultSet rs_ = null;
 
         try {
@@ -31,30 +30,41 @@ public class act10metermanualgenero {
             ArrayList<String> listaClientes = new ArrayList<String>();
 
             System.out.println("Conexion a base de datos" + db_ + " correcta");
-            st_ = connection_.createStatement();
+            st_ = connection_.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_UPDATABLE);
             System.out.println("Se va a modificar la tabla CLIENTES...");
-            st_.executeUpdate("ALTER TABLE CLIENTES DROP COLUMN GENERO ");
-            st_.executeUpdate("ALTER TABLE CLIENTES ADD GENERO VARCHAR(1)");
 
-            rs_ = st_.executeQuery("select * from CLIENTES LIMIT 5");
-
-            st_2 = connection_.createStatement();
+            rs_ = st_.executeQuery("select * from CLIENTES LIMIT 5"); // El LIMIT 5 es como el top 5 de bbdd, es decir,
+                                                                      // coge los 5 primeros clientes
 
             while (rs_.next()) {
                 System.out.println("Introduce el genero para el/la cliente/a" + rs_.getString("NOMBRE") + " "
                         + rs_.getString("APELLIDOS"));
 
-                Scanner sc = new Scanner(System.in);
+                if ("M".equals(rs_.getString("GENERO"))) {
+                    System.out.println("Se ha detectado un cliente masculino");
+                    Scanner sc = new Scanner(System.in);
 
-                String genero = sc.nextLine();
+                    System.out.println("Introduce nombre de la clienta:");
+                    String nombre = sc.nextLine();
+                    System.out.println("Introduce apellidos de la clienta:");
+                    String apellidos = sc.nextLine();
+                    System.out.println("Introduce la fecha de nacimiento de la clienta:");
+                    java.sql.Date fecha_nacimiento = java.sql.Date.valueOf(sc.nextLine());
+                    System.out.println("Introduce genero de la clienta:");
+                    String genero = sc.nextLine();
 
-                st_2.executeUpdate(
-                        "UPDATE CLIENTES SET GENERO='" + genero + "'where ID_CLIENTE=" + rs_.getInt("ID_CLIENTE"));
+                    rs_.moveToInsertRow();
+                    rs_.updateString("nombre", nombre);
+                    rs_.updateString("apellidos", apellidos);
+                    rs_.updateDate("FECHA_NACIMIENTO", fecha_nacimiento);
+                    rs_.updateString("genero", genero);
+
+                }
+
             }
 
             System.out.println("Fin");
 
-            st_2.close();
             connection_.close();
             st_.close();
             rs_.close();

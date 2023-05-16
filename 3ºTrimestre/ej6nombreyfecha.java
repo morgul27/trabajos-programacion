@@ -68,8 +68,6 @@ public class ej6nombreyfecha {
     // funcion de fechas
     public static String fechas() {
 
-        // String fechana = String.valueOf(ano*10000 + mes*100 + dia);
-
         // Aqui cogemos el primer dia que quiero y luego el ultimo dia que quiero mirar
         LocalDate dia1 = LocalDate.of(1918, Month.JANUARY, 1);
         LocalDate dia2 = LocalDate.of(2015, Month.DECEMBER, 30);

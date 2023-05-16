@@ -180,7 +180,6 @@ public class tablabdClinica {
                                                         "Precio DECIMAL(16,2)," +
                                                         "Cobrado DECIMAL(16,2)," +
                                                         "IDLiquidacion INT NOT NULL," +
-                                                        "PRIMARY KEY(IDServicio)," +
                                                         "FOREIGN KEY(IDPaciente) REFERENCES PACIENTES (IDPaciente)," +
                                                         "FOREIGN KEY(IDProfesional) REFERENCES PROFESIONALES (IDProfesional),"
                                                         +
@@ -188,6 +187,7 @@ public class tablabdClinica {
                                                         +
                                                         "FOREIGN KEY(IDLiquidacion) REFERENCES LIQUIDACIONES (IDLiquidacion)"
                                                         +
+                                                        "PRIMARY KEY(IDServicio)," +
                                                         ")");
 
                         System.out.println("Creacion de la tabla COBROS..."); // COBROS

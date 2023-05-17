@@ -58,7 +58,7 @@ public class tablabdClinica {
                                         insertar();
                                         break;
                                 case 3:
-                                        // modificar un tratamiento
+                                        // modificar un tratamiento, todavia no lo modifica
                                         System.out.println();
                                         crearPa();
                                         break;
@@ -68,15 +68,15 @@ public class tablabdClinica {
                                         System.out.println();
                                         break;
                                 case 5:
-
+                                        //modifica un cobro, es opcional en principio
                                         System.out.println();
                                         break;
                                 case 6:
-
+                                        //liquidaciones
                                         System.out.println();
                                         break;
                                 case 7:
-
+                                        //hacer consultas, clicando en cosas
                                         System.out.println();
                                         break;
                                 case 8:

@@ -18,12 +18,18 @@ public class tablabdClinica {
                 Scanner sc = new Scanner(System.in);
                 int x = 0;
                 boolean salirMenu = false;
+                boolean crearbasedatos = true;
+
+                if (crearbasedatos = !true) {
+                        crearbasedatos = crearbasedatos();
+                }
 
                 do {
                         // menu
+                        System.out.println();
                         System.out.println("1. Crear la base de datos");
-                        System.out.println("2. ");
-                        System.out.println("3. ");
+                        System.out.println("2. Insertar un servicio");
+                        System.out.println("3. Crear 3000 paciente"); // de momento, tengo que cambiarlo
                         System.out.println("4. ");
                         System.out.println("5. ");
                         System.out.println("6. ");
@@ -54,6 +60,7 @@ public class tablabdClinica {
                                 case 3:
                                         // modificar un tratamiento
                                         System.out.println();
+                                        crearPa();
                                         break;
                                 case 4:
                                         // insertar cobro
@@ -85,7 +92,6 @@ public class tablabdClinica {
         }
 
         // funcion 2 para insertar datos
-
         public static void insertar() {
                 String db_ = "ClinicaDental";
                 String login_ = "root";
@@ -104,39 +110,36 @@ public class tablabdClinica {
                         System.out.println("Conexion a base de datos" + db_ + " correcta");
                         st_ = connection_.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_UPDATABLE);
 
-                        System.out.println("Dime el nombre de la tabla que deseas insertar");
-                        String tabla = sc.nextLine();
+                        System.out.println("Se va a modificar la tabla SERVICIOS");
 
-                        System.out.println("Se va a modificar la tabla " + tabla + "...");
+                        rs_ = st_.executeQuery("select * from TtosRealizados");
 
-                        rs_ = st_.executeQuery("select * from " + tabla);
+                        System.out.println("Cuantos tratamientos quieres insertar");
+                        int contador = sc.nextInt();
 
-                        // hacer do while con un menu para que el usuario se salga cuando quiera y
-                        // quitar el while y el rs_.next, para poder insertar sin que haya nada escrito
-                        // mirar como insertar dependiendo el tipo que sea la tabla y que vaya
-                        // moviendose sola
+                        // necesito insertar los id de todo
+                        for (int i = 0; i < contador; i++) {
+                                System.out.println("Introduce la fecha de realizacion del servicio (yyyy-mm-dd) numero "
+                                                + (contador + 1));
+                                java.sql.Date fecharea = java.sql.Date.valueOf(sc.nextLine());
+                                System.out.println("Introduce precio del servicio " + (contador + 1));
+                                String precio = sc.nextLine();
+                                System.out.println("Introduce cobro importado " + (contador + 1));
+                                String cobro = sc.nextLine();
+                                System.out.println("Introduce id del cliente " + (contador + 1));
+                                System.out.println("Introduce id del profesional " + (contador + 1));
+                                System.out.println("Introduce id del tratamiento " + (contador + 1));
+                                System.out.println("Introduce id de la liquidacion " + (contador + 1));
 
-                        System.out.println("Introduce nombre de la clienta:");
-                        String nombre = sc.nextLine();
-                        System.out.println("Introduce apellidos de la clienta:");
-                        String apellidos = sc.nextLine();
-                        System.out.println("Introduce la fecha de nacimiento de la clienta:");
-                        java.sql.Date fecha_nacimiento = java.sql.Date.valueOf(sc.nextLine());
-                        System.out.println("Introduce genero de la clienta:");
-                        String genero = sc.nextLine();
+                                rs_.moveToInsertRow();
+                                rs_.updateDate("Fecha", fecharea);
+                                rs_.updateString("Precio", precio);
+                                rs_.updateString("Cobro", cobro);
 
-                        rs_.moveToInsertRow();
-                        rs_.updateString("nombre", nombre);
-                        rs_.updateString("apellidos", apellidos);
-                        rs_.updateDate("FECHA_NACIMIENTO", fecha_nacimiento);
-                        rs_.updateString("genero", genero);
-
-                        rs_.insertRow();
-                        rs_.moveToCurrentRow();
-
-                        System.out.println("Ha finalizado la actualizacion");
-
-                        System.out.println("Fin");
+                                rs_.insertRow();
+                                rs_.moveToCurrentRow();
+                        }
+                        System.out.println("Ha finalizado la insercion");
 
                         connection_.close();
                         st_.close();
@@ -155,7 +158,7 @@ public class tablabdClinica {
         }
 
         // funcion 1 para crear la base de datos con los datos correspondientes
-        public static void crearbasedatos() {
+        public static boolean crearbasedatos() {
                 String db_ = "ClinicaDental";
                 String login_ = "root";
                 String password_ = "";
@@ -314,10 +317,67 @@ public class tablabdClinica {
                 } catch (Exception e) {
                         e.printStackTrace();
                 }
+                return true;
+        }
+
+        // ------------------
+        // aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+        public static void guardarBBDD() {
+                String db_ = "ClinicaDental";
+                String login_ = "root";
+                String password_ = "";
+                String url_ = "jdbc:mysql://127.0.0.1/" + db_;
+                Connection connection_;
+                Statement st_;
+
+                try {
+                        Class.forName("com.mysql.cj.jdbc.Driver");
+                        connection_ = DriverManager.getConnection(url_, login_, password_);
+
+                        System.out.println("Conexion a base de datos");
+                        st_ = connection_.createStatement();
+
+                        //
+                        // Empieza la escritura
+                        BufferedReader br = new BufferedReader(new FileReader("csv1.csv"));
+
+                        String line;
+                        while ((line = br.readLine()) != null) {
+                                String[] parts = line.split(";");
+                                String nombre = parts[0];
+                                String apellidos = parts[1];
+                                String fechaNacimiento = parts[2];
+                                String genero = parts[3];
+
+                                PreparedStatement ps = connection_.prepareStatement("INSERT INTO CLIENTES" +
+                                                " (NOMBRE, APELLIDOS, FECHA_NACIMIENTO) VALUES (?, ?, ?, ?)");
+                                ps.setString(1, nombre);
+                                ps.setString(2, apellidos);
+                                ps.setString(3, fechaNacimiento);
+                                ps.setString(4, genero);
+                                ps.executeUpdate();
+                                ps.close();
+                        }
+
+                        System.out.println("Fin");
+                        //
+                        connection_.close();
+                        st_.close();
+                        br.close();
+                        // Fin de escritura
+                        //
+
+                } catch (SQLException e) {
+                        e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                        e.printStackTrace();
+                } catch (Exception e) {
+                        e.printStackTrace();
+                }
         }
 
         // por si tengo que crear el csv como tal aqui, sino borrar
-        public static void adsa() {
+        public static void crearPa() {
                 ArrayList<String> mujeres = new ArrayList<String>();
                 ArrayList<String> hombres = new ArrayList<String>();
                 ArrayList<String> apellidos = new ArrayList<String>();
@@ -325,7 +385,7 @@ public class tablabdClinica {
                 try {
 
                         BufferedWriter bw = new BufferedWriter(new FileWriter(
-                                        "fichero1.txt"));
+                                        "csv1.csv"));
                         int gen;
 
                         // para declarar una matriz de ArrayList <String> array []
@@ -358,9 +418,9 @@ public class tablabdClinica {
 
                                 // Aqui estoy escribiendo el nombre de la persona y los dos apellidos con un
                                 // salto de linea al final
-                                bw.write("'" + nombres + "','" + apellidos.get(aleatorio(0, apellidos.size() - 1)) + " "
-                                                + apellidos.get(aleatorio(0, apellidos.size() - 1)) + "'," + fechas()
-                                                + ", '" + genero[gen]
+                                bw.write("'" + nombres + "';'" + apellidos.get(aleatorio(0, apellidos.size() - 1)) + " "
+                                                + apellidos.get(aleatorio(0, apellidos.size() - 1)) + "';" + fechas()
+                                                + ";'" + genero[gen]
                                                 + "' \n");
 
                         }
@@ -371,9 +431,10 @@ public class tablabdClinica {
                         System.out.println("Se ha producido un error de lectura/escritura");
                         System.err.println(ioe.getMessage());
                 }
+                System.out.println("Creado los 3000 pacientes");
         }
 
-        // funcion de fechas
+        // funcion de fechas para la funcion de crear pacientes
         public static String fechas() {
 
                 // Aqui cogemos el primer dia que quiero y luego el ultimo dia que quiero mirar
@@ -421,4 +482,5 @@ public class tablabdClinica {
                 int n = (int) Math.floor((mayor - menor + 1) * Math.random()) + menor;
                 return n;
         }
+
 }

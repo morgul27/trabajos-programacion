@@ -1,5 +1,12 @@
 package clinicabd.clases;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Scanner;
+
 public class PACIENTES {
     protected int Historia;
     protected String Apellidos;
@@ -127,6 +134,78 @@ public class PACIENTES {
 
     public void setTelefono2(int telefono2) {
         Telefono2 = telefono2;
+    }
+
+    public static void INSERT() {
+        String db_ = "ClinicaDental";
+        String login_ = "root";
+        String password_ = "";
+        String url_ = "jdbc:mysql://127.0.0.1/" + db_;
+        Connection connection_;
+        Statement st_ = null;
+        ResultSet rs_ = null;
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            connection_ = DriverManager.getConnection(url_, login_, password_);
+
+            Scanner sc = new Scanner(System.in);
+
+            System.out.println("Conexion a base de datos" + db_ + " correcta");
+            st_ = connection_.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_UPDATABLE);
+
+            System.out.println("Se va a modificar la tabla PACIENTES");
+
+            rs_ = st_.executeQuery("select * from PACIENTES");
+
+            System.out.println("Cuantos pacientes quieres insertar");
+            int contador = sc.nextInt();
+
+            // necesito insertar los id de todo
+            for (int i = 0; i < contador; i++) {
+                System.out.println("Introduce la fecha de realizacion del servicio (yyyy-mm-dd) numero "
+                        + (contador + 1));
+                java.sql.Date fecharea = java.sql.Date.valueOf(sc.nextLine());
+                System.out.println("Introduce el codigo del historial " + (contador + 1));
+                String precio = sc.nextLine();
+                System.out.println("Introduce cobro importado " + (contador + 1));
+                String cobro = sc.nextLine();
+                System.out.println("Introduce id del cliente " + (contador + 1));
+                System.out.println("Introduce id del profesional " + (contador + 1));
+                System.out.println("Introduce id del tratamiento " + (contador + 1));
+                System.out.println("Introduce id de la liquidacion " + (contador + 1));
+
+                rs_.moveToInsertRow();
+                rs_.updateDate("Fecha", fecharea);
+                rs_.updateString("Precio", precio);
+                rs_.updateString("Cobro", cobro);
+
+                rs_.insertRow();
+                rs_.moveToCurrentRow();
+            }
+            System.out.println("Ha finalizado la insercion");
+
+            connection_.close();
+            st_.close();
+            rs_.close();
+            // Fin de escritura
+            //
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    // funcion toString
+    public String toString() {
+        return this.Historia + "," + this.Apellidos + "," + this.Nombre + "," + this.DNI + "," + this.FechaNacimiento
+                + "," + this.Genero + "," + this.Direccion + "," + this.CP + "," + this.CodProvincia + "," + this.email
+                + "," + this.Telefono1 + "," + this.Telefono2;
     }
 
 }

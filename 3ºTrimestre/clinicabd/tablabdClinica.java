@@ -60,7 +60,8 @@ public class tablabdClinica {
                                 case 3:
                                         // modificar un tratamiento, todavia no lo modifica
                                         System.out.println();
-                                        crearPa();
+                                        crearPacsv();
+                                        guardarBBDD();
                                         break;
                                 case 4:
                                         // insertar cobro
@@ -68,15 +69,15 @@ public class tablabdClinica {
                                         System.out.println();
                                         break;
                                 case 5:
-                                        //modifica un cobro, es opcional en principio
+                                        // modifica un cobro, es opcional en principio
                                         System.out.println();
                                         break;
                                 case 6:
-                                        //liquidaciones
+                                        // liquidaciones
                                         System.out.println();
                                         break;
                                 case 7:
-                                        //hacer consultas, clicando en cosas
+                                        // hacer consultas, clicando en cosas
                                         System.out.println();
                                         break;
                                 case 8:
@@ -180,7 +181,7 @@ public class tablabdClinica {
                                                         "Historia INT NOT NULL," + // Codigo de la historia clinica
                                                         "Apellidos VARCHAR(250)," +
                                                         "Nombre VARCHAR (250)," +
-                                                        "DNI VARCHAR (9)," +
+                                                        "DNI VARCHAR (15)," +
                                                         "FechaNacimiento DATE," +
                                                         "Genero VARCHAR (100)," +
                                                         "Direccion VARCHAR(250)," +
@@ -341,20 +342,25 @@ public class tablabdClinica {
                         // Empieza la escritura
                         BufferedReader br = new BufferedReader(new FileReader("csv1.csv"));
 
+                        int i = 1;
                         String line;
                         while ((line = br.readLine()) != null) {
                                 String[] parts = line.split(";");
-                                String nombre = parts[0];
-                                String apellidos = parts[1];
-                                String fechaNacimiento = parts[2];
-                                String genero = parts[3];
 
-                                PreparedStatement ps = connection_.prepareStatement("INSERT INTO CLIENTES" +
-                                                " (NOMBRE, APELLIDOS, FECHA_NACIMIENTO) VALUES (?, ?, ?, ?)");
-                                ps.setString(1, nombre);
+                                String apellidos = parts[0];
+                                String nombre = parts[1];
+                                String DNI = parts[2];
+                                String fechaNacimiento = parts[3];
+                                String genero = parts[4];
+
+                                PreparedStatement ps = connection_.prepareStatement("INSERT INTO PACIENTES" +
+                                                " (Historia, Apellidos, Nombre, DNI, FechaNacimiento, Genero) VALUES (?, ?, ?, ?, ?, ?)");
+                                ps.setInt(1, i++);
                                 ps.setString(2, apellidos);
-                                ps.setString(3, fechaNacimiento);
-                                ps.setString(4, genero);
+                                ps.setString(3, nombre);
+                                ps.setString(4, DNI);
+                                ps.setString(5, fechaNacimiento);
+                                ps.setString(6, genero);
                                 ps.executeUpdate();
                                 ps.close();
                         }
@@ -377,10 +383,11 @@ public class tablabdClinica {
         }
 
         // por si tengo que crear el csv como tal aqui, sino borrar
-        public static void crearPa() {
+        public static void crearPacsv() {
                 ArrayList<String> mujeres = new ArrayList<String>();
                 ArrayList<String> hombres = new ArrayList<String>();
                 ArrayList<String> apellidos = new ArrayList<String>();
+                ArrayList<String> DNI = new ArrayList<String>();
 
                 try {
 
@@ -389,19 +396,22 @@ public class tablabdClinica {
                         int gen;
 
                         // para declarar una matriz de ArrayList <String> array []
-                        ArrayList<String> array1[] = new ArrayList[3];
+                        ArrayList<String> array1[] = new ArrayList[4];
                         array1[0] = mujeres;
                         array1[1] = hombres;
                         array1[2] = apellidos;
+                        array1[3] = DNI;
 
                         String genero[] = { "mujeres", "hombres" };
                         String rutas[] = {
                                         "mujeres.txt",
                                         "hombres.txt",
-                                        "apellidos.txt" };
+                                        "apellidos.txt",
+                                        "DNI.csv"
+                        };
 
                         // hacer esto con un for que envie esto 3 veces con una i y j que vayan sumando
-                        for (int i = 0, j = 0; i < 3; i++, j++) {
+                        for (int i = 0, j = 0; i < rutas.length; i++, j++) {
                                 lectura(rutas[i], array1[j]);
                         }
                         // int maxuser = Integer.parseInt("3000");
@@ -419,7 +429,9 @@ public class tablabdClinica {
                                 // Aqui estoy escribiendo el nombre de la persona y los dos apellidos con un
                                 // salto de linea al final
                                 bw.write("'" + nombres + "';'" + apellidos.get(aleatorio(0, apellidos.size() - 1)) + " "
-                                                + apellidos.get(aleatorio(0, apellidos.size() - 1)) + "';" + fechas()
+                                                + apellidos.get(aleatorio(0, apellidos.size() - 1)) + "';"
+                                                + DNI.get(aleatorio(0, DNI.size() - 1))
+                                                + "; " + fechas()
                                                 + ";'" + genero[gen]
                                                 + "' \n");
 

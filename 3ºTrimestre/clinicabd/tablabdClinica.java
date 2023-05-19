@@ -34,7 +34,8 @@ public class tablabdClinica {
                         System.out.println("5. ");
                         System.out.println("6. ");
                         System.out.println("7. ");
-                        System.out.println("8. Salir");
+                        System.out.println("8. Administracion");
+                        System.out.println("9. Salir");
                         System.out.println();
 
                         // Ingresar numero
@@ -81,6 +82,10 @@ public class tablabdClinica {
                                         System.out.println();
                                         break;
                                 case 8:
+                                        salirMenu = true;
+                                        break;
+                                // hacer menu con contraseña para crear la base de datos
+                                case 9:
                                         salirMenu = true;
                                         break;
                                 default:
@@ -450,8 +455,8 @@ public class tablabdClinica {
         public static String fechas() {
 
                 // Aqui cogemos el primer dia que quiero y luego el ultimo dia que quiero mirar
-                LocalDate dia1 = LocalDate.of(1918, Month.JANUARY, 1);
-                LocalDate dia2 = LocalDate.of(2015, Month.DECEMBER, 30);
+                LocalDate dia1 = LocalDate.of(1923, Month.JANUARY, 1);
+                LocalDate dia2 = LocalDate.of(2017, Month.DECEMBER, 30);
                 LocalDate fechana; // fecha de nacimiento
 
                 // Con el ChronoUnit mira el intervalo de los dos dias que he puesto
@@ -495,4 +500,91 @@ public class tablabdClinica {
                 return n;
         }
 
+        // funcion de administracion
+        public static void administracion() {
+                Scanner sc = new Scanner(System.in);
+                int x = 0;
+                boolean salirMenu = false;
+
+                System.out.println("Ingrese la contrasegna para continuar");
+                try {
+                        x = Integer.parseInt(sc.nextLine()); // lo paso a int, aunque sea un caracter
+
+                } catch (NumberFormatException e) {
+                        System.out.println("Debes ingresar la contrasegna segura");
+                }
+                if (x == 666) {
+                        do {
+                                // menu
+                                System.out.println();
+                                System.out.println("1. Crear la base de datos");
+                                System.out.println("2. Insertar un servicio");
+                                System.out.println("3. Crear 3000 paciente"); // de momento, tengo que cambiarlo
+                                System.out.println("4. ");
+                                System.out.println("5. ");
+                                System.out.println("6. ");
+                                System.out.println("7. ");
+                                System.out.println("8. Administracion");
+                                System.out.println("9. Salir");
+                                System.out.println();
+
+                                // Ingresar numero
+                                System.out.println("Ingresa un numero entre el 1 y el 8");
+                                try {
+                                        x = Integer.parseInt(sc.nextLine()); // lo paso a int, aunque sea un caracter
+
+                                } catch (NumberFormatException e) {
+                                        System.out.println("Debes ingresar un numero entero valido");
+                                }
+
+                                switch (x) {
+                                        case 1:
+                                                // crear la base de datos
+                                                crearbasedatos();
+                                                System.out.println();
+                                                break;
+                                        case 2:
+                                                // insertar un servicio
+                                                System.out.println();
+                                                insertar();
+                                                break;
+                                        case 3:
+                                                // modificar un tratamiento, todavia no lo modifica
+                                                System.out.println();
+                                                crearPacsv();
+                                                guardarBBDD();
+                                                break;
+                                        case 4:
+                                                // insertar cobro
+                                                // 5d, debe indicar el cobro y el tratamiento realizado
+                                                System.out.println();
+                                                break;
+                                        case 5:
+                                                // modifica un cobro, es opcional en principio
+                                                System.out.println();
+                                                break;
+                                        case 6:
+                                                // liquidaciones
+                                                System.out.println();
+                                                break;
+                                        case 7:
+                                                // hacer consultas, clicando en cosas
+                                                System.out.println();
+                                                break;
+                                        case 8:
+                                                salirMenu = true;
+                                                break;
+                                        // hacer menu con contraseña para crear la base de datos
+                                        case 9:
+                                                salirMenu = true;
+                                                break;
+                                        default:
+                                                System.out.println();
+                                                System.out.println("Debe introducir un numero entre 1 y 8");
+                                                System.out.println();
+                                }
+                        } while (!salirMenu);
+                }
+
+        }
 }

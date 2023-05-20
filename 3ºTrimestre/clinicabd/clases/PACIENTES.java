@@ -202,10 +202,12 @@ public class PACIENTES {
     }
 
     // funcion toString
+    @Override
     public String toString() {
-        return this.Historia + "," + this.Apellidos + "," + this.Nombre + "," + this.DNI + "," + this.FechaNacimiento
-                + "," + this.Genero + "," + this.Direccion + "," + this.CP + "," + this.CodProvincia + "," + this.email
-                + "," + this.Telefono1 + "," + this.Telefono2;
+        return "PACIENTES - Historia=" + Historia + ", Apellidos=" + Apellidos + ", Nombre=" + Nombre + ", DNI=" + DNI
+                + ", FechaNacimiento=" + FechaNacimiento + ", Genero=" + Genero + ", Direccion=" + Direccion + ", CP="
+                + CP + ", CodProvincia=" + CodProvincia + ", email=" + email + ", Telefono1=" + Telefono1
+                + ", Telefono2=" + Telefono2;
     }
 
 }

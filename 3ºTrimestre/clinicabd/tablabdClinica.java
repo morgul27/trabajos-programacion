@@ -199,7 +199,7 @@ public class tablabdClinica {
                                                 insertar();
                                                 break;
                                         case 3:
-                                                // modificar un tratamiento, todavia no lo modifica
+                                                // Crear 3000 paciente
                                                 System.out.println();
                                                 crearPacsv();
                                                 insertPacienteBBDD();

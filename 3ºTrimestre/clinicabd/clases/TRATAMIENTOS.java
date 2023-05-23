@@ -63,8 +63,9 @@ public class TRATAMIENTOS {
 
         Statement st_ = null;
         ResultSet rs_ = null;
+        Connection connection_ = null;
 
-        try (Connection connection_ = DriverManager.getConnection(url_, login_, password_)) {
+        try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection_ = DriverManager.getConnection(url_, login_, password_);
 
@@ -91,17 +92,14 @@ public class TRATAMIENTOS {
                 System.out.println("Introduce Precio ");
                 Double Precio = sc.nextDouble();
 
-                connection_.setAutoCommit(false);
                 rs_.moveToInsertRow();
                 rs_.updateString("CodTto", CodTto);
                 rs_.updateString("Nombre", Nombre);
                 rs_.updateString("CodFamilia", CodFamilia);
                 rs_.updateDouble("Precio", Precio);
-                connection_.commit();
-                connection_.setAutoCommit(true);
-
                 rs_.insertRow();
                 rs_.moveToCurrentRow();
+
             }
 
             System.out.println("Ha finalizado la insercion");
@@ -114,11 +112,6 @@ public class TRATAMIENTOS {
 
         } catch (SQLException e) {
             e.printStackTrace();
-            try {
-                connection_.rollback();
-            } catch (SQLException e1) {
-                System.err.println("Error");
-            }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (Exception e) {

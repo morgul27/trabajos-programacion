@@ -163,25 +163,63 @@ public class PACIENTES {
 
             // necesito insertar los id de todo
             for (int i = 0; i < contador; i++) {
-                System.out.println("Introduce la fecha de realizacion del servicio (yyyy-mm-dd) numero "
+                PACIENTES pa = new PACIENTES();
+
+                System.out.println("Introduce el codigo del historial del paciente " + (contador + 1));
+                int Historia = sc.nextInt();
+                System.out.println("Introduce los apellidos del paciente " + (contador + 1));
+                String apellidos = sc.nextLine();
+                System.out.println("Introduce el nombre del paciente " + (contador + 1));
+                String nombre = sc.nextLine();
+                System.out.println("Introduce el DNI del paciente " + (contador + 1));
+                String DNI = sc.nextLine();
+                System.out.println("Introduce la fecha de nacimiento del paciente (yyyymmdd) "
                         + (contador + 1));
-                java.sql.Date fecharea = java.sql.Date.valueOf(sc.nextLine());
-                System.out.println("Introduce el codigo del historial " + (contador + 1));
-                String precio = sc.nextLine();
-                System.out.println("Introduce cobro importado " + (contador + 1));
-                String cobro = sc.nextLine();
-                System.out.println("Introduce id del cliente " + (contador + 1));
-                System.out.println("Introduce id del profesional " + (contador + 1));
-                System.out.println("Introduce id del tratamiento " + (contador + 1));
-                System.out.println("Introduce id de la liquidacion " + (contador + 1));
+                String fecharea = sc.nextLine();
+                System.out.println("Introduce el genero del paciente " + (contador + 1));
+                String genero = sc.nextLine();
+                System.out.println("Introduce la direccion del paciente " + (contador + 1));
+                String direccion = sc.nextLine();
+                System.out.println("Introduce el Codigo Postal del paciente " + (contador + 1));
+                int CP = sc.nextInt();
+                System.out.println("Introduce el CodProvincia del paciente " + (contador + 1));
+                int CodProvincia = sc.nextInt();
+                System.out.println("Introduce el email del paciente " + (contador + 1));
+                String email = sc.nextLine();
+                System.out.println("Introduce el primer numero del telefono del paciente " + (contador + 1));
+                int telefono1 = sc.nextInt();
+                System.out.println("Introduce el segundo numero del telefono del paciente " + (contador + 1));
+                int telefono2 = sc.nextInt();
+
+                pa.setHistoria(Historia);
+                pa.setApellidos(apellidos);
+                pa.setNombre(nombre);
+                pa.setDNI(DNI);
+                pa.setFechaNacimiento(fecharea);
+                pa.setGenero(genero);
+                pa.setDireccion(direccion);
+                pa.setCP(CP);
+                pa.setCodProvincia(CodProvincia);
+                pa.setEmail(email);
+                pa.setTelefono1(telefono1);
+                pa.setTelefono2(telefono2);
 
                 rs_.moveToInsertRow();
-                rs_.updateDate("Fecha", fecharea);
-                rs_.updateString("Precio", precio);
-                rs_.updateString("Cobro", cobro);
-
+                rs_.updateInt("Historia", Historia);
+                rs_.updateString("Apellidos", apellidos);
+                rs_.updateString("Nombre", nombre);
+                rs_.updateString("DNI", DNI);
+                rs_.updateString("Fecha", fecharea);
+                rs_.updateString("Genero", genero);
+                rs_.updateString("Direccion", direccion);
+                rs_.updateInt("CP", CP);
+                rs_.updateInt("CodProvincia", CodProvincia);
+                rs_.updateString("email", email);
+                rs_.updateInt("telefono1", telefono1);
+                rs_.updateInt("telefono2", telefono2);
                 rs_.insertRow();
                 rs_.moveToCurrentRow();
+
             }
             System.out.println("Ha finalizado la insercion");
 

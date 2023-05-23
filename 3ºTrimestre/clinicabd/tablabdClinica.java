@@ -17,6 +17,7 @@ public class tablabdClinica {
                 Scanner sc = new Scanner(System.in);
                 int x = 0;
                 boolean salirMenu = false;
+                // si quiero mostrar algo mirar act9 y ahi mas o menos veo algo
 
                 do {
                         // menu
@@ -335,6 +336,7 @@ public class tablabdClinica {
                                                         "IDLiquidacion INT NOT NULL AUTO_INCREMENT, " +
                                                         "Fecha DATE," +
                                                         "IDProfesional INT NOT NULL," +
+                                                        "Comision DECIMAL(16.,2)," +
                                                         "PRIMARY KEY(IDLiquidacion)," +
                                                         "FOREIGN KEY(IDProfesional) REFERENCES PROFESIONALES (IDProfesional)"
                                                         +
@@ -368,8 +370,8 @@ public class tablabdClinica {
                                                         "Fecha DATE," +
                                                         "IDPaciente INT NOT NULL," +
                                                         "IDFCobro INT NOT NULL," +
-                                                        "Cobrado INT," +
-                                                        "Imputado INT," +
+                                                        "Cobrado DECIMAL(16,2)," +
+                                                        "Imputado DECIMAL(16,2)," +
                                                         "FOREIGN KEY(IDPaciente) REFERENCES PACIENTES (IDPaciente)," +
                                                         "FOREIGN KEY(IDFCobro) REFERENCES FCOBRO (IDFCobro)," +
                                                         "PRIMARY KEY (IDCobro)" +

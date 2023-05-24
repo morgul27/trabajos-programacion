@@ -9,6 +9,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import clinicabd.clases.*;
+
 import java.time.*;
 import java.time.temporal.ChronoUnit;
 
@@ -92,72 +95,6 @@ public class tablabdClinica {
                 sc.close();
         }
 
-        // funcion 2 para insertar datos de servicios, cambiarlo
-        public static void insertar() {
-                String db_ = "ClinicaDental";
-                String login_ = "root";
-                String password_ = "";
-                String url_ = "jdbc:mysql://127.0.0.1/" + db_;
-                Connection connection_;
-                Statement st_ = null;
-                ResultSet rs_ = null;
-
-                try {
-                        Class.forName("com.mysql.cj.jdbc.Driver");
-                        connection_ = DriverManager.getConnection(url_, login_, password_);
-
-                        Scanner sc = new Scanner(System.in);
-
-                        System.out.println("Conexion a base de datos" + db_ + " correcta");
-                        st_ = connection_.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_UPDATABLE);
-
-                        System.out.println("Se va a modificar la tabla SERVICIOS");
-
-                        rs_ = st_.executeQuery("select * from TtosRealizados");
-
-                        System.out.println("Cuantos tratamientos quieres insertar");
-                        int contador = sc.nextInt();
-
-                        // necesito insertar los id de todo
-                        for (int i = 0; i < contador; i++) {
-                                System.out.println("Introduce la fecha de realizacion del servicio (yyyy-mm-dd) numero "
-                                                + (contador + 1));
-                                java.sql.Date fecharea = java.sql.Date.valueOf(sc.nextLine());
-                                System.out.println("Introduce precio del servicio " + (contador + 1));
-                                String precio = sc.nextLine();
-                                System.out.println("Introduce cobro importado " + (contador + 1));
-                                String cobro = sc.nextLine();
-                                System.out.println("Introduce id del cliente " + (contador + 1));
-                                System.out.println("Introduce id del profesional " + (contador + 1));
-                                System.out.println("Introduce id del tratamiento " + (contador + 1));
-                                System.out.println("Introduce id de la liquidacion " + (contador + 1));
-
-                                rs_.moveToInsertRow();
-                                rs_.updateDate("Fecha", fecharea);
-                                rs_.updateString("Precio", precio);
-                                rs_.updateString("Cobro", cobro);
-
-                                rs_.insertRow();
-                                rs_.moveToCurrentRow();
-                        }
-                        System.out.println("Ha finalizado la insercion");
-
-                        connection_.close();
-                        st_.close();
-                        rs_.close();
-                        // Fin de escritura
-                        //
-
-                } catch (SQLException e) {
-                        e.printStackTrace();
-                } catch (ClassNotFoundException e) {
-                        e.printStackTrace();
-                } catch (Exception e) {
-                        e.printStackTrace();
-                }
-
-        }
-
         // funcion 8 del menu de administrador
         public static void administracion() {
                 Scanner sc = new Scanner(System.in);
@@ -178,6 +115,8 @@ public class tablabdClinica {
                                 System.out.println("1. Crear la base de datos");
                                 System.out.println("2. Insertar un servicio");
                                 System.out.println("3. Crear 3000 paciente"); // de momento, tengo que cambiarlo
+                                System.out.println("4. insertar paciente");
+                                System.out.println("5. mostrar paciente");
                                 System.out.println("9. Salir");
                                 System.out.println();
 
@@ -199,7 +138,6 @@ public class tablabdClinica {
                                         case 2:
                                                 // insertar un servicio
                                                 System.out.println();
-                                                insertar();
                                                 break;
                                         case 3:
                                                 // Crear 3000 paciente
@@ -210,14 +148,16 @@ public class tablabdClinica {
                                         case 4:
                                                 // insertar cobro
                                                 // 5d, debe indicar el cobro y el tratamiento realizado
-                                                System.out.println();
+                                                System.out.println("Se va a ejecutar insert pacientes");
+                                                PACIENTES.INSERT();
                                                 break;
                                         case 5:
                                                 // modifica un cobro, es opcional en principio
+                                                PACIENTES.mostrarPac();
                                                 System.out.println();
                                                 break;
                                         case 6:
-                                                // liquidaciones
+                                                COBROS.INSERT();
                                                 System.out.println();
                                                 break;
                                         case 7:
@@ -262,7 +202,6 @@ public class tablabdClinica {
                         st_.executeUpdate(
                                         "CREATE TABLE PACIENTES (" +
                                                         "IDPaciente INT NOT NULL AUTO_INCREMENT," +
-                                                        "Historia INT NOT NULL," + // Codigo de la historia clinica
                                                         "Apellidos VARCHAR(250)," +
                                                         "Nombre VARCHAR (250)," +
                                                         "DNI VARCHAR (15)," +
@@ -274,7 +213,7 @@ public class tablabdClinica {
                                                         "email VARCHAR(250)," +
                                                         "Telefono1 INT," +
                                                         "Telefono2 INT," +
-                                                        "PRIMARY KEY (IDPaciente, Historia)" +
+                                                        "PRIMARY KEY (IDPaciente)" +
                                                         ")");
 
                         System.out.println("Creacion de la tabla PROFESIONALES..."); // PROFESIONALES
@@ -298,7 +237,7 @@ public class tablabdClinica {
                         st_.executeUpdate(
                                         "CREATE TABLE FAMILIAS (" +
                                                         "CodFamilia INT NOT NULL AUTO_INCREMENT," +
-                                                        "Nombre VARCHAR(250) NOT NULL," +
+                                                        "Nombre VARCHAR(250) NOT NULL," + // nombres de csv
                                                         "PRIMARY KEY (CodFamilia)" +
                                                         ")");
 
@@ -338,10 +277,10 @@ public class tablabdClinica {
                                                         "IDLiquidacion INT NOT NULL AUTO_INCREMENT, " +
                                                         "Fecha DATE," +
                                                         "IDProfesional INT NOT NULL," +
-                                                        "Comision DECIMAL(16.,2)," +
-                                                        "PRIMARY KEY(IDLiquidacion)," +
-                                                        "FOREIGN KEY(IDProfesional) REFERENCES PROFESIONALES (IDProfesional)"
+                                                        "Comision DECIMAL(16,2)," +
+                                                        "FOREIGN KEY(IDProfesional) REFERENCES PROFESIONALES (IDProfesional),"
                                                         +
+                                                        "PRIMARY KEY(IDLiquidacion)" +
                                                         ")");
 
                         System.out.println("Creacion de la tabla TtosRealizados..."); // SERVICIOS
@@ -439,13 +378,12 @@ public class tablabdClinica {
                                 String genero = parts[4];
 
                                 PreparedStatement ps = connection_.prepareStatement("INSERT INTO PACIENTES" +
-                                                " (Historia, Apellidos, Nombre, DNI, FechaNacimiento, Genero) VALUES (?, ?, ?, ?, ?, ?)");
-                                ps.setInt(1, i++);
-                                ps.setString(2, apellidos);
-                                ps.setString(3, nombre);
-                                ps.setString(4, DNI);
-                                ps.setString(5, fechaNacimiento);
-                                ps.setString(6, genero);
+                                                " (Apellidos, Nombre, DNI, FechaNacimiento, Genero) VALUES ( ?, ?, ?, ?, ?)");
+                                ps.setString(1, apellidos);
+                                ps.setString(2, nombre);
+                                ps.setString(3, DNI);
+                                ps.setString(4, fechaNacimiento);
+                                ps.setString(5, genero);
                                 ps.executeUpdate();
                                 ps.close();
                         }

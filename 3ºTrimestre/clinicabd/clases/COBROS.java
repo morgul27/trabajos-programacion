@@ -2,6 +2,7 @@ package clinicabd.clases;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -9,64 +10,7 @@ import java.util.Scanner;
 
 public class COBROS {
 
-    protected String Fecha;
-    protected int IDPaciente;
-    protected int IDFCobro;
-    protected Double Cobrado;
-    protected Double Imputado;
-
-    public COBROS(String fecha, int iDPaciente, int iDFCobro, Double cobrado, Double imputado) {
-        Fecha = fecha;
-        IDPaciente = iDPaciente;
-        IDFCobro = iDFCobro;
-        Cobrado = cobrado;
-        Imputado = imputado;
-    }
-
-    public COBROS() {
-    }
-
-    public String getFecha() {
-        return Fecha;
-    }
-
-    public void setFecha(String fecha) {
-        Fecha = fecha;
-    }
-
-    public int getIDPaciente() {
-        return IDPaciente;
-    }
-
-    public void setIDPaciente(int iDPaciente) {
-        IDPaciente = iDPaciente;
-    }
-
-    public int getIDFCobro() {
-        return IDFCobro;
-    }
-
-    public void setIDFCobro(int iDFCobro) {
-        IDFCobro = iDFCobro;
-    }
-
-    public Double getCobrado() {
-        return Cobrado;
-    }
-
-    public void setCobrado(Double cobrado) {
-        Cobrado = cobrado;
-    }
-
-    public Double getImputado() {
-        return Imputado;
-    }
-
-    public void setImputado(Double imputado) {
-        Imputado = imputado;
-    }
-
-    // liquidaciones insert
+    // COBROS insert
     public static void INSERT() {
         String db_ = "ClinicaDental";
         String login_ = "root";
@@ -90,39 +34,29 @@ public class COBROS {
 
             rs_ = st_.executeQuery("select * from TRATAMIENTOS");
 
-            System.out.println("Cuantos TRATAMIENTOS vas a querer insertar");
-            int contador = sc.nextInt();
-
             // necesito cambiarlo para adaptarlo a cobros, probarlo
-            for (int i = 0; i < contador; i++) {
-                // preguntar todo antes de insertarlo
-                System.out.println("Introduce la Fecha de liquidacion (yyyymmdd) ");
-                String fecha = sc.nextLine();
-                System.out.println("Introduce el IDPaciente");
-                int IDPaciente = sc.nextInt();
-                System.out.println("Introduce IDFCobro");
-                Double IDFCobro = sc.nextDouble();
-                System.out.println("Introduce Cobrado");
-                Double Cobrado = sc.nextDouble();
-                System.out.println("Introduce imputado ");
-                Double imputado = sc.nextDouble();
 
-                // insertar todo
-                connection_.setAutoCommit(false); // para que no pete fuerte si no se completa
+            // preguntar todo antes de insertarlo
+            System.out.println("Introduce la Fecha de liquidacion (yyyymmdd)");
+            String fecha = sc.nextLine();
+            System.out.println("Introduce el DNI IDPaciente");
+            String IDDNI = sc.nextLine();
+            System.out.println("Introduce la forma de Cobro");
+            String IDFCobro = sc.nextLine();
+            System.out.println("Introduce lo Cobrado");
+            Double Cobrado = sc.nextDouble();
+            System.out.println("Introduce imputado ");
+            Double imputado = sc.nextDouble();
 
-                rs_.moveToInsertRow();
-                rs_.updateString("Fecha", fecha);
-                rs_.updateInt("IDPaciente", IDPaciente);
-                rs_.updateDouble("IDFCobro", IDFCobro);
-                rs_.updateDouble("Cobrado", Cobrado);
-                rs_.updateDouble("Imputado", imputado);
-                rs_.insertRow();
-                rs_.moveToCurrentRow();
-
-                connection_.commit();
-                connection_.setAutoCommit(true);
-
-            }
+            PreparedStatement ps = connection_.prepareStatement("INSERT INTO PROFESIONALES" +
+                    "(Fecha,IDPaciente,IDFCobro,Cobrado,Imputado))"
+                    + " VALUES (?, (select id from PACIENTES where DNI=" + IDDNI
+                    + "),(select id from PACIENTES where IDFCobro=" + IDFCobro + "),?, ?)");
+            ps.setString(1, fecha);
+            ps.setDouble(2, Cobrado);
+            ps.setDouble(3, imputado);
+            ps.executeUpdate();
+            ps.close();
 
             System.out.println("Ha finalizado la insercion");
 
@@ -134,11 +68,6 @@ public class COBROS {
 
         } catch (SQLException e) {
             e.printStackTrace();
-            try {
-                connection_.rollback();
-            } catch (SQLException e1) {
-                System.err.println("Error");
-            }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (Exception e) {

@@ -120,4 +120,81 @@ public class TRATAMIENTOS {
 
     }
 
+    //
+    // funcion para meter los tratamientos a mano
+    public static void tratamientomano() {
+        String db_ = "ClinicaDental";
+        String login_ = "root";
+        String password_ = "";
+        String url_ = "jdbc:mysql://127.0.0.1/" + db_;
+        Statement st_ = null;
+        ResultSet rs_ = null;
+        Connection connection_ = null;
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            connection_ = DriverManager.getConnection(url_, login_, password_);
+
+            Scanner sc = new Scanner(System.in);
+
+            System.out.println("Conexion a base de datos" + db_ + " correcta");
+            st_ = connection_.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_UPDATABLE);
+
+            System.out.println("Se va a modificar la tabla TRATAMIENTOS");
+
+            rs_ = st_.executeQuery("select * from TRATAMIENTOS");
+
+            // fila 1
+            rs_.moveToInsertRow();
+            rs_.updateString("CodTto", "INJ");
+            rs_.updateString("Nombre", "INJERTO DE TEJIDO CONECTIVO");
+            rs_.updateInt("CodFamilia", 1);
+            rs_.updateDouble("Precio", 250);
+            rs_.insertRow();
+            rs_.moveToCurrentRow();
+
+            // fila 2
+            rs_.moveToInsertRow();
+            rs_.updateString("CodTto", "QP");
+            rs_.updateString("Nombre", "QUITAR PUNTOS");
+            rs_.updateInt("CodFamilia", 1);
+            rs_.updateDouble("Precio", 0);
+            rs_.insertRow();
+            rs_.moveToCurrentRow();
+
+            // fila 3
+            rs_.moveToInsertRow();
+            rs_.updateString("CodTto", "CIMP");
+            rs_.updateString("Nombre", "CORONA SOBRE IMPLANTE METAL PROCELANA");
+            rs_.updateInt("CodFamilia", 2);
+            rs_.updateDouble("Precio", 400);
+            rs_.insertRow();
+            rs_.moveToCurrentRow();
+
+            // fila 4
+            rs_.moveToInsertRow();
+            rs_.updateString("CodTto", "CIZ");
+            rs_.updateString("Nombre", "CORONA SOBREIMPLANTE DE ZIRCONIO");
+            rs_.updateInt("CodFamilia", 2);
+            rs_.updateDouble("Precio", 450);
+            rs_.insertRow();
+            rs_.moveToCurrentRow();
+
+            System.out.println("Ha finalizado la insercion");
+
+            connection_.close();
+            st_.close();
+            rs_.close();
+            // Fin de escritura
+            //
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

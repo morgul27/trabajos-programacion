@@ -1,10 +1,15 @@
 package clinicabd.clases;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class PACIENTES {
@@ -163,9 +168,8 @@ public class PACIENTES {
 
             // necesito insertar los id de todo
             for (int i = 0; i < contador; i++) {
-                PACIENTES pa = new PACIENTES();
 
-                System.out.println("Introduce el codigo del historial del paciente " + (contador + 1));
+                System.out.println("Introduce el codigo numerico del historial del paciente " + (contador + 1));
                 int Historia = sc.nextInt();
                 System.out.println("Introduce los apellidos del paciente " + (contador + 1));
                 String apellidos = sc.nextLine();
@@ -191,19 +195,6 @@ public class PACIENTES {
                 System.out.println("Introduce el segundo numero del telefono del paciente " + (contador + 1));
                 int telefono2 = sc.nextInt();
 
-                pa.setHistoria(Historia);
-                pa.setApellidos(apellidos);
-                pa.setNombre(nombre);
-                pa.setDNI(DNI);
-                pa.setFechaNacimiento(fecharea);
-                pa.setGenero(genero);
-                pa.setDireccion(direccion);
-                pa.setCP(CP);
-                pa.setCodProvincia(CodProvincia);
-                pa.setEmail(email);
-                pa.setTelefono1(telefono1);
-                pa.setTelefono2(telefono2);
-
                 rs_.moveToInsertRow();
                 rs_.updateInt("Historia", Historia);
                 rs_.updateString("Apellidos", apellidos);
@@ -215,8 +206,8 @@ public class PACIENTES {
                 rs_.updateInt("CP", CP);
                 rs_.updateInt("CodProvincia", CodProvincia);
                 rs_.updateString("email", email);
-                rs_.updateInt("telefono1", telefono1);
-                rs_.updateInt("telefono2", telefono2);
+                rs_.updateInt("Telefono1", telefono1);
+                rs_.updateInt("Telefono2", telefono2);
                 rs_.insertRow();
                 rs_.moveToCurrentRow();
 
@@ -239,13 +230,108 @@ public class PACIENTES {
 
     }
 
-    // funcion toString
-    @Override
-    public String toString() {
-        return "PACIENTES - Historia=" + Historia + ", Apellidos=" + Apellidos + ", Nombre=" + Nombre + ", DNI=" + DNI
-                + ", FechaNacimiento=" + FechaNacimiento + ", Genero=" + Genero + ", Direccion=" + Direccion + ", CP="
-                + CP + ", CodProvincia=" + CodProvincia + ", email=" + email + ", Telefono1=" + Telefono1
-                + ", Telefono2=" + Telefono2;
+    //
+    // funcion mostrar pacientes
+    public void mostrarPac() {
+        String db_ = "clinica";
+        String login_ = "root";
+        String password_ = "";
+        String url_ = "jdbc:mysql://127.0.0.1/" + db_;
+        Connection connection_;
+        Statement st_;
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            connection_ = DriverManager.getConnection(url_, login_, password_);
+
+            ArrayList<String> listaClientes = new ArrayList<String>();
+
+            System.out.println("Conexion a base de datos" + db_ + " correcta");
+            st_ = connection_.createStatement();
+
+            ResultSet rs_ = st_.executeQuery("select * from CLIENTES");
+
+            while (rs_.next()) {
+                String nombre = rs_.getString("NOMBRE");
+                String apellidos = rs_.getString("APELLIDOS");
+                String fechana = rs_.getString("FECHA_NACIMIENTO");
+                String genero = rs_.getString("GENERO");
+                listaClientes.add(nombre + " | " + apellidos + " | " + fechana + " | " + genero);
+            }
+
+            System.out.println("La lista de clientes es: ");
+            for (String cliente : listaClientes) {
+                System.out.println(cliente);
+            }
+
+            connection_.close();
+            st_.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
+    // borrar / Delete pacientes
+    public void borrarPac() {
+        String db_ = "clinica";
+        String login_ = "root";
+        String password_ = "";
+        String url_ = "jdbc:mysql://127.0.0.1/" + db_;
+        Connection connection_;
+        Statement st_;
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            connection_ = DriverManager.getConnection(url_, login_, password_);
+            Scanner sc = new Scanner(System.in);
+
+            ArrayList<String> listaClientes = new ArrayList<String>();
+
+            System.out.println("Conexion a base de datos" + db_ + " correcta");
+            st_ = connection_.createStatement();
+
+            System.out.println("Dime la id del cliente que quieres borrar");
+            int id = sc.nextInt();
+
+            ResultSet rs_ = st_.executeQuery("select * from CLIENTES where id=" + id);
+
+            while (rs_.next()) {
+                String nombre = rs_.getString("NOMBRE");
+                String apellidos = rs_.getString("APELLIDOS");
+                String fechana = rs_.getString("FECHA_NACIMIENTO");
+                String genero = rs_.getString("GENERO");
+                listaClientes.add(nombre + " | " + apellidos + " | " + fechana + " | " + genero);
+            }
+
+            System.out.println("El cliente que quieres borrar es este? 1 para aceptar, 2 para denegar");
+            for (String cliente : listaClientes) {
+                System.out.println(cliente);
+            }
+
+            int x = sc.nextInt();
+
+            if (x == 1) {
+                rs_ = st_.executeQuery("delete from CLIENTES where id=" + id);
+                System.out.println("Cliente borrado correctamente");
+            }
+
+            connection_.close();
+            st_.close();
+            sc.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
 }

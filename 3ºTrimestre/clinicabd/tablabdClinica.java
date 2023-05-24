@@ -88,6 +88,8 @@ public class tablabdClinica {
                         }
                 } while (!salirMenu);
 
+                System.out.println("Fin del programa");
+                sc.close();
         }
 
         // funcion 2 para insertar datos de servicios, cambiarlo
@@ -382,7 +384,7 @@ public class tablabdClinica {
                                         "CREATE TABLE TTOSCOBROS (" +
                                                         "IDCobro INT NOT NULL, " +
                                                         "IDServicio INT NOT NULL, " +
-                                                        "Imputado INT," +
+                                                        "Imputado DECIMAL(16,2)," +
                                                         "FOREIGN KEY(IDCobro) REFERENCES COBROS (IDCobro)," +
                                                         "FOREIGN KEY(IDServicio) REFERENCES TtosRealizados (IDServicio),"
                                                         +

@@ -14,82 +14,9 @@ import java.time.temporal.ChronoUnit;
 
 public class tablabdClinica {
         public static void main(String[] args) {
-                Scanner sc = new Scanner(System.in);
-                int x = 0;
-                boolean salirMenu = false;
                 // si quiero mostrar algo mirar act9 y ahi mas o menos veo algo
-
-                do {
-                        // menu
-                        System.out.println();
-                        System.out.println("1. Crear la base de datos");
-                        System.out.println("2. Insertar un servicio");
-                        System.out.println("3. "); // de momento, tengo que cambiarlo
-                        System.out.println("4. ");
-                        System.out.println("5. ");
-                        System.out.println("6. ");
-                        System.out.println("7. ");
-                        System.out.println("8. Menu administrador");
-                        System.out.println("9. Salir");
-                        System.out.println();
-
-                        // Ingresar numero
-                        System.out.println("Ingresa un numero entre el 1 y el 8");
-                        try {
-                                x = Integer.parseInt(sc.nextLine()); // lo paso a int, aunque sea un caracter
-
-                        } catch (NumberFormatException e) {
-                                System.out.println("Debes ingresar un numero entero valido");
-                        }
-
-                        switch (x) {
-                                case 1:
-                                        // crear la base de datos
-
-                                        System.out.println();
-                                        break;
-                                case 2:
-                                        // insertar un servicio
-                                        System.out.println();
-
-                                        break;
-                                case 3:
-                                        // modificar un tratamiento, todavia no lo modifica
-                                        System.out.println();
-                                        break;
-                                case 4:
-                                        // insertar cobro
-                                        // 5d, debe indicar el cobro y el tratamiento realizado
-                                        System.out.println();
-                                        break;
-                                case 5:
-                                        // modifica un cobro, es opcional en principio
-                                        System.out.println();
-                                        break;
-                                case 6:
-                                        // liquidaciones
-                                        System.out.println();
-                                        break;
-                                case 7:
-                                        // hacer consultas, clicando en cosas
-                                        System.out.println();
-                                        break;
-                                case 8:
-                                        administracion();
-                                        break;
-                                // hacer menu con contraseña para crear la base de datos
-                                case 9:
-                                        salirMenu = true;
-                                        break;
-                                default:
-                                        System.out.println();
-                                        System.out.println("Debe introducir un numero entre 1 y 8");
-                                        System.out.println();
-                        }
-                } while (!salirMenu);
-
+                claseMenus.primerMenu();
                 System.out.println("Fin del programa");
-                sc.close();
         }
 
         // funcion 2 para insertar datos de servicios, cambiarlo

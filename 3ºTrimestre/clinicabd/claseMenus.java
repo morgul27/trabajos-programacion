@@ -15,8 +15,8 @@ public class claseMenus {
             // menu
             System.out.println();
             System.out.println("1. Crear la base de datos");
-            System.out.println("2. Insertar un servicio");
-            System.out.println("3. "); // de momento, tengo que cambiarlo
+            System.out.println("2. Menu para inserta");
+            System.out.println("3. Menu de impresion"); // de momento, tengo que cambiarlo
             System.out.println("4. ");
             System.out.println("5. ");
             System.out.println("6. ");
@@ -80,7 +80,6 @@ public class claseMenus {
             }
         } while (!salirMenu);
 
-        System.out.println("Fin del programa");
         sc.close();
     }
 
@@ -89,6 +88,7 @@ public class claseMenus {
         Scanner sc = new Scanner(System.in);
         int x = 0;
         boolean salirMenu = false;
+        boolean baseDatos = false;
 
         System.out.println("Ingrese la contrasegna para continuar");
         try {
@@ -120,14 +120,17 @@ public class claseMenus {
                     case 1:
                         // crear la base de datos
                         tablabdClinica.crearbasedatos();
+                        baseDatos = true;
                         break;
                     case 2:
                         MenuInsertar();
                         break;
                     case 3:
                         // Crear 3000 paciente
-                        tablabdClinica.crearPacsv();
-                        tablabdClinica.insertPacienteBBDD();
+                        if (baseDatos == true) {
+                            tablabdClinica.crearPacsv();
+                            tablabdClinica.insertPacienteBBDD();
+                        }
                         break;
                     case 4:
                         // insertar cobro
@@ -147,7 +150,6 @@ public class claseMenus {
                         System.out.println();
                         break;
                     case 8:
-                        salirMenu = true;
                         break;
                     // hacer menu con contraseña para crear la base de datos
                     case 9:
@@ -206,7 +208,7 @@ public class claseMenus {
 
                     break;
                 case 3:
-                    insercionMenu.insetarprofesional();
+                    insercionMenu.insetarProfesional();
                     System.out.println();
                     break;
                 case 4:
@@ -239,7 +241,122 @@ public class claseMenus {
             }
         } while (!salirMenu);
 
-        System.out.println("Fin del programa");
         sc.close();
     }
+
+    // Menu de impresion
+    public static void impresionMenu() {
+        Scanner sc = new Scanner(System.in);
+        int x = 0;
+        boolean salirMenu = false;
+
+        do {
+            System.out.println();
+            System.out.println("1. Historial de un paciente");
+            System.out.println("2. Mostrar todos los pacientes");
+            System.out.println("3. Menu de impresion");
+            System.out.println("4. Resumen del Menu");
+            System.out.println("9. Salir");
+            System.out.println();
+
+            // Ingresar numero
+            System.out.println("Ingresa un numero entre el 1 y el 8");
+            try {
+                x = Integer.parseInt(sc.nextLine());
+
+            } catch (NumberFormatException e) {
+                System.out.println("Debes ingresar un numero entero valido");
+            }
+
+            switch (x) {
+                case 1:
+                    System.out.println();
+                    break;
+                case 2:
+                    System.out.println();
+                    break;
+                case 3:
+                    System.out.println();
+                    break;
+                case 4:
+                    resumenMenu();
+                    System.out.println();
+                    break;
+                case 5:
+                    System.out.println();
+                    break;
+                case 6:
+                    System.out.println();
+                    break;
+                case 7:
+                    System.out.println();
+                    break;
+                case 8:
+                    MenuAdministrador();
+                    break;
+                case 9:
+                    salirMenu = true;
+                    break;
+                default:
+                    System.out.println();
+                    System.out.println("Debe introducir un numero entre 1 y 8");
+                    System.out.println();
+            }
+        } while (!salirMenu);
+
+        sc.close();
+    }
+
+    // Menu de resumen de tratamientos realizados
+    public static void resumenMenu() {
+        Scanner sc = new Scanner(System.in);
+        int x = 0;
+        boolean salirMenu = false;
+        // si quiero mostrar algo mirar act9 y ahi mas o menos veo algo
+
+        do {
+            // menu
+            System.out.println();
+            System.out.println("1. Odontologia");
+            System.out.println("2. Familia y tipo de tratamiento");
+            System.out.println("3. Combinados");
+            System.out.println("9. Salir");
+            System.out.println();
+
+            // Ingresar numero
+            System.out.println("Ingresa un numero entre el 1 y el 8");
+            try {
+                x = Integer.parseInt(sc.nextLine());
+
+            } catch (NumberFormatException e) {
+                System.out.println("Debes ingresar un numero entero valido");
+            }
+
+            switch (x) {
+                case 1:
+                    System.out.println();
+                    break;
+                case 2:
+
+                    System.out.println();
+
+                    break;
+                case 3:
+
+                    System.out.println();
+                    break;
+
+                case 4:
+                    salirMenu = true;
+                    break;
+                default:
+                    System.out.println();
+                    System.out.println("Debe introducir un numero entre 1 y 8");
+                    System.out.println();
+            }
+        } while (!salirMenu);
+
+        sc.close();
+    }
+
 }

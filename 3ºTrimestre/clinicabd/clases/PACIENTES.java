@@ -221,4 +221,139 @@ public class PACIENTES {
         }
 
     }
+
+    // ver los servicios por el paciente
+    public void serviciosPacientes() {
+        String db_ = "ClinicaDental";
+        String login_ = "root";
+        String password_ = "";
+        String url_ = "jdbc:mysql://127.0.0.1/" + db_;
+        Connection connection_;
+        Statement st_;
+        int idp = 1;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            connection_ = DriverManager.getConnection(url_, login_, password_);
+            Scanner sc = new Scanner(System.in);
+            ArrayList<String> listaClientes = new ArrayList<String>();
+
+            System.out.println("Conexion a base de datos" + db_ + " correcta");
+            st_ = connection_.createStatement();
+
+            System.out.println("Introduce el DNI del paciente");
+            String dni = sc.nextLine();
+            ResultSet id = st_.executeQuery(
+                    "select id from PACIENTES where DNI = " + dni);
+
+            if (id.next()) {
+                idp = id.getInt("id");
+            }
+
+            ResultSet rs_ = st_.executeQuery(
+                    "select * from PACIENTES p" +
+                            "inner join TtosRealizados tr on c.IDPaciente = tr.IDPaciente" +
+                            "inner join TRATAMIENTOS tra on tr.IDTratamiento = tra.IDTratamiento" +
+                            "where p.id = " + idp);
+
+            while (rs_.next()) {
+                String apellidos = rs_.getString("Apellidos");
+                String pnombre = rs_.getString("p.Nombre");
+                String DNI = rs_.getString("DNI");
+                String fechana = rs_.getString("FechaNacimiento");
+                String Precio = rs_.getString("Precio");
+                String tnombre = rs_.getString("tra.Nombre");
+                String email = rs_.getString("email");
+                String Telefono1 = rs_.getString("Telefono1");
+                listaClientes.add(pnombre + " | " + apellidos + " | " + fechana + " | El precio de tratamiento es "
+                        + Precio + " | El nombre del tratamiento es " + tnombre
+                        + " | " + DNI + " | " + email + " | " + Telefono1 + " | ");
+            }
+
+            System.out.println("La lista de clientes es: ");
+            for (String cliente : listaClientes) {
+                System.out.println(cliente);
+            }
+
+            connection_.close();
+            st_.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    // ver los cobros hechos por el paciente
+    public void cobrosPacientes() {
+        String db_ = "ClinicaDental";
+        String login_ = "root";
+        String password_ = "";
+        String url_ = "jdbc:mysql://127.0.0.1/" + db_;
+        Connection connection_;
+        Statement st_;
+        int idp = 1;
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            connection_ = DriverManager.getConnection(url_, login_, password_);
+            Scanner sc = new Scanner(System.in);
+            ArrayList<String> listaClientes = new ArrayList<String>();
+
+            System.out.println("Conexion a base de datos" + db_ + " correcta");
+            st_ = connection_.createStatement();
+
+            System.out.println("Introduce el DNI del paciente");
+            String dni = sc.nextLine();
+            ResultSet id = st_.executeQuery(
+                    "select id from PACIENTES where DNI = " + dni);
+
+            if (id.next()) {
+                idp = id.getInt("id");
+            }
+
+            ResultSet rs_ = st_.executeQuery(
+                    "select * from PACIENTES p" +
+                            "inner join TtosRealizados tr on c.IDPaciente = tr.IDPaciente" +
+                            "inner join TRATAMIENTOS tra on tr.IDTratamiento = tra.IDTratamiento" +
+                            "where p.id = " + idp);
+
+            while (rs_.next()) {
+                String apellidos = rs_.getString("Apellidos");
+                String pnombre = rs_.getString("p.Nombre");
+                String DNI = rs_.getString("DNI");
+                String fechana = rs_.getString("FechaNacimiento");
+                String Fecha = rs_.getString("Fecha");
+                String Cobrado = rs_.getString("Cobrado");
+                String tnombre = rs_.getString("tra.Nombre");
+                String email = rs_.getString("email");
+                String Telefono1 = rs_.getString("Telefono1");
+                listaClientes.add(
+                        pnombre + " | " + apellidos + " | " + fechana + " | fecha de cobro " + Fecha + " | " + Cobrado
+                                + " | " + tnombre
+                                + " | " + DNI + " | " + email + " | " + Telefono1 + " | ");
+            }
+
+            System.out.println("La lista de clientes es: ");
+            for (String cliente : listaClientes) {
+                System.out.println(cliente);
+            }
+
+            connection_.close();
+            st_.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+    // mirar g ii. no se que significa
+
 }

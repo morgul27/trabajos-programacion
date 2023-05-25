@@ -102,7 +102,7 @@ public class claseMenus {
                 // menu
                 System.out.println();
                 System.out.println("1. Crear la base de datos");
-                System.out.println("2. Insertar un servicio");
+                System.out.println("2. Menu para insertar");
                 System.out.println("3. Crear 3000 paciente"); // de momento, tengo que cambiarlo
                 System.out.println("9. Salir");
                 System.out.println();
@@ -119,19 +119,15 @@ public class claseMenus {
                 switch (x) {
                     case 1:
                         // crear la base de datos
-                        crearbasedatos();
-                        System.out.println();
+                        tablabdClinica.crearbasedatos();
                         break;
                     case 2:
-                        // insertar un servicio
-                        System.out.println();
-                        insertar();
+                        MenuInsertar();
                         break;
                     case 3:
                         // Crear 3000 paciente
-                        System.out.println();
-                        crearPacsv();
-                        insertPacienteBBDD();
+                        tablabdClinica.crearPacsv();
+                        tablabdClinica.insertPacienteBBDD();
                         break;
                     case 4:
                         // insertar cobro
@@ -163,6 +159,9 @@ public class claseMenus {
                         System.out.println();
                 }
             } while (!salirMenu);
+        } else {
+            System.out.println("Contraseña incorrecta");
+            System.out.println();
         }
         sc.close();
     }
@@ -198,16 +197,16 @@ public class claseMenus {
 
             switch (x) {
                 case 1:
-
+                    insercionMenu.insertarPac();
                     System.out.println();
                     break;
                 case 2:
-
+                    insercionMenu.insertCobros();
                     System.out.println();
 
                     break;
                 case 3:
-
+                    insercionMenu.insetarprofesional();
                     System.out.println();
                     break;
                 case 4:

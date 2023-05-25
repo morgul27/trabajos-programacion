@@ -131,7 +131,6 @@ public class TRATAMIENTOS {
         String password_ = "";
         String url_ = "jdbc:mysql://127.0.0.1/" + db_;
         Statement st_ = null;
-        ResultSet rs_ = null;
         Connection connection_ = null;
 
         try {

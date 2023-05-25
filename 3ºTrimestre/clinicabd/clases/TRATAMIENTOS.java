@@ -1,7 +1,10 @@
 package clinicabd.clases;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -135,56 +138,37 @@ public class TRATAMIENTOS {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection_ = DriverManager.getConnection(url_, login_, password_);
 
-            Scanner sc = new Scanner(System.in);
+            System.out.println("Conexion a base de datos");
+            st_ = connection_.createStatement();
 
-            System.out.println("Conexion a base de datos" + db_ + " correcta");
-            st_ = connection_.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_UPDATABLE);
+            //
+            // Empieza la escritura
+            BufferedReader br = new BufferedReader(new FileReader("Tratamientos.csv"));
 
-            System.out.println("Se va a modificar la tabla TRATAMIENTOS");
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split(",");
 
-            rs_ = st_.executeQuery("select * from TRATAMIENTOS");
+                String CodTto = parts[0];
+                String nombre = parts[1];
+                int CodFamilia = Integer.parseInt(parts[2]);
+                Double Precio = Double.parseDouble(parts[3]);
 
-            // fila 1
-            rs_.moveToInsertRow();
-            rs_.updateString("CodTto", "INJ");
-            rs_.updateString("Nombre", "INJERTO DE TEJIDO CONECTIVO");
-            rs_.updateInt("CodFamilia", 1);
-            rs_.updateDouble("Precio", 250);
-            rs_.insertRow();
-            rs_.moveToCurrentRow();
+                PreparedStatement ps = connection_.prepareStatement("INSERT INTO FAMILIAS" +
+                        " (CodTto, Nombre, CodFamilia, Precio) VALUES (?, ?, ?, ?)");
+                ps.setString(1, CodTto);
+                ps.setString(2, nombre);
+                ps.setInt(3, CodFamilia);
+                ps.setDouble(4, Precio);
+                ps.executeUpdate();
+                ps.close();
+            }
 
-            // fila 2
-            rs_.moveToInsertRow();
-            rs_.updateString("CodTto", "QP");
-            rs_.updateString("Nombre", "QUITAR PUNTOS");
-            rs_.updateInt("CodFamilia", 1);
-            rs_.updateDouble("Precio", 0);
-            rs_.insertRow();
-            rs_.moveToCurrentRow();
-
-            // fila 3
-            rs_.moveToInsertRow();
-            rs_.updateString("CodTto", "CIMP");
-            rs_.updateString("Nombre", "CORONA SOBRE IMPLANTE METAL PROCELANA");
-            rs_.updateInt("CodFamilia", 2);
-            rs_.updateDouble("Precio", 400);
-            rs_.insertRow();
-            rs_.moveToCurrentRow();
-
-            // fila 4
-            rs_.moveToInsertRow();
-            rs_.updateString("CodTto", "CIZ");
-            rs_.updateString("Nombre", "CORONA SOBREIMPLANTE DE ZIRCONIO");
-            rs_.updateInt("CodFamilia", 2);
-            rs_.updateDouble("Precio", 450);
-            rs_.insertRow();
-            rs_.moveToCurrentRow();
-
-            System.out.println("Ha finalizado la insercion");
-
+            System.out.println("Insertado los 3000 pacientes en la base de datos");
+            //
             connection_.close();
             st_.close();
-            rs_.close();
+            br.close();
             // Fin de escritura
             //
 

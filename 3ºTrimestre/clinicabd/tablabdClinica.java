@@ -19,6 +19,7 @@ public class tablabdClinica {
                 System.out.println("Fin del programa");
         }
 
+        //
         // funcion 2 para insertar datos de servicios, cambiarlo
         public static void insertar() {
                 String db_ = "ClinicaDental";

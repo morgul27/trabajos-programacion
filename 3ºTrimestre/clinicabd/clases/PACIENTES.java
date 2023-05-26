@@ -287,8 +287,8 @@ public class PACIENTES {
 
     }
 
-    // ver los cobros hechos por el paciente
-    public void cobrosPacientes() {
+    // ver el historial de los paciente
+    public void HistorialPacientes() {
         String db_ = "ClinicaDental";
         String login_ = "root";
         String password_ = "";

@@ -11,7 +11,7 @@ public class Configuracion {
 
         try {
 
-            configuracion.store(new FileOutputStream("ejemplo.cfg"), "fichero.cfg");
+            configuracion.store(new FileOutputStream("ejemplo.cfg"), "ejemplo.cfg");
             System.out.println("Usuario: " + configuracion.getProperty("user") + "\n" + "Contraseña: "
                     + configuracion.getProperty("password") + "\n" +
                     "Servidor: " + configuracion.getProperty("server") + "\n" +

@@ -25,15 +25,10 @@ public class claseMenus {
                 // menu
                 System.out.println();
                 System.out.println("Menu Principal");
-                System.out.println("1. ");
-                System.out.println("2. Menu para inserta");
-                System.out.println("3. Menu de impresion"); // de momento, tengo que cambiarlo
-                System.out.println("4. ");
-                System.out.println("5. ");
-                System.out.println("6. ");
-                System.out.println("7. ");
-                System.out.println("8. Menu administrador");
-                System.out.println("9. Salir");
+                System.out.println("1. Menu para inserta");
+                System.out.println("2. Menu de impresion"); // de momento, tengo que cambiarlo
+                System.out.println("3. Menu administrador");
+                System.out.println("4. Salir");
                 System.out.println();
 
                 // Ingresar numero
@@ -43,48 +38,26 @@ public class claseMenus {
 
                 switch (x) {
                     case 1:
-                        // crear la base de datos
-
-                        System.out.println();
-                        break;
-                    case 2:
                         // insertar un servicio
                         MenuInsertar(connection_);
                         System.out.println();
 
                         break;
-                    case 3:
+                    case 2:
                         // modificar un tratamiento, todavia no lo modifica
                         Menuimpresion(connection_);
                         System.out.println();
                         break;
-                    case 4:
-                        // insertar cobro
-                        // 5d, debe indicar el cobro y el tratamiento realizado
-                        System.out.println();
-                        break;
-                    case 5:
-                        // modifica un cobro, es opcional en principio
-                        System.out.println();
-                        break;
-                    case 6:
-                        // liquidaciones
-                        System.out.println();
-                        break;
-                    case 7:
-                        // hacer consultas, clicando en cosas
-                        System.out.println();
-                        break;
-                    case 8:
+                    case 3:
                         MenuAdministrador(connection_);
                         break;
                     // hacer menu con contraseña para crear la base de datos
-                    case 9:
+                    case 4:
                         salirMenu = true;
                         break;
                     default:
                         System.out.println();
-                        System.out.println("Debe introducir un numero entre 1 y 9");
+                        System.out.println("Debe introducir un numero entre 1 y 4");
                         System.out.println();
                 }
             } while (!salirMenu);
@@ -104,7 +77,6 @@ public class claseMenus {
         Scanner sc = new Scanner(System.in);
         int x = 0;
         boolean salirMenu = false;
-        boolean baseDatos = false;
 
         System.out.println("Ingrese la contrasegna para continuar");
         try {
@@ -120,7 +92,7 @@ public class claseMenus {
                 System.out.println("1. Crear la base de datos");
                 System.out.println("2. Menu para insertar");
                 System.out.println("3. Crear 3000 paciente"); // de momento, tengo que cambiarlo
-                System.out.println("9. Salir");
+                System.out.println("4. Salir");
                 System.out.println();
 
                 // Ingresar numero
@@ -134,50 +106,28 @@ public class claseMenus {
                     case 1:
                         // crear la base de datos
                         insercionFunciones.crearbasedatos(connection_);
-                        baseDatos = true;
                         break;
                     case 2:
                         MenuInsertar(connection_);
                         break;
                     case 3:
                         // Crear 3000 paciente
-                        if (baseDatos == true) {
-                            insercionFunciones.crearPacsv();
-                            insercionFunciones.insert3000Paciente(connection_);
-                        }
+                        insercionFunciones.crearPacsv();
+                        insercionFunciones.insert3000Paciente(connection_);
                         break;
                     case 4:
-                        // insertar cobro
-                        // 5d, debe indicar el cobro y el tratamiento realizado
-                        System.out.println();
-                        break;
-                    case 5:
-                        // modifica un cobro, es opcional en principio
-                        System.out.println();
-                        break;
-                    case 6:
-                        // liquidaciones
-                        System.out.println();
-                        break;
-                    case 7:
-                        // hacer consultas, clicando en cosas
-                        System.out.println();
-                        break;
-                    case 8:
-                        break;
-                    // hacer menu con contraseña para crear la base de datos
-                    case 9:
                         primerMenu(connection_);
                         break;
                     default:
                         System.out.println();
-                        System.out.println("Debe introducir un numero entre 1 y 9");
+                        System.out.println("Debe introducir un numero entre 1 y 4");
                         System.out.println();
                 }
             } while (!salirMenu);
         } else {
             System.out.println("Contraseña incorrecta");
             System.out.println();
+            primerMenu(connection_);
         }
         sc.close();
 
@@ -196,9 +146,9 @@ public class claseMenus {
             System.out.println("1. Insertar un paciente");
             System.out.println("2. Insertar un cobros");
             System.out.println("3. Insertar un profesional");
-            System.out.println("4. Insertar un ");
+            System.out.println("4. Insertar un servicios");
             System.out.println("5. Insertar una liquidacion");
-            System.out.println("6. ");
+            System.out.println("6.");
             System.out.println("7. ");
             System.out.println("8. ");
             System.out.println("9. Salir");
@@ -228,15 +178,13 @@ public class claseMenus {
                     System.out.println();
                     break;
                 case 4:
-
+                    insercionFunciones.insertarservicios(connection_);
                     System.out.println();
                     break;
                 case 5:
-
                     System.out.println();
                     break;
                 case 6:
-                    // liquidaciones
                     System.out.println();
                     break;
                 case 7:
@@ -274,6 +222,9 @@ public class claseMenus {
             System.out.println("3. Menu de impresion");
             System.out.println("4. Resumen del Menu");
             System.out.println("5. Mostrar liquidaciones");
+            System.out.println("6. Ver Historial Pacientes");
+            System.out.println("7. Ver Liquidacion");
+
             System.out.println("9. Salir");
             System.out.println();
 
@@ -305,9 +256,11 @@ public class claseMenus {
                     System.out.println();
                     break;
                 case 6:
+                    impresionFunciones.HistorialPacientes();
                     System.out.println();
                     break;
                 case 7:
+                    impresionFunciones.sacarliquidacion();
                     System.out.println();
                     break;
                 case 8:

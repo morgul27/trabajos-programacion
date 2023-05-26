@@ -15,6 +15,7 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Properties;
 import java.util.Scanner;
 
 public class insercionFunciones {
@@ -22,6 +23,7 @@ public class insercionFunciones {
 
     // insertar PACIENTES
     public static void insertarPac(Connection connection_) {
+        Properties configuracion = new Properties();
         Statement st_ = null;
         ResultSet rs_ = null;
 
@@ -35,7 +37,10 @@ public class insercionFunciones {
 
             System.out.println("Se va a modificar la tabla PACIENTES");
 
-            rs_ = st_.executeQuery("select * from PACIENTES");
+            configuracion.load(new BufferedReader(new FileReader("bdconfiguracion.cfg")));
+            String paciente = (configuracion.getProperty("selectPa"));
+
+            rs_ = st_.executeQuery(paciente);
 
             System.out.println("Introduce los apellidos del paciente ");
             String apellidos = sc.nextLine();
@@ -61,7 +66,7 @@ public class insercionFunciones {
             int telefono2 = ss.nextInt();
 
             PreparedStatement ps = connection_.prepareStatement("INSERT INTO PACIENTES" +
-                    "(Apellidos,Nombre,DNI,FechaNacimiento,genero,Direccion,CP,CodProvincia,email,Telefono1,Telefono2)"
+                    "(Apellidos,Nombre,DNI,FechaNacimiento,Genero,Direccion,CP,CodProvincia,email,Telefono1,Telefono2)"
                     + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             ps.setString(1, apellidos);
             ps.setString(2, nombre);
@@ -286,6 +291,10 @@ public class insercionFunciones {
 
     }
 
+    
+
+    
+
     // insertar LIQUIDACIONES
     public static void insertarliquidacion(Connection connection_) {
 
@@ -333,10 +342,9 @@ public class insercionFunciones {
 
     }
 
-    // mirar si lo puedo mover
+    //
 
     // ------------------
-    // aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
     public static void insert3000Paciente(Connection connection_) {
         Statement st_;
 
@@ -362,13 +370,12 @@ public class insercionFunciones {
                 String genero = parts[4];
 
                 PreparedStatement ps = connection_.prepareStatement("INSERT INTO PACIENTES" +
-                        " (Historia, Apellidos, Nombre, DNI, FechaNacimiento, Genero) VALUES (?, ?, ?, ?, ?, ?)");
-                ps.setInt(1, i++);
-                ps.setString(2, apellidos);
-                ps.setString(3, nombre);
-                ps.setString(4, DNI);
-                ps.setString(5, fechaNacimiento);
-                ps.setString(6, genero);
+                        " (Apellidos, Nombre, DNI, FechaNacimiento, Genero) VALUES ( ?, ?, ?, ?, ?)");
+                ps.setString(1, apellidos);
+                ps.setString(2, nombre);
+                ps.setString(3, DNI);
+                ps.setString(4, fechaNacimiento);
+                ps.setString(5, genero);
                 ps.executeUpdate();
                 ps.close();
             }
@@ -397,8 +404,13 @@ public class insercionFunciones {
         ArrayList<String> apellidos = new ArrayList<String>();
         ArrayList<String> DNI = new ArrayList<String>();
 
-        try {
+        Properties configuracion = new Properties();
 
+        try {
+            configuracion.load(new BufferedReader(new FileReader("bdconfiguracion.cfg")));
+            String paciente = (configuracion.getProperty("pacientes"));
+
+            int max = Integer.valueOf(paciente);
             BufferedWriter bw = new BufferedWriter(new FileWriter(
                     "csv1.csv"));
             int gen;
@@ -424,7 +436,7 @@ public class insercionFunciones {
             }
             // int maxuser = Integer.parseInt("3000");
 
-            for (int i = 0; i < 3000; i++) {
+            for (int i = 0; i < max; i++) {
                 // gen es el genero, que sale aleatoriamente sin tener que preguntar más tarde
                 // cual es
                 gen = aleatorio(0, 100) / 55; // para quitar la parte entera dividir entre 55, enviar 0
@@ -444,8 +456,7 @@ public class insercionFunciones {
                         + "' \n");
 
             }
-            System.out.println("tamaño final de dni es: " + DNI.size());
-            System.out.println(DNI.get(0));
+
             bw.close();
 
         } catch (IOException ioe) {

@@ -104,4 +104,134 @@ public class impresionFunciones {
 
     }
 
+    // ver el historial de los paciente
+    public static void HistorialPacientes() {
+        String db_ = "ClinicaDental";
+        String login_ = "root";
+        String password_ = "";
+        String url_ = "jdbc:mysql://127.0.0.1/" + db_;
+        Connection connection_;
+        Statement st_;
+        int idp = 1;
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            connection_ = DriverManager.getConnection(url_, login_, password_);
+            Scanner sc = new Scanner(System.in);
+            ArrayList<String> listaClientes = new ArrayList<String>();
+
+            System.out.println("Conexion a base de datos" + db_ + " correcta");
+            st_ = connection_.createStatement();
+
+            System.out.println("Introduce el DNI del paciente");
+            String dni = sc.nextLine();
+            ResultSet id = st_.executeQuery(
+                    "select id from PACIENTES where DNI = " + dni);
+
+            if (id.next()) {
+                idp = id.getInt("id");
+            }
+
+            ResultSet rs_ = st_.executeQuery(
+                    "select * from PACIENTES p" +
+                            "inner join TtosRealizados tr on c.IDPaciente = tr.IDPaciente" +
+                            "inner join TRATAMIENTOS tra on tr.IDTratamiento = tra.IDTratamiento" +
+                            "where p.id = " + idp);
+
+            while (rs_.next()) {
+                String apellidos = rs_.getString("Apellidos");
+                String pnombre = rs_.getString("p.Nombre");
+                String DNI = rs_.getString("DNI");
+                String fechana = rs_.getString("FechaNacimiento");
+                String Fecha = rs_.getString("Fecha");
+                String Cobrado = rs_.getString("Cobrado");
+                String tnombre = rs_.getString("tra.Nombre");
+                String email = rs_.getString("email");
+                String Telefono1 = rs_.getString("Telefono1");
+                listaClientes.add(
+                        pnombre + " | " + apellidos + " | " + fechana + " | fecha de cobro " + Fecha + " | " + Cobrado
+                                + " | " + tnombre
+                                + " | " + DNI + " | " + email + " | " + Telefono1 + " | ");
+            }
+
+            System.out.println("La lista de clientes es: ");
+            for (String cliente : listaClientes) {
+                System.out.println(cliente);
+            }
+
+            connection_.close();
+            st_.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    // sacar la liquidacion
+    public static void sacarliquidacion() {
+        String db_ = "Clinica";
+        String login_ = "root";
+        String password_ = "";
+        String url_ = "jdbc:mysql://127.0.0.1/" + db_;
+        Connection connection_;
+        Statement st_ = null;
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            connection_ = DriverManager.getConnection(url_, login_, password_);
+            System.out.println("Conexion a base de datos" + db_ + " correcta");
+            st_ = connection_.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_UPDATABLE);
+            Scanner sc = new Scanner(System.in);
+            ArrayList<String> listaliqui = new ArrayList<String>();
+            System.out.println(
+                    "Dime la fecha desde la que quieres revisar hasta el dia de hoyes con el formato yyyymmdd");
+            String fecha = sc.nextLine();
+            System.out.println("El DNI del profesional");
+            String dni = sc.nextLine();
+
+            System.out.println("La comision seria de");
+            ResultSet rs_ = st_.executeQuery(
+                    "select ((p.comsion/100)*sum(c.cobrado)) from PROFESIONALES p" +
+                            "inner join TtosRealizados s on p.IDProfesional=s.IDProfesional" +
+                            "inner join TTOSCOBROS t on t.IDServicio=s.IDServicio" +
+                            "inner join COBROS c on c.IDCobro=t.IDCobro" +
+                            "where p.NIF=" + dni + " and t.Fecha between " + fecha + " and now()");
+
+            System.out.println("La lista de tratamienots realizados han sido");
+
+            ResultSet dc_ = st_.executeQuery(
+                    "select IDServicio,Fecha,IDProfesional from TtosRealizados t" +
+                            "inner join PROFESIONALES p on p.IDProfesional=t.IDProfesional" +
+                            "where p.NIF=" + dni + " and t.Fecha between " + fecha + " and now()");
+            while (dc_.next()) {
+                int idser = dc_.getInt("IDServicio");
+                String fech = dc_.getString("Fecha");
+                int idpro = dc_.getInt("IDProfesional");
+                listaliqui.add(idser + " | " + fech + " | " + idpro);
+            }
+
+            System.out.println("La lista de tratamienots realizados han sido");
+
+            for (String liquidacion : listaliqui) {
+                System.out.println(liquidacion);
+            }
+            System.out.println("Ha finalizado la insercion");
+            connection_.close();
+            st_.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
 }

@@ -14,6 +14,7 @@ public class claseMenus {
             do {
                 // menu
                 System.out.println();
+                System.out.println("Menu Principal");
                 System.out.println("1. ");
                 System.out.println("2. Menu para inserta");
                 System.out.println("3. Menu de impresion"); // de momento, tengo que cambiarlo
@@ -105,6 +106,7 @@ public class claseMenus {
             do {
                 // menu
                 System.out.println();
+                System.out.println("Menu Administrador");
                 System.out.println("1. Crear la base de datos");
                 System.out.println("2. Menu para insertar");
                 System.out.println("3. Crear 3000 paciente"); // de momento, tengo que cambiarlo
@@ -180,6 +182,7 @@ public class claseMenus {
         do {
             // menu
             System.out.println();
+            System.out.println("Menu Insercion");
             System.out.println("1. Insertar un paciente");
             System.out.println("2. Insertar un servicio");
             System.out.println("3. Insertar un profesional");
@@ -255,6 +258,7 @@ public class claseMenus {
 
         do {
             System.out.println();
+            System.out.println("Menu para impresion");
             System.out.println("1. Historial de un paciente");
             System.out.println("2. Mostrar todos los pacientes");
             System.out.println("3. Menu de impresion");
@@ -322,6 +326,7 @@ public class claseMenus {
         do {
             // menu
             System.out.println();
+            System.out.println("Menu resumen");
             System.out.println("1. Odontologia");
             System.out.println("2. Familia y tipo de tratamiento");
             System.out.println("3. Combinados");

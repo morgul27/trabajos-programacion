@@ -567,7 +567,6 @@ public class insercionFunciones {
             st_.executeUpdate(
                     "CREATE TABLE PACIENTES (" +
                             "IDPaciente INT NOT NULL AUTO_INCREMENT," +
-                            "Historia INT NOT NULL," + // Codigo de la historia clinica
                             "Apellidos VARCHAR(250)," +
                             "Nombre VARCHAR (250)," +
                             "DNI VARCHAR (15)," +

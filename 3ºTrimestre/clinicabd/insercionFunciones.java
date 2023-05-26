@@ -79,7 +79,6 @@ public class insercionFunciones {
 
             System.out.println("Ha finalizado la insercion");
 
-            connection_.close();
             st_.close();
             rs_.close();
             // Fin de escritura
@@ -145,7 +144,6 @@ public class insercionFunciones {
 
             System.out.println("Ha finalizado la insercion");
 
-            connection_.close();
             st_.close();
             rs_.close();
 
@@ -271,7 +269,6 @@ public class insercionFunciones {
             }
             System.out.println("Ha finalizado la insercion");
 
-            connection_.close();
             st_.close();
             rs_.close();
             ss.close();

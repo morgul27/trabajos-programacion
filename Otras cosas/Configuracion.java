@@ -11,7 +11,7 @@ public class Configuracion {
 
         try {
 
-            configuracion.store(new FileOutputStream("C:/aaaaa/ejemplo.txt"), "C:/aaaaa/fichero.txt");
+            configuracion.store(new FileOutputStream("ejemplo.cfg"), "fichero.cfg");
             System.out.println("Usuario: " + configuracion.getProperty("user") + "\n" + "Contraseña: "
                     + configuracion.getProperty("password") + "\n" +
                     "Servidor: " + configuracion.getProperty("server") + "\n" +
@@ -19,7 +19,6 @@ public class Configuracion {
 
         } catch (FileNotFoundException fnfe) {
             fnfe.printStackTrace();
-
         } catch (IOException ioe) {
             ioe.printStackTrace();
 

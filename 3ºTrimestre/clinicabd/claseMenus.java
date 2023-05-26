@@ -194,9 +194,9 @@ public class claseMenus {
             System.out.println();
             System.out.println("Menu Insercion");
             System.out.println("1. Insertar un paciente");
-            System.out.println("2. Insertar un servicio");
+            System.out.println("2. Insertar un cobros");
             System.out.println("3. Insertar un profesional");
-            System.out.println("4. Insertar un cobro");
+            System.out.println("4. Insertar un ");
             System.out.println("5. Insertar una liquidacion");
             System.out.println("6. ");
             System.out.println("7. ");

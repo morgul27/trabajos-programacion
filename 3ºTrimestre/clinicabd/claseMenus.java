@@ -1,11 +1,21 @@
 package clinicabd;
 
+import java.sql.Connection;
 import java.util.Scanner;
+
+import com.mysql.cj.xdevapi.Statement;
 
 public class claseMenus {
 
+    String db_ = "ClinicaDental";
+    String login_ = "root";
+    String password_ = "";
+    String url_ = "jdbc:mysql://127.0.0.1/" + db_;
+    Connection connection_;
+    Statement st_;
+
     // primer menu que sale en el programa
-    public static void primerMenu() {
+    public static void primerMenu(Connection connection_) {
         Scanner sc = new Scanner(System.in);
         int x = 0;
         boolean salirMenu = false;
@@ -39,13 +49,13 @@ public class claseMenus {
                         break;
                     case 2:
                         // insertar un servicio
-                        MenuInsertar();
+                        MenuInsertar(connection_);
                         System.out.println();
 
                         break;
                     case 3:
                         // modificar un tratamiento, todavia no lo modifica
-                        Menuimpresion();
+                        Menuimpresion(connection_);
                         System.out.println();
                         break;
                     case 4:
@@ -66,7 +76,7 @@ public class claseMenus {
                         System.out.println();
                         break;
                     case 8:
-                        MenuAdministrador();
+                        MenuAdministrador(connection_);
                         break;
                     // hacer menu con contraseña para crear la base de datos
                     case 9:
@@ -90,7 +100,7 @@ public class claseMenus {
     }
 
     // funcion 8 del menu de administrador
-    public static void MenuAdministrador() {
+    public static void MenuAdministrador(Connection connection_) {
         Scanner sc = new Scanner(System.in);
         int x = 0;
         boolean salirMenu = false;
@@ -123,17 +133,17 @@ public class claseMenus {
                 switch (x) {
                     case 1:
                         // crear la base de datos
-                        insercionFunciones.crearbasedatos();
+                        insercionFunciones.crearbasedatos(connection_);
                         baseDatos = true;
                         break;
                     case 2:
-                        MenuInsertar();
+                        MenuInsertar(connection_);
                         break;
                     case 3:
                         // Crear 3000 paciente
                         if (baseDatos == true) {
                             insercionFunciones.crearPacsv();
-                            insercionFunciones.insert3000Paciente();
+                            insercionFunciones.insert3000Paciente(connection_);
                         }
                         break;
                     case 4:
@@ -157,7 +167,7 @@ public class claseMenus {
                         break;
                     // hacer menu con contraseña para crear la base de datos
                     case 9:
-                        primerMenu();
+                        primerMenu(connection_);
                         break;
                     default:
                         System.out.println();
@@ -174,7 +184,7 @@ public class claseMenus {
     }
 
     // Menu para ver que quieres insertar
-    public static void MenuInsertar() {
+    public static void MenuInsertar(Connection connection_) {
         Scanner sc = new Scanner(System.in);
         int x = 0;
         boolean salirMenu = false;
@@ -205,16 +215,16 @@ public class claseMenus {
 
             switch (x) {
                 case 1:
-                    insercionFunciones.insertarPac();
+                    insercionFunciones.insertarPac(connection_);
                     System.out.println();
                     break;
                 case 2:
-                    insercionFunciones.insertCobros();
+                    insercionFunciones.insertCobros(connection_);
                     System.out.println();
 
                     break;
                 case 3:
-                    insercionFunciones.insetarProfesional();
+                    insercionFunciones.insetarProfesional(connection_);
                     System.out.println();
                     break;
                 case 4:
@@ -238,7 +248,7 @@ public class claseMenus {
                     break;
                 // hacer menu con contraseña para crear la base de datos
                 case 9:
-                    primerMenu();
+                    primerMenu(connection_);
                     break;
                 default:
                     System.out.println();
@@ -251,7 +261,7 @@ public class claseMenus {
     }
 
     // Menu de impresion
-    public static void Menuimpresion() {
+    public static void Menuimpresion(Connection connection_) {
         Scanner sc = new Scanner(System.in);
         int x = 0;
         boolean salirMenu = false;
@@ -287,11 +297,11 @@ public class claseMenus {
                     System.out.println();
                     break;
                 case 4:
-                    resumenMenu();
+                    resumenMenu(connection_);
                     System.out.println();
                     break;
                 case 5:
-                    impresionFunciones.mostrarliquid();
+                    impresionFunciones.mostrarliquid(connection_);
                     System.out.println();
                     break;
                 case 6:
@@ -301,11 +311,11 @@ public class claseMenus {
                     System.out.println();
                     break;
                 case 8:
-                    MenuAdministrador();
+                    MenuAdministrador(connection_);
                     break;
                 case 9:
                     salirMenu = true;
-                    primerMenu();
+                    primerMenu(connection_);
                     break;
                 default:
                     System.out.println();
@@ -318,7 +328,7 @@ public class claseMenus {
     }
 
     // Menu de resumen de tratamientos realizados
-    public static void resumenMenu() {
+    public static void resumenMenu(Connection connection_) {
         Scanner sc = new Scanner(System.in);
         int x = 0;
         boolean salirMenu = false;
@@ -357,7 +367,7 @@ public class claseMenus {
                     break;
 
                 case 4:
-                    Menuimpresion();
+                    Menuimpresion(connection_);
                     salirMenu = true;
                     break;
                 default:

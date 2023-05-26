@@ -18,32 +18,24 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class insercionFunciones {
+    public static Connection connection_;
 
     // insertar PACIENTES
-    public static void insertarPac() {
-        String db_ = "ClinicaDental";
-        String login_ = "root";
-        String password_ = "";
-        String url_ = "jdbc:mysql://127.0.0.1/" + db_;
-        Connection connection_;
+    public static void insertarPac(Connection connection_) {
         Statement st_ = null;
         ResultSet rs_ = null;
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection_ = DriverManager.getConnection(url_, login_, password_);
 
             Scanner sc = new Scanner(System.in);
             Scanner ss = new Scanner(System.in);
 
-            System.out.println("Conexion a base de datos" + db_ + " correcta");
             st_ = connection_.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_UPDATABLE);
 
             System.out.println("Se va a modificar la tabla PACIENTES");
 
             rs_ = st_.executeQuery("select * from PACIENTES");
-
-            // necesito insertar los id de todo
 
             System.out.println("Introduce los apellidos del paciente ");
             String apellidos = sc.nextLine();
@@ -104,19 +96,14 @@ public class insercionFunciones {
     }
 
     // inser PROFESIONALES
-    public static void insetarProfesional() {
-        String db_ = "ClinicaDental";
-        String login_ = "root";
-        String password_ = "";
-        String url_ = "jdbc:mysql://127.0.0.1/" + db_;
-        Connection connection_;
+    public static void insetarProfesional(Connection connection_) {
+
         Statement st_ = null;
         ResultSet rs_ = null;
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection_ = DriverManager.getConnection(url_, login_, password_);
-            System.out.println("Conexion a base de datos" + db_ + " correcta");
+
             st_ = connection_.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_UPDATABLE);
             Scanner sc = new Scanner(System.in);
             System.out.println("¿Cual es el NIF?");
@@ -172,23 +159,15 @@ public class insercionFunciones {
     }
 
     // COBROS insert
-    public static void insertCobros() {
-        String db_ = "ClinicaDental";
-        String login_ = "root";
-        String password_ = "";
-        String url_ = "jdbc:mysql://127.0.0.1/" + db_;
-
+    public static void insertCobros(Connection connection_) {
         Statement st_ = null;
         ResultSet rs_ = null;
-        Connection connection_ = null;
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection_ = DriverManager.getConnection(url_, login_, password_);
 
             Scanner sc = new Scanner(System.in);
 
-            System.out.println("Conexion a base de datos" + db_ + " correcta");
             st_ = connection_.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_UPDATABLE);
 
             System.out.println("Se va a modificar la tabla TRATAMIENTOS");
@@ -221,7 +200,6 @@ public class insercionFunciones {
 
             System.out.println("Ha finalizado la insercion");
 
-            connection_.close();
             st_.close();
             rs_.close();
             sc.close();
@@ -239,23 +217,17 @@ public class insercionFunciones {
     }
 
     // funcion cuando quiera insertar servicios
-    public static void insertarservicios() {
-        String db_ = "ClinicaDental";
-        String login_ = "root";
-        String password_ = "";
-        String url_ = "jdbc:mysql://127.0.0.1/" + db_;
-        Connection connection_;
+    public static void insertarservicios(Connection connection_) {
+
         Statement st_ = null;
         ResultSet rs_ = null;
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection_ = DriverManager.getConnection(url_, login_, password_);
+            ;
 
             Scanner sc = new Scanner(System.in);
             Scanner ss = new Scanner(System.in);
-
-            System.out.println("Conexion a base de datos" + db_ + " correcta");
             st_ = connection_.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_UPDATABLE);
 
             System.out.println("Se va a modificar la tabla SERVICIOS");
@@ -318,18 +290,13 @@ public class insercionFunciones {
     }
 
     // insertar LIQUIDACIONES
-    public static void insertarliquidacion() {
-        String db_ = "Clinica";
-        String login_ = "root";
-        String password_ = "";
-        String url_ = "jdbc:mysql://127.0.0.1/" + db_;
-        Connection connection_ = null;
+    public static void insertarliquidacion(Connection connection_) {
+
         Statement st_ = null;
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection_ = DriverManager.getConnection(url_, login_, password_);
-            System.out.println("Conexion a base de datos" + db_ + " correcta");
+
             st_ = connection_.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_UPDATABLE);
             Scanner sc = new Scanner(System.in);
 
@@ -373,17 +340,11 @@ public class insercionFunciones {
 
     // ------------------
     // aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-    public static void insert3000Paciente() {
-        String db_ = "ClinicaDental";
-        String login_ = "root";
-        String password_ = "";
-        String url_ = "jdbc:mysql://127.0.0.1/" + db_;
-        Connection connection_;
+    public static void insert3000Paciente(Connection connection_) {
         Statement st_;
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection_ = DriverManager.getConnection(url_, login_, password_);
 
             System.out.println("Conexion a base de datos");
             st_ = connection_.createStatement();
@@ -417,7 +378,7 @@ public class insercionFunciones {
 
             System.out.println("Insertado los 3000 pacientes en la base de datos");
             //
-            connection_.close();
+
             st_.close();
             br.close();
             // Fin de escritura
@@ -548,18 +509,11 @@ public class insercionFunciones {
 
     // funcion para crear la base de datos con los datos correspondientes desde el
     // menu administrador
-    public static void crearbasedatos() {
-        String db_ = "ClinicaDental";
-        String login_ = "root";
-        String password_ = "";
-        String url_ = "jdbc:mysql://127.0.0.1/" + db_;
-        Connection connection_;
+    public static void crearbasedatos(Connection connection_) {
         Statement st_;
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection_ = DriverManager.getConnection(url_, login_, password_);
-
             System.out.println("Conexion a base de datos");
             st_ = connection_.createStatement();
 
@@ -578,7 +532,7 @@ public class insercionFunciones {
                             "email VARCHAR(250)," +
                             "Telefono1 INT," +
                             "Telefono2 INT," +
-                            "PRIMARY KEY (IDPaciente, Historia)" +
+                            "PRIMARY KEY (IDPaciente)" +
                             ")");
 
             System.out.println("Creacion de la tabla PROFESIONALES..."); // PROFESIONALES
@@ -697,7 +651,6 @@ public class insercionFunciones {
 
             System.out.println("Se han creado todas las tablas correctamente!!");
 
-            connection_.close();
             st_.close();
         } catch (SQLException e) {
             e.printStackTrace();

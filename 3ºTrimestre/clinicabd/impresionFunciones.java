@@ -16,21 +16,15 @@ import java.util.Scanner;
 public class impresionFunciones {
 
     // funcion mostrar pacientes
-    public static void mostrarPac() {
-        String db_ = "ClinicaDental";
-        String login_ = "root";
-        String password_ = "";
-        String url_ = "jdbc:mysql://127.0.0.1/" + db_;
-        Connection connection_;
+    public static void mostrarPac(Connection connection_) {
+
         Statement st_;
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection_ = DriverManager.getConnection(url_, login_, password_);
 
             ArrayList<String> listaClientes = new ArrayList<String>();
 
-            System.out.println("Conexion a base de datos" + db_ + " correcta");
             st_ = connection_.createStatement();
 
             ResultSet rs_ = st_.executeQuery(
@@ -71,21 +65,15 @@ public class impresionFunciones {
     }
 
     // mostrar la liquidaciones
-    public static void mostrarliquid() {
-        String db_ = "ClinicaDental";
-        String login_ = "root";
-        String password_ = "";
-        String url_ = "jdbc:mysql://127.0.0.1/" + db_;
-        Connection connection_;
+    public static void mostrarliquid(Connection connection_) {
+
         Statement st_;
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection_ = DriverManager.getConnection(url_, login_, password_);
 
             ArrayList<String> listaliqui = new ArrayList<String>();
 
-            System.out.println("Conexion a base de datos" + db_ + " correcta");
             st_ = connection_.createStatement();
 
             ResultSet rs_ = st_.executeQuery(
@@ -104,7 +92,6 @@ public class impresionFunciones {
                 System.out.println(liquidaciones);
             }
 
-            connection_.close();
             st_.close();
 
         } catch (SQLException e) {

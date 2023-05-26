@@ -291,10 +291,6 @@ public class insercionFunciones {
 
     }
 
-    
-
-    
-
     // insertar LIQUIDACIONES
     public static void insertarliquidacion(Connection connection_) {
 

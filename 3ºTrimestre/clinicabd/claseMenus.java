@@ -256,11 +256,11 @@ public class claseMenus {
                     System.out.println();
                     break;
                 case 6:
-                    impresionFunciones.HistorialPacientes();
+                    impresionFunciones.HistorialPacientes(connection_);
                     System.out.println();
                     break;
                 case 7:
-                    impresionFunciones.sacarliquidacion();
+                    impresionFunciones.sacarliquidacion(connection_);
                     System.out.println();
                     break;
                 case 8:

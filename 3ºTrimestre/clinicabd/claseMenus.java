@@ -19,14 +19,14 @@ public class claseMenus {
         Scanner sc = new Scanner(System.in);
         int x = 0;
         boolean salirMenu = false;
-        // si quiero mostrar algo mirar act9 y ahi mas o menos veo algo
+
         try {
             do {
                 // menu
                 System.out.println();
                 System.out.println("Menu Principal");
                 System.out.println("1. Menu para inserta");
-                System.out.println("2. Menu de impresion"); // de momento, tengo que cambiarlo
+                System.out.println("2. Menu de impresion");
                 System.out.println("3. Menu administrador");
                 System.out.println("4. Salir");
                 System.out.println();
@@ -294,7 +294,6 @@ public class claseMenus {
         boolean salirMenu = false;
 
         do {
-            // menu
             System.out.println();
             System.out.println("Menu de resumen de importes entre fechas");
             System.out.println("1. Odontologia");

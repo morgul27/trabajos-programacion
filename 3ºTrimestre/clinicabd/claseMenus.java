@@ -32,7 +32,7 @@ public class claseMenus {
                 System.out.println();
 
                 // Ingresar numero
-                System.out.println("Ingresa un numero entre el 1 y el 8");
+                System.out.println("Ingresa un numero entre el 1 y el 4");
 
                 x = Integer.parseInt(sc.nextLine()); // lo paso a int, aunque sea un caracter
 
@@ -92,11 +92,13 @@ public class claseMenus {
                 System.out.println("1. Crear la base de datos");
                 System.out.println("2. Menu para insertar");
                 System.out.println("3. Crear 3000 paciente"); // de momento, tengo que cambiarlo
-                System.out.println("4. Salir");
+                System.out.println("4. Insertar Familias");
+                System.out.println("5. Insertar Tratamientos");
+                System.out.println("6. Salir");
                 System.out.println();
 
                 // Ingresar numero
-                System.out.println("Ingresa un numero entre el 1 y el 8");
+                System.out.println("Ingresa un numero entre el 1 y el 6");
                 try {
                     x = Integer.parseInt(sc.nextLine()); // lo paso a int, aunque sea un caracter
                 } catch (NumberFormatException e) {
@@ -116,11 +118,17 @@ public class claseMenus {
                         insercionFunciones.insert3000Paciente(connection_);
                         break;
                     case 4:
+                        insercionFunciones.insertFamiliacsv(connection_);
+                        break;
+                    case 5:
+                        insercionFunciones.tratamientomano(connection_);
+                        break;
+                    case 6:
                         primerMenu(connection_);
                         break;
                     default:
                         System.out.println();
-                        System.out.println("Debe introducir un numero entre 1 y 4");
+                        System.out.println("Debe introducir un numero entre 1 y 6");
                         System.out.println();
                 }
             } while (!salirMenu);
@@ -140,7 +148,6 @@ public class claseMenus {
         boolean salirMenu = false;
 
         do {
-            // menu
             System.out.println();
             System.out.println("Menu Insercion");
             System.out.println("1. Insertar un paciente");
@@ -148,14 +155,14 @@ public class claseMenus {
             System.out.println("3. Insertar un profesional");
             System.out.println("4. Insertar un servicios");
             System.out.println("5. Insertar una liquidacion");
-            System.out.println("6.");
+            System.out.println("6. ");
             System.out.println("7. ");
             System.out.println("8. ");
             System.out.println("9. Salir");
             System.out.println();
 
             // Ingresar numero
-            System.out.println("Ingresa un numero entre el 1 y el 8");
+            System.out.println("Ingresa un numero entre el 1 y el 9");
             try {
                 x = Integer.parseInt(sc.nextLine()); // lo paso a int, aunque sea un caracter
 
@@ -200,7 +207,7 @@ public class claseMenus {
                     break;
                 default:
                     System.out.println();
-                    System.out.println("Debe introducir un numero entre 1 y 8");
+                    System.out.println("Debe introducir un numero entre 1 y 9");
                     System.out.println();
             }
         } while (!salirMenu);
@@ -220,7 +227,7 @@ public class claseMenus {
             System.out.println("1. Historial de un paciente");
             System.out.println("2. Mostrar todos los pacientes");
             System.out.println("3. Menu de impresion");
-            System.out.println("4. Resumen del Menu");
+            System.out.println("4. Menu de resumen de importes entre fechas");
             System.out.println("5. Mostrar liquidaciones");
             System.out.println("6. Ver Historial Pacientes");
             System.out.println("7. Ver Liquidacion");
@@ -229,7 +236,7 @@ public class claseMenus {
             System.out.println();
 
             // Ingresar numero
-            System.out.println("Ingresa un numero entre el 1 y el 8");
+            System.out.println("Ingresa un numero entre el 1 y el 9");
             try {
                 x = Integer.parseInt(sc.nextLine());
 
@@ -289,7 +296,7 @@ public class claseMenus {
         do {
             // menu
             System.out.println();
-            System.out.println("Menu resumen");
+            System.out.println("Menu de resumen de importes entre fechas");
             System.out.println("1. Odontologia");
             System.out.println("2. Familia y tipo de tratamiento");
             System.out.println("3. Combinados");
@@ -297,7 +304,7 @@ public class claseMenus {
             System.out.println();
 
             // Ingresar numero
-            System.out.println("Ingresa un numero entre el 1 y el 8");
+            System.out.println("Ingresa un numero entre el 1 y el 4");
             try {
                 x = Integer.parseInt(sc.nextLine());
 
@@ -325,7 +332,7 @@ public class claseMenus {
                     break;
                 default:
                     System.out.println();
-                    System.out.println("Debe introducir un numero entre 1 y 8");
+                    System.out.println("Debe introducir un numero entre 1 y 4");
                     System.out.println();
             }
         } while (!salirMenu);

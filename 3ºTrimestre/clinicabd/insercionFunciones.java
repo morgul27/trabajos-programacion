@@ -536,7 +536,7 @@ public class insercionFunciones {
                 int CodFamilia = Integer.parseInt(parts[2]);
                 Double Precio = Double.parseDouble(parts[3]);
 
-                PreparedStatement ps = connection_.prepareStatement("INSERT INTO FAMILIAS" +
+                PreparedStatement ps = connection_.prepareStatement("INSERT INTO TRATAMIENTOS" +
                         " (CodTto, Nombre, CodFamilia, Precio) VALUES (?, ?, ?, ?)");
                 ps.setString(1, CodTto);
                 ps.setString(2, nombre);
@@ -563,17 +563,12 @@ public class insercionFunciones {
     }
 
     // insertar Familias csv a la base de datos
-    public static void insertFamiliacsv() {
-        String db_ = "ClinicaDental";
-        String login_ = "root";
-        String password_ = "";
-        String url_ = "jdbc:mysql://127.0.0.1/" + db_;
-        Connection connection_;
+    public static void insertFamiliacsv(Connection connection_) {
+
         Statement st_;
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection_ = DriverManager.getConnection(url_, login_, password_);
 
             System.out.println("Conexion a base de datos");
             st_ = connection_.createStatement();

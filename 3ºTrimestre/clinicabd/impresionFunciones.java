@@ -271,12 +271,57 @@ public class impresionFunciones {
     }
 
     // consultas de Familia y tipo de tratamiento
-    public static void consultaFamilia() {
+    public static void consultaFamilia(Connection connection_) {
+        Statement st_ = null;
 
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            st_ = connection_.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_UPDATABLE);
+            Scanner sc = new Scanner(System.in);
+            ArrayList<String> listafamilia = new ArrayList<String>();
+            System.out.println(
+                    "Dime la fecha desde la que quieres revisar hasta el dia de hoy con el formato yyyymmdd");
+            String fecha = sc.nextLine();
+            System.out.println("Dime el Codigo de la familia del tratamiento");
+            String nomCodFa = sc.nextLine();
+
+            System.out.println("La comision seria de");
+            ResultSet rs_ = st_.executeQuery(
+                    "select CodFamilia from FAMILIAS f" +
+                            "where f.Nombre = " + nomCodFa);
+
+            System.out.println("La lista de resumen de Odontologo han sido");
+
+            ResultSet dc_ = st_.executeQuery(
+                    "select * from FAMILIAS f" +
+                            "inner join TRATAMIENTOS t on f.CodFamilia = t.CodFamilia" +
+                            "where f.Nombre=" + nomCodFa + " and t.Fecha between " + fecha + " and now()");
+            while (dc_.next()) {
+                String fech = dc_.getString("Fecha");
+                String nombre = dc_.getString("t.Nombre");
+                int tipo = dc_.getInt("CodTto");
+                listafamilia.add(nombre + " | " + fech + " | " + tipo);
+            }
+
+            System.out.println("La lista de tratamienots realizados han sido");
+
+            for (String familia : listafamilia) {
+                System.out.println(familia);
+            }
+            System.out.println("Ha finalizado la insercion");
+            st_.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     // consultas de ambos
-    public static void consultaAmbos() {
+    public static void consultaAmbos(Connection connection_) {
 
     }
 }

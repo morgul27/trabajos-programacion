@@ -511,6 +511,104 @@ public class insercionFunciones {
         return n;
     }
 
+    // tratamientos/familias
+
+    // funcion para meter los tratamientos con csv
+    public static void tratamientomano(Connection connection_) {
+        Statement st_ = null;
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            System.out.println("Conexion a base de datos");
+            st_ = connection_.createStatement();
+
+            //
+            // Empieza la escritura
+            BufferedReader br = new BufferedReader(new FileReader("TRATAMIENTOS.csv"));
+
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split(",");
+
+                String CodTto = parts[0];
+                String nombre = parts[1];
+                int CodFamilia = Integer.parseInt(parts[2]);
+                Double Precio = Double.parseDouble(parts[3]);
+
+                PreparedStatement ps = connection_.prepareStatement("INSERT INTO FAMILIAS" +
+                        " (CodTto, Nombre, CodFamilia, Precio) VALUES (?, ?, ?, ?)");
+                ps.setString(1, CodTto);
+                ps.setString(2, nombre);
+                ps.setInt(3, CodFamilia);
+                ps.setDouble(4, Precio);
+                ps.executeUpdate();
+                ps.close();
+            }
+
+            System.out.println("Insertado los tratamientos en la base de datos");
+            //
+            st_.close();
+            br.close();
+            // Fin de escritura
+            //
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    // insertar Familias csv a la base de datos
+    public static void insertFamiliacsv() {
+        String db_ = "ClinicaDental";
+        String login_ = "root";
+        String password_ = "";
+        String url_ = "jdbc:mysql://127.0.0.1/" + db_;
+        Connection connection_;
+        Statement st_;
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            connection_ = DriverManager.getConnection(url_, login_, password_);
+
+            System.out.println("Conexion a base de datos");
+            st_ = connection_.createStatement();
+
+            //
+            // Empieza la escritura
+            BufferedReader br = new BufferedReader(new FileReader("Familias.csv"));
+
+            String line;
+            while ((line = br.readLine()) != null) {
+                String nombre = line;
+
+                PreparedStatement ps = connection_.prepareStatement("INSERT INTO FAMILIAS" +
+                        " (Nombre) VALUES (?)");
+                ps.setString(1, nombre);
+                ps.executeUpdate();
+                ps.close();
+            }
+
+            System.out.println("Insertado el csv de Familias en la base de datos");
+            //
+            st_.close();
+            br.close();
+            // Fin de escritura
+            //
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     // funcion para crear la base de datos con los datos correspondientes desde el
     // menu administrador
     public static void crearbasedatos(Connection connection_) {

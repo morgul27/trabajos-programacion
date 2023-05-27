@@ -7,13 +7,6 @@ import com.mysql.cj.xdevapi.Statement;
 
 public class claseMenus {
 
-    String db_ = "ClinicaDental";
-    String login_ = "root";
-    String password_ = "";
-    String url_ = "jdbc:mysql://127.0.0.1/" + db_;
-    Connection connection_;
-    Statement st_;
-
     // primer menu que sale en el programa
     public static void primerMenu(Connection connection_) {
         Scanner sc = new Scanner(System.in);
@@ -155,9 +148,6 @@ public class claseMenus {
             System.out.println("3. Insertar un profesional");
             System.out.println("4. Insertar un servicios");
             System.out.println("5. Insertar una liquidacion");
-            System.out.println("6. ");
-            System.out.println("7. ");
-            System.out.println("8. ");
             System.out.println("9. Salir");
             System.out.println();
 
@@ -192,17 +182,6 @@ public class claseMenus {
                     insercionFunciones.insertarliquidacion(connection_);
                     System.out.println();
                     break;
-                case 6:
-                    System.out.println();
-                    break;
-                case 7:
-                    // hacer consultas, clicando en cosas
-                    System.out.println();
-                    break;
-                case 8:
-                    System.out.println("a");
-                    break;
-                // hacer menu con contraseña para crear la base de datos
                 case 9:
                     primerMenu(connection_);
                     break;

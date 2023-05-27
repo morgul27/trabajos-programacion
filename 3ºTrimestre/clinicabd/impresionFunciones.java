@@ -207,6 +207,8 @@ public class impresionFunciones {
                 System.out.println(liquidacion);
             }
             st_.close();
+            dc_.close();
+            rs_.close();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -242,8 +244,8 @@ public class impresionFunciones {
             ResultSet dc_ = st_.executeQuery(
                     "select Fecha,Cobrado,t.Nombre from TtosRealizados t" +
                             "inner join PROFESIONALES p on p.IDProfesional=t.IDProfesional" +
-                            "inner join TtosRealizados tr on p.IDServicio = tr.IDServicio"+
-                            "inner join TRATAMIENTOS t on tr.IDTratamiento = t.IDTratamiento"+
+                            "inner join TtosRealizados tr on p.IDServicio = tr.IDServicio" +
+                            "inner join TRATAMIENTOS t on tr.IDTratamiento = t.IDTratamiento" +
                             "where p.NIF=" + dni + " and t.Fecha between " + fecha + " and now()");
             while (dc_.next()) {
                 int nombre = dc_.getInt("t.Nombre");
@@ -257,8 +259,10 @@ public class impresionFunciones {
             for (String liquidacion : listaliqui) {
                 System.out.println(liquidacion);
             }
-            
+
             st_.close();
+            dc_.close();
+            rs_.close();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -311,6 +315,8 @@ public class impresionFunciones {
             }
             System.out.println("Ha finalizado la insercion");
             st_.close();
+            dc_.close();
+            rs_.close();
 
         } catch (SQLException e) {
             e.printStackTrace();

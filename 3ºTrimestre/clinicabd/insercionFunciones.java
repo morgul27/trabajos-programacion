@@ -173,9 +173,9 @@ public class insercionFunciones {
 
             st_ = connection_.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_UPDATABLE);
 
-            System.out.println("Se va a modificar la tabla TRATAMIENTOS");
+            System.out.println("Se va a modificar la tabla COBROS");
 
-            rs_ = st_.executeQuery("select * from TRATAMIENTOS");
+            rs_ = st_.executeQuery("select * from COBROS");
 
             // necesito cambiarlo para adaptarlo a cobros, probarlo
 
@@ -191,7 +191,7 @@ public class insercionFunciones {
             System.out.println("Introduce imputado ");
             Double imputado = sc.nextDouble();
 
-            PreparedStatement ps = connection_.prepareStatement("INSERT INTO PROFESIONALES" +
+            PreparedStatement ps = connection_.prepareStatement("INSERT INTO COBROS" +
                     "(Fecha,IDPaciente,IDFCobro,Cobrado,Imputado))"
                     + " VALUES (?, (select id from PACIENTES where DNI=" + IDDNI
                     + "),(select id from PACIENTES where IDFCobro=" + IDFCobro + "),?, ?)");

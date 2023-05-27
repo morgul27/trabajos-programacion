@@ -189,6 +189,7 @@ public class claseMenus {
                     System.out.println();
                     break;
                 case 5:
+                    insercionFunciones.insertarliquidacion(connection_);
                     System.out.println();
                     break;
                 case 6:
@@ -224,19 +225,16 @@ public class claseMenus {
         do {
             System.out.println();
             System.out.println("Menu para impresion");
-            System.out.println("1. Historial de un paciente");
-            System.out.println("2. Mostrar todos los pacientes");
-            System.out.println("3. Menu de impresion");
-            System.out.println("4. Menu de resumen de importes entre fechas");
-            System.out.println("5. Mostrar liquidaciones");
-            System.out.println("6. Ver Historial Pacientes");
-            System.out.println("7. Ver Liquidacion");
-
-            System.out.println("9. Salir");
+            System.out.println("1. Mostar todos los pacientes");
+            System.out.println("2. Menu de resumen de importes entre fechas");
+            System.out.println("3. Mostrar liquidaciones");
+            System.out.println("4. Ver Historial Pacientes");
+            System.out.println("5. Ver Liquidacion");
+            System.out.println("6. Salir");
             System.out.println();
 
             // Ingresar numero
-            System.out.println("Ingresa un numero entre el 1 y el 9");
+            System.out.println("Ingresa un numero entre el 1 y el 6");
             try {
                 x = Integer.parseInt(sc.nextLine());
 
@@ -246,40 +244,31 @@ public class claseMenus {
 
             switch (x) {
                 case 1:
+                    impresionFunciones.mostrarPac(connection_);
                     System.out.println();
                     break;
                 case 2:
-                    System.out.println();
-                    break;
-                case 3:
-                    System.out.println();
-                    break;
-                case 4:
-                    resumenMenu(connection_);
-                    System.out.println();
-                    break;
-                case 5:
                     impresionFunciones.mostrarliquid(connection_);
                     System.out.println();
                     break;
-                case 6:
+                case 3:
                     impresionFunciones.HistorialPacientes(connection_);
                     System.out.println();
                     break;
-                case 7:
+                case 4:
                     impresionFunciones.sacarliquidacion(connection_);
                     System.out.println();
                     break;
-                case 8:
+                case 5:
                     MenuAdministrador(connection_);
                     break;
-                case 9:
+                case 6:
                     salirMenu = true;
                     primerMenu(connection_);
                     break;
                 default:
                     System.out.println();
-                    System.out.println("Debe introducir un numero entre 1 y 8");
+                    System.out.println("Debe introducir un numero entre 1 y 6");
                     System.out.println();
             }
         } while (!salirMenu);
@@ -313,18 +302,18 @@ public class claseMenus {
 
             switch (x) {
                 case 1:
+                    impresionFunciones.consultaOdonto(connection_);
                     System.out.println();
                     break;
                 case 2:
-
+                    impresionFunciones.consultaFamilia(connection_);
                     System.out.println();
-
                     break;
                 case 3:
-
+                    impresionFunciones.consultaOdonto(connection_);
+                    impresionFunciones.consultaFamilia(connection_);
                     System.out.println();
                     break;
-
                 case 4:
                     Menuimpresion(connection_);
                     salirMenu = true;

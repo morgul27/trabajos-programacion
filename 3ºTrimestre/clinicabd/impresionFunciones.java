@@ -206,7 +206,6 @@ public class impresionFunciones {
             for (String liquidacion : listaliqui) {
                 System.out.println(liquidacion);
             }
-            System.out.println("Ha finalizado la insercion");
             st_.close();
 
         } catch (SQLException e) {
@@ -234,31 +233,31 @@ public class impresionFunciones {
             System.out.println("El DNI del profesional");
             String dni = sc.nextLine();
 
-            System.out.println("La comision seria de");
+            System.out.println("Los profesionales de esta clinica son");
             ResultSet rs_ = st_.executeQuery(
                     "select * from PROFESIONALES p" +
                             "inner join TtosRealizados s on p.IDProfesional=s.IDProfesional" +
                             "where p.NIF=" + dni + " and t.Fecha between " + fecha + " and now()");
 
-            System.out.println("La lista de resumen de Odontologo han sido");
-
             ResultSet dc_ = st_.executeQuery(
-                    "select IDServicio,Fecha,IDProfesional from TtosRealizados t" +
+                    "select Fecha,Cobrado,t.Nombre from TtosRealizados t" +
                             "inner join PROFESIONALES p on p.IDProfesional=t.IDProfesional" +
+                            "inner join TtosRealizados tr on p.IDServicio = tr.IDServicio"+
+                            "inner join TRATAMIENTOS t on tr.IDTratamiento = t.IDTratamiento"+
                             "where p.NIF=" + dni + " and t.Fecha between " + fecha + " and now()");
             while (dc_.next()) {
-                int idser = dc_.getInt("IDServicio");
+                int nombre = dc_.getInt("t.Nombre");
                 String fech = dc_.getString("Fecha");
-                int idpro = dc_.getInt("IDProfesional");
-                listaliqui.add(idser + " | " + fech + " | " + idpro);
+                int cobrado = dc_.getInt("Cobrado");
+                listaliqui.add(nombre + " | " + fech + " | " + cobrado);
             }
 
-            System.out.println("La lista de tratamienots realizados han sido");
+            System.out.println("La lista de Odontologo realizados han sido");
 
             for (String liquidacion : listaliqui) {
                 System.out.println(liquidacion);
             }
-            System.out.println("Ha finalizado la insercion");
+            
             st_.close();
 
         } catch (SQLException e) {
@@ -293,14 +292,16 @@ public class impresionFunciones {
             System.out.println("La lista de resumen de Odontologo han sido");
 
             ResultSet dc_ = st_.executeQuery(
-                    "select * from FAMILIAS f" +
+                    "select Fecha,t.Nombre,CodTto,Cobrado from FAMILIAS f" +
                             "inner join TRATAMIENTOS t on f.CodFamilia = t.CodFamilia" +
+                            "inner join TtosRealizados tr on t.IDTratamiento = tr.IDTratamiento" +
                             "where f.Nombre=" + nomCodFa + " and t.Fecha between " + fecha + " and now()");
             while (dc_.next()) {
                 String fech = dc_.getString("Fecha");
                 String nombre = dc_.getString("t.Nombre");
-                int tipo = dc_.getInt("CodTto");
-                listafamilia.add(nombre + " | " + fech + " | " + tipo);
+                String tipo = dc_.getString("CodTto");
+                int cobrado = dc_.getInt("Cobrado");
+                listafamilia.add(nombre + " | " + fech + " | " + tipo + " | " + cobrado);
             }
 
             System.out.println("La lista de tratamienots realizados han sido");
@@ -318,10 +319,5 @@ public class impresionFunciones {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    // consultas de ambos
-    public static void consultaAmbos(Connection connection_) {
-
     }
 }

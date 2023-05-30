@@ -1,3 +1,5 @@
+package examenesAntiguos;
+
 import java.util.Scanner;
 
 public class examRecuperacion {

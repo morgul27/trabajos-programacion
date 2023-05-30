@@ -1,3 +1,5 @@
+package examenesAntiguos;
+
 import java.util.Scanner;
 import java.text.NumberFormat;
 import java.util.ArrayList;

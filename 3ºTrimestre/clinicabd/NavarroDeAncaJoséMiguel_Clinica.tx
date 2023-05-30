@@ -1,0 +1,235 @@
+Motor MariaDB
+Trabajo realizado por Pablo Flores Garcia y José Miguel Navarro De Anca
+
+--Aqui estoy sacando los distintos campos de la tabla pacientes
+ResultSet rs_ = st_.executeQuery(
+                    "select Apellidos,Nombre,DNI,FechaNacimiento,Genero,Direccion,CP,CodProvincia,email,Telefono1 from PACIENTES");
+
+--Aqui estoy sacando los campos de liquidacion
+ResultSet rs_ = st_.executeQuery(
+                    "select IDLiquidacion,Fecha,IDProfesional,Comision from LIQUIDACIONES");
+
+--Aqui pido el dni del paciente para poder sacar su id
+ ResultSet id = st_.executeQuery(
+                    "select id from PACIENTES where DNI = " + dni);
+
+--Aqui estoy sacando un inner join de TtosRealizados y TRATAMIENTOS con un where, para luego sacar los datos de la tabla
+ResultSet rs_ = st_.executeQuery(
+                    "select * from PACIENTES p" +
+                            "inner join TtosRealizados tr on c.IDPaciente = tr.IDPaciente" +
+                            "inner join TRATAMIENTOS tra on tr.IDTratamiento = tra.IDTratamiento" +
+                            "where p.id = " + idp);
+
+--Aqui he querido sacar la liquidacion de un profesional
+ResultSet rs_ = st_.executeQuery(
+                    "select ((p.comsion/100)*sum(c.cobrado)) from PROFESIONALES p" +
+                            "inner join TtosRealizados s on p.IDProfesional=s.IDProfesional" +
+                            "inner join TTOSCOBROS t on t.IDServicio=s.IDServicio" +
+                            "inner join COBROS c on c.IDCobro=t.IDCobro" +
+                            "where p.NIF=" + dni + " and t.Fecha between " + fecha + " and now()");
+
+--Y aqui es la lista de los tratamientos
+ResultSet dc_ = st_.executeQuery(
+                    "select IDServicio,Fecha,IDProfesional from TtosRealizados t" +
+                            "inner join PROFESIONALES p on p.IDProfesional=t.IDProfesional" +
+                            "where p.NIF=" + dni + " and t.Fecha between " + fecha + " and now()");
+
+--Aqui saco los trabajos realizados de los profesionales
+ResultSet rs_ = st_.executeQuery(
+                    "select * from PROFESIONALES p" +
+                            "inner join TtosRealizados s on p.IDProfesional=s.IDProfesional" +
+                            "where p.NIF=" + dni + " and t.Fecha between " + fecha + " and now()");
+ResultSet dc_ = st_.executeQuery(
+                    "select Fecha,Cobrado,t.Nombre from TtosRealizados t" +
+                            "inner join PROFESIONALES p on p.IDProfesional=t.IDProfesional" +
+                            "inner join TtosRealizados tr on p.IDServicio = tr.IDServicio" +
+                            "inner join TRATAMIENTOS t on tr.IDTratamiento = t.IDTratamiento" +
+                            "where p.NIF=" + dni + " and t.Fecha between " + fecha + " and now()");
+
+--Aqui estoy cogiendo las familias de los tratmiento realizados de una fecha hasta ahora
+ResultSet dc_ = st_.executeQuery(
+                    "select Fecha,t.Nombre,CodTto,Cobrado from FAMILIAS f" +
+                            "inner join TRATAMIENTOS t on f.CodFamilia = t.CodFamilia" +
+                            "inner join TtosRealizados tr on t.IDTratamiento = tr.IDTratamiento" +
+                            "where f.Nombre=" + nomCodFa + " and t.Fecha between " + fecha + " and now()");
+
+--Aqui hay un insert de la tabla pacientes, este codigo se repite, pero añadiendo menos campos al insert y al ser lo mismo solo se lo he puesto 1 vez.
+PreparedStatement ps = connection_.prepareStatement("INSERT INTO PACIENTES" +
+                    "(Apellidos,Nombre,DNI,FechaNacimiento,Genero,Direccion,CP,CodProvincia,email,Telefono1,Telefono2)"
+                    + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+--Aqui inserto datos de la tabla profesional
+PreparedStatement ps = connection_.prepareStatement("INSERT INTO PROFESIONALES" +
+                    "(NIF,Apellidos,Nombre,Direccion,CP,CodProvincia,email,Telefono1,Telefono2,Comision)"
+                    + " VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+--Aqui estoy haciendo un insert de la tabla cobros
+PreparedStatement ps = connection_.prepareStatement("INSERT INTO COBROS" +
+                    "(Fecha,IDPaciente,IDFCobro,Cobrado,Imputado))"
+                    + " VALUES (?, (select id from PACIENTES where DNI=" + IDDNI
+                    + "),(select id from PACIENTES where IDFCobro=" + IDFCobro + "),?, ?)");
+
+
+--Aqui estoy haciendo otro insert de la tabla servicios
+rs_.moveToInsertRow();
+                rs_.updateInt("IDServicio", IDServicio);
+                rs_.updateString("Fecha", fecha);
+                rs_.updateInt("IDPaciente", iDPaciente);
+                rs_.updateInt("IDProfesional", idprofesional);
+                rs_.updateInt("IDTratamiento", IDTratamiento);
+                rs_.updateDouble("Precio", precio);
+                rs_.updateDouble("Cobro", cobrado);
+                rs_.updateInt("IDLiquidacion", idliquidacion);
+
+                rs_.insertRow();
+                rs_.moveToCurrentRow();
+
+--Aqui tengo un insert de la tabla liquidacion
+PreparedStatement ps = connection_.prepareStatement("INSERT INTO LIQUIDACION" +
+                    "(?,(select IDProfesional from IDProfesional where NIF=" + dni + " ),?)");
+
+--Aqui es otro insert de tratamientos
+PreparedStatement ps = connection_.prepareStatement("INSERT INTO TRATAMIENTOS" +
+                        " (CodTto, Nombre, CodFamilia, Precio) VALUES (?, ?, ?, ?)");
+
+--Aqui insertamos el nombre se la tabla familia
+PreparedStatement ps = connection_.prepareStatement("INSERT INTO FAMILIAS" +
+                        " (Nombre) VALUES (?)");
+
+--Aqui estamos insertando la base de datos
+st_.executeUpdate(
+                    "CREATE TABLE PACIENTES (" +
+                            "IDPaciente INT NOT NULL AUTO_INCREMENT," +
+                            "Apellidos VARCHAR(250)," +
+                            "Nombre VARCHAR (250)," +
+                            "DNI VARCHAR (15)," +
+                            "FechaNacimiento DATE," +
+                            "Genero VARCHAR (100)," +
+                            "Direccion VARCHAR(250)," +
+                            "CP INT," +
+                            "CodProvincia INT," + // Los primeros numeros de CP
+                            "email VARCHAR(250)," +
+                            "Telefono1 INT," +
+                            "Telefono2 INT," +
+                            "PRIMARY KEY (IDPaciente)" +
+                            ")");
+
+            System.out.println("Creacion de la tabla PROFESIONALES..."); // PROFESIONALES
+            st_.executeUpdate(
+                    "CREATE TABLE PROFESIONALES (" +
+                            "IDProfesional INT NOT NULL AUTO_INCREMENT," +
+                            "NIF VARCHAR(9)," +
+                            "Apellidos VARCHAR(250)," +
+                            "Nombre VARCHAR(250)," +
+                            "Direccion VARCHAR(250)," +
+                            "CP INT," +
+                            "CodProvincia INT," +
+                            "email VARCHAR(250)," +
+                            "Telefono1 INT," +
+                            "Telefono2 INT," +
+                            "Comision DECIMAL(16,2)," +
+                            "PRIMARY KEY (IDProfesional, NIF)" +
+                            ")");
+
+            System.out.println("Creacion de la tabla FAMILIAS..."); // FAMILIAS
+            st_.executeUpdate(
+                    "CREATE TABLE FAMILIAS (" +
+                            "CodFamilia INT NOT NULL AUTO_INCREMENT," +
+                            "Nombre VARCHAR(250) NOT NULL," +
+                            "PRIMARY KEY (CodFamilia)" +
+                            ")");
+
+            System.out.println("Creacion de la tabla TRATAMIENTOS...");// TRATAMIENTOS
+            st_.executeUpdate(
+                    "CREATE TABLE TRATAMIENTOS (" +
+                            "IDTratamiento INT NOT NULL AUTO_INCREMENT, " +
+                            "CodTto VARCHAR(250) NOT NULL," +
+                            "Nombre VARCHAR(250) NOT NULL," +
+                            "CodFamilia INT," +
+                            "Precio DECIMAL(16,2)," +
+                            "PRIMARY KEY (IDTratamiento, CodTto)," +
+                            "FOREIGN KEY(CodFamilia) REFERENCES FAMILIAS (CodFamilia)" +
+                            ")");
+
+            System.out.println("Creacion de la tabla GRUPOCAJA..."); // GRUPOCAJA
+            st_.executeUpdate(
+                    "CREATE TABLE GRUPOCAJA (" +
+                            "CodGrCaja INT NOT NULL AUTO_INCREMENT," +
+                            "Nombre VARCHAR(250) NOT NULL, " +
+                            "PRIMARY KEY (CodGrCaja)" +
+                            ")");
+
+            System.out.println("Creacion de la tabla FCOBRO..."); // FORMAS COBRO
+            st_.executeUpdate(
+                    "CREATE TABLE FCOBRO (" +
+                            "IDFCobro INT NOT NULL AUTO_INCREMENT," +
+                            "Nombre VARCHAR(250) NOT NULL, " +
+                            "CodGrCaja INT NOT NULL," +
+                            "PRIMARY KEY (IDFCobro)," +
+                            "FOREIGN KEY(CodGrCaja) REFERENCES GRUPOCAJA (CodGrCaja)" +
+                            ")");
+
+            System.out.println("Creacion de la tabla LIQUIDACIONES..."); // LIQUIDACIONES
+            st_.executeUpdate(
+                    "CREATE TABLE LIQUIDACIONES (" +
+                            "IDLiquidacion INT NOT NULL AUTO_INCREMENT, " +
+                            "Fecha DATE," +
+                            "IDProfesional INT NOT NULL," +
+                            "Comision DECIMAL(16,2)," +
+                            "PRIMARY KEY(IDLiquidacion)," +
+                            "FOREIGN KEY(IDProfesional) REFERENCES PROFESIONALES (IDProfesional)"
+                            +
+                            ")");
+
+            System.out.println("Creacion de la tabla TtosRealizados..."); // SERVICIOS
+            st_.executeUpdate(
+                    "CREATE TABLE TtosRealizados (" +
+                            "IDServicio INT NOT NULL AUTO_INCREMENT, " +
+                            "Fecha DATE," +
+                            "IDPaciente INT NOT NULL," +
+                            "IDProfesional INT NOT NULL," +
+                            "IDTratamiento INT NOT NULL," +
+                            "Precio DECIMAL(16,2)," +
+                            "Cobrado DECIMAL(16,2)," +
+                            "IDLiquidacion INT NOT NULL," +
+                            "FOREIGN KEY(IDPaciente) REFERENCES PACIENTES (IDPaciente)," +
+                            "FOREIGN KEY(IDProfesional) REFERENCES PROFESIONALES (IDProfesional),"
+                            +
+                            "FOREIGN KEY(IDTratamiento) REFERENCES TRATAMIENTOS (IDTratamiento),"
+                            +
+                            "FOREIGN KEY(IDLiquidacion) REFERENCES LIQUIDACIONES (IDLiquidacion),"
+                            +
+                            "PRIMARY KEY(IDServicio)" +
+                            ")");
+
+            System.out.println("Creacion de la tabla COBROS..."); // COBROS
+            st_.executeUpdate(
+                    "CREATE TABLE COBROS (" +
+                            "IDCobro INT NOT NULL AUTO_INCREMENT," +
+                            "Fecha DATE," +
+                            "IDPaciente INT NOT NULL," +
+                            "IDFCobro INT NOT NULL," +
+                            "Cobrado DECIMAL(16,2)," +
+                            "Imputado DECIMAL(16,2)," +
+                            "FOREIGN KEY(IDPaciente) REFERENCES PACIENTES (IDPaciente)," +
+                            "FOREIGN KEY(IDFCobro) REFERENCES FCOBRO (IDFCobro)," +
+                            "PRIMARY KEY (IDCobro)" +
+                            ")");
+
+            System.out.println("Creacion de la tabla TTOSCOBROS..."); // TTOSCOBROS - tabla N N
+            st_.executeUpdate(
+                    "CREATE TABLE TTOSCOBROS (" +
+                            "IDCobro INT NOT NULL, " +
+                            "IDServicio INT NOT NULL, " +
+                            "Imputado DECIMAL(16,2)," +
+                            "FOREIGN KEY(IDCobro) REFERENCES COBROS (IDCobro)," +
+                            "FOREIGN KEY(IDServicio) REFERENCES TtosRealizados (IDServicio),"
+                            +
+                            "PRIMARY KEY (IDCobro, IDServicio)" +
+                            ")");
+
+
+
+
+
+

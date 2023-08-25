@@ -3,6 +3,29 @@
     "lib/**/*.jar",
     "c:\\Users\\Josemi\\Desktop\\grado superior programacion\\trabajos\\Programación\\cosas nuevas de base de datos\\mysql-connector-j-8.0.33/**/*.jar",
     "c:\\Users\\JoséMiguelNavarroDeA\\Downloads\\mysql-connector-j-8.0.33\\mysql-connector-j-8.0.33\\mysql-connector-j-8.0.33.jar",
-    "c:\\Users\\JoséMiguelNavarroDeA\\Desktop\\ejercicios en clase\\programas\\GitHub\\mysql-connector-j-8.0.33\\mysql-connector-j-8.0.33\\mysql-connector-j-8.0.33.jar"
+    "c:\\Users\\JoséMiguelNavarroDeA\\Desktop\\ejercicios en clase\\programas\\GitHub\\mysql-connector-j-8.0.33\\mysql-connector-j-8.0.33\\mysql-connector-j-8.0.33.jar",
+    "d:\\Trabajos 2º\\javafx-sdk-20.0.2\\lib\\javafx.base.jar",
+    "d:\\Trabajos 2º\\javafx-sdk-20.0.2\\lib\\javafx.controls.jar",
+    "d:\\Trabajos 2º\\javafx-sdk-20.0.2\\lib\\javafx.fxml.jar",
+    "d:\\Trabajos 2º\\javafx-sdk-20.0.2\\lib\\javafx.graphics.jar",
+    "d:\\Trabajos 2º\\javafx-sdk-20.0.2\\lib\\javafx.media.jar",
+    "d:\\Trabajos 2º\\javafx-sdk-20.0.2\\lib\\javafx.swing.jar",
+    "d:\\Trabajos 2º\\javafx-sdk-20.0.2\\lib\\javafx.web.jar",
+    "d:\\Trabajos 2º\\javafx-sdk-20.0.2\\lib\\javafx-swt.jar",
+    "javafx-sdk-20.0.2/lib/javafx.base.jar",
+    "javafx-sdk-20.0.2/lib/javafx.controls.jar",
+    "javafx-sdk-20.0.2/lib/javafx.fxml.jar",
+    "javafx-sdk-20.0.2/lib/javafx.graphics.jar",
+    "javafx-sdk-20.0.2/lib/javafx.media.jar",
+    "javafx-sdk-20.0.2/lib/javafx.swing.jar",
+    "javafx-sdk-20.0.2/lib/javafx.web.jar",
+    "javafx-sdk-20.0.2/lib/javafx-swt.jar"
+  ],
+  "java.completion.filteredTypes": [
+    "com.sun.*",
+    "sun.*",
+    "jdk.*",
+    "org.graalvm.*",
+    "io.micrometer.shaded.*"
   ]
 }
